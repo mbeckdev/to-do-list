@@ -2,11 +2,8 @@
 # to-do-list
   </h1>
 
-
 <p align="center">
-  <a href="#">
 A to-do list made with webpack
-  </a>
 </p>
 
 <p align="center">
@@ -14,9 +11,6 @@ A to-do list made with webpack
   <br>
   Everyone makes a to-do list at some point in their web development career, and I'm part of everyone so here's mine. (haha)
 </p>
-
-<div align="center">
-</div>
 
 <hr>
 
