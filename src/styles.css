@@ -52,10 +52,19 @@ h1 {
 }
 
 .add-task {
-  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
 
   /* This margin is meant for the header - might need to separate the two later */
-  margin: 0 10px;
+  padding: 0 10px;
+
+  cursor: pointer;
+}
+
+.add-task-icon {
+  margin-right: 10px;
 }
 
 .hamburger-line {
