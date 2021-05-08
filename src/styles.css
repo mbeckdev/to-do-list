@@ -1,3 +1,12 @@
+:root {
+  /* --main-bk-color: hsl(147, 31%, 43%); */
+  --main-bk-color: rgb(40, 44, 52);
+  --main-text-color: rgb(171, 178, 191);
+  --green: rgb(152, 195, 121);
+  --red: rgb(224, 108, 117);
+  --blue: rgb(97, 175, 239);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -5,5 +14,54 @@
 }
 
 body {
-  color: blue;
+  color: var(--main-text-color);
+  background-color: var(--main-bk-color);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+
+  background-color: rgb(50, 54, 62);
+  color: var(--green);
+  box-shadow: 0 0px 2px rgb(10, 10, 10);
+}
+
+h1 {
+  margin: 0 30px;
+}
+
+#main-header-container {
+  display: flex;
+}
+
+#hamburger {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10px;
+
+  cursor: pointer;
+}
+
+#icon {
+  justify-content: center;
+  align-self: center;
+}
+
+.add-task {
+  align-self: center;
+
+  /* This margin is meant for the header - might need to separate the two later */
+  margin: 0 10px;
+}
+
+.hamburger-line {
+  position: relative;
+  width: 20px;
+  height: 4px;
+  background-color: var(--main-text-color);
+  margin: 2px 0;
 }
