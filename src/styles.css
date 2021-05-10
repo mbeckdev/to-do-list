@@ -20,6 +20,9 @@ body {
   /* font-family: 'Concert One', cursive; */
   /* font-family: 'Noto Sans TC', sans-serif;  --400 and 700-- */
   font-family: "Noto Sans TC", sans-serif;
+  position: relative;
+
+  min-width: 320px;
 }
 
 h1 {
@@ -37,6 +40,17 @@ header {
   color: var(--green);
   box-shadow: 0 0px 2px rgb(10, 10, 10);
   text-shadow: 0 0 3px black;
+
+  height: 46px;
+  position: relative;
+}
+
+hr {
+  border: 1px solid var(--main-text-color);
+}
+
+main {
+  padding: 0 3px;
 }
 
 nav {
@@ -44,8 +58,8 @@ nav {
 
   padding: 3px;
   /* padding-right: 1em; */
-  position: relative;
-  top: 1px;
+  position: absolute;
+  top: 47px;
 
   background-color: var(--main-text-color);
   color: var(--main-bk-color);
@@ -59,9 +73,6 @@ nav > div > div {
   border-radius: 5px;
 }
 
-hr {
-  border: 1px solid var(--main-text-color);
-}
 nav hr {
   border: 1px solid var(--main-bk-color2);
 }
@@ -94,6 +105,9 @@ nav hr {
   margin-left: 10px;
   margin-right: 20px;
   height: 1.2em;
+
+  /* This turns off the icon -- Not sure if I want in on mobile layout - it takes up too much room */
+  display: none;
 }
 
 #main-header-container {
@@ -151,7 +165,37 @@ nav hr {
 }
 
 .nav-is-left {
-  position: relative;
+  /* position: relative; */
   transform: translate(-100%, 0);
   /* background-color: var(--main-bk-color); */
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .task > * { */
+/* margin: 3px; */
+/* } */
+
+.task-first-section,
+.task-last-section {
+  display: flex;
+  align-items: center;
+}
+
+.task-first-section > *,
+.task-last-section > * {
+  margin: 3px;
+}
+
+/* .task input { */
+/* display: flex; */
+/* } */
+
+@media only screen and (min-width: 320px) {
+  body {
+    /* color: blue; */
+  }
 }

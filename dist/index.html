@@ -23,7 +23,7 @@
       </div>
       <div class="add-task"><span class="add-task-icon">+</span> Add Task</div>
     </header>
-    <nav id="navigation">
+    <nav id="navigation" class="nav-is-left">
       <div class="task-set nav-item-padding">All</div>
       <div class="task-set nav-item-padding">Today</div>
       <div class="task-set nav-item-padding">Week</div>
@@ -44,12 +44,18 @@
       <h2>Coding</h2>
       <hr />
       <div class="task">
-        <div class="box">box</div>
-        <div class="task-description">Buy a whiteboard and accessories</div>
-        <div class="day-of-week">M</div>
-        <div class="due-date">5/30/21</div>
-        <div class="edit">edit</div>
-        <div class="delete">delete</div>
+        <div class="task-first-section">
+          <input type="checkbox" name="task-box" />
+          <label for="task-box" class="task-description"
+            >Buy a whiteboard and accessories</label
+          >
+        </div>
+        <div class="task-last-section">
+          <div class="day-of-week">M</div>
+          <div class="due-date">5/30/21</div>
+          <div class="edit">edit</div>
+          <div class="delete">delete</div>
+        </div>
       </div>
       <div class="add-task"><span class="add-task-icon">+</span> Add Task</div>
     </main>
