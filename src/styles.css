@@ -1,6 +1,7 @@
 :root {
   /* --main-bk-color: hsl(147, 31%, 43%); */
   --main-bk-color: rgb(40, 44, 52);
+  --main-bk-color2: rgb(50, 54, 62);
   --main-text-color: rgb(171, 178, 191);
   --green: rgb(152, 195, 121);
   --red: rgb(224, 108, 117);
@@ -32,14 +33,37 @@ header {
   display: flex;
   justify-content: space-between;
 
-  background-color: rgb(50, 54, 62);
+  background-color: var(--main-bk-color2);
   color: var(--green);
   box-shadow: 0 0px 2px rgb(10, 10, 10);
   text-shadow: 0 0 3px black;
 }
 
-#main-header-container {
-  display: flex;
+nav {
+  width: 180px;
+
+  padding: 3px;
+  /* padding-right: 1em; */
+  position: relative;
+  top: 1px;
+
+  background-color: var(--main-text-color);
+  color: var(--main-bk-color);
+
+  transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+
+nav > div,
+nav > div > div {
+  /* padding-left: 0.5em; */
+  border-radius: 5px;
+}
+
+hr {
+  border: 1px solid var(--main-text-color);
+}
+nav hr {
+  border: 1px solid var(--main-bk-color2);
 }
 
 #hamburger {
@@ -72,6 +96,34 @@ header {
   height: 1.2em;
 }
 
+#main-header-container {
+  display: flex;
+}
+
+#projects {
+  font-weight: bold;
+  padding-left: 3px;
+}
+
+#projects div {
+  font-weight: normal;
+}
+
+#add-project,
+.task-set {
+  /* color: red; */
+  /* padding: 0 1em; */
+  cursor: pointer;
+}
+
+#add-project:hover,
+.task-set:hover {
+  color: var(--green);
+  background-color: var(--main-bk-color2);
+}
+.nav-item-padding {
+  padding: 2px 10px;
+}
 .add-task {
   display: flex;
   flex-direction: row;
@@ -102,12 +154,4 @@ header {
   position: relative;
   transform: translate(-100%, 0);
   /* background-color: var(--main-bk-color); */
-}
-
-nav {
-  width: 200px;
-  background-color: darkgreen;
-  padding: 1em;
-
-  transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
