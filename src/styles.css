@@ -21,6 +21,13 @@ body {
   font-family: "Noto Sans TC", sans-serif;
 }
 
+h1 {
+  /* margin: 0 30px; */
+  font-family: "Concert One", cursive;
+  display: flex;
+  align-self: center;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -29,13 +36,6 @@ header {
   color: var(--green);
   box-shadow: 0 0px 2px rgb(10, 10, 10);
   text-shadow: 0 0 3px black;
-}
-
-h1 {
-  /* margin: 0 30px; */
-  font-family: "Concert One", cursive;
-  display: flex;
-  align-self: center;
 }
 
 #main-header-container {
@@ -61,7 +61,7 @@ h1 {
   background-color: var(--main-text-color);
   color: var(--green);
   /* text-shadow: -5px -5px 8px black, -5px 5px 8px black, 5px -5px 8px black,
-    5px 5px 6px black; */
+  5px 5px 6px black; */
   text-shadow: 0 0 5px black, 0 0 5px black;
   /* padding: 0 50px; */
   width: 30px;
@@ -96,4 +96,18 @@ h1 {
   height: 4px;
   background-color: var(--main-text-color);
   margin: 2px 0;
+}
+
+.nav-is-left {
+  position: relative;
+  transform: translate(-100%, 0);
+  /* background-color: var(--main-bk-color); */
+}
+
+nav {
+  width: 200px;
+  background-color: darkgreen;
+  padding: 1em;
+
+  transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
