@@ -8,6 +8,8 @@
   --main-bk-color2: rgb(50, 54, 62);
   --main-text-color: rgb(171, 178, 191);
   --red: rgb(224, 108, 117);
+  --delete-icon-color: var(--main-text-color);
+  --delete-icon-color2: var(--main-bk-color);
 }
 
 * {
@@ -156,6 +158,100 @@ nav hr {
 .add-task-icon {
   margin-right: 10px;
   font-size: xx-large;
+}
+
+.delete-icon {
+  display: flex;
+  padding: 5px 2px 5px 3px;
+  position: relative;
+  /* background-color: blue; */
+}
+
+.delete1 {
+  /*   left: 30px; */
+  width: 18px;
+  height: 2px;
+  background-color: var(--delete-icon-color);
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  /* left: -5px; */
+
+  /*   transform: rotate(-60deg); */
+}
+
+.delete1::before {
+  content: "";
+  display: block;
+  background-color: var(--delete-icon-color);
+  position: relative;
+  top: -3px;
+  left: 7px;
+
+  width: 4px;
+  height: 2px;
+
+  /*   this makes a triangle */
+  /*   border-top: 3px solid transparent; */
+  /*   border-bottom: 3px solid transparent;  */
+  /*   border-right: 4px solid var(--edit-icon-color);  */
+}
+
+.delete1::after {
+  content: "";
+  display: block;
+  position: relative;
+  left: 1px;
+  top: 1px;
+
+  width: 16px;
+  height: 14px;
+  background-color: var(--delete-icon-color);
+
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.delete2 {
+  /*   left: 30px; */
+  width: 1px;
+  height: 10px;
+  background-color: var(--delete-icon-color2);
+  /*   background-color: red; */
+  display: inline-block;
+  position: relative;
+
+  left: -9px;
+  top: 3px;
+}
+
+.delete2::before {
+  content: "";
+  display: block;
+  background-color: var(--delete-icon-color2);
+  position: relative;
+  top: 0px;
+  left: -4px;
+
+  width: 1px;
+  height: 10px;
+
+  /*   this makes a triangle */
+  /*   border-top: 3px solid transparent; */
+  /*   border-bottom: 3px solid transparent;  */
+  /*   border-right: 4px solid var(--edit-icon-color);  */
+}
+
+.delete2::after {
+  content: "";
+  display: block;
+  position: relative;
+  left: 4px;
+  top: -100%;
+
+  width: 1px;
+  height: 10px;
+  background-color: var(--delete-icon-color2);
 }
 
 .edit-icon {
