@@ -153,11 +153,97 @@ nav hr {
 
   cursor: pointer;
   text-shadow: 0 0 3px black;
+  color: var(--blue);
 }
 
 .add-task-icon {
   margin-right: 10px;
   font-size: xx-large;
+}
+
+form {
+  /* box-shadow: 0 0 10px var(--green); */
+  box-shadow: 0 0 10px black;
+  padding: 5px;
+  /* color: var(--blue); */
+  color: var(--main-text-color);
+  /* color: black; */
+  background-color: var(--main-bk-color2);
+}
+
+form input {
+  background-color: var(--main-bk-color);
+  /* color: var(--main-text-color); */
+  color: var(--blue);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid var(--main-text-color);
+  border-radius: 5px;
+  padding: 3px 5px;
+}
+
+form label {
+  padding-left: 3px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.form-row h2 {
+  display: flex;
+  justify-content: center;
+  color: var(--green);
+}
+
+#form-row-urgent,
+#form-row-important {
+  /* make sure this appears below .form-row in css */
+  flex-direction: row;
+  align-items: center;
+}
+#form-row-urgent input,
+#form-row-important input {
+  position: relative;
+  top: 1px;
+}
+
+#form-row-urgent input {
+  margin-left: 35px;
+}
+#form-row-important input {
+  margin-left: 10px;
+}
+
+form input {
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 700;
+}
+
+form input[type="submit"] {
+  /* color: var(--main-bk-color); */
+  color: black;
+
+  background-color: var(--green);
+  /* background: linear-gradient(0deg, var(--green), var(--blue), var(--green)); */
+  width: 60px;
+  border: none;
+  box-shadow: 0 0 8px black;
+}
+
+form input[type="submit"]:active {
+  box-shadow: none;
+}
+
+#form-row-submit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 3px 8px;
+  margin: 15px 0 10px 0;
 }
 
 .delete-icon {
