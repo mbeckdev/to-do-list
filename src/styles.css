@@ -1,11 +1,13 @@
 :root {
   /* --main-bk-color: hsl(147, 31%, 43%); */
+  --blue: rgb(97, 175, 239);
+  --edit-icon-color: var(--main-text-color);
+  --edit-icon-color-eraser: rgb(200, 100, 100);
+  --green: rgb(152, 195, 121);
   --main-bk-color: rgb(40, 44, 52);
   --main-bk-color2: rgb(50, 54, 62);
   --main-text-color: rgb(171, 178, 191);
-  --green: rgb(152, 195, 121);
   --red: rgb(224, 108, 117);
-  --blue: rgb(97, 175, 239);
 }
 
 * {
@@ -156,6 +158,52 @@ nav hr {
   font-size: xx-large;
 }
 
+.edit-icon {
+  display: flex;
+  padding: 6px 4px;
+  /* background-color: green; */
+  cursor: pointer;
+}
+
+.edit-inner {
+  /*   left: 30px; */
+  top: 1px;
+  width: 8px;
+  height: 6px;
+  background-color: var(--edit-icon-color);
+  display: inline-block;
+  position: relative;
+
+  transform: rotate(-60deg);
+}
+
+.edit-inner::before {
+  content: "";
+  display: block;
+  position: relative;
+  left: -5px;
+
+  width: 0;
+  height: 0;
+
+  /*   this makes a triangle */
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-right: 4px solid var(--edit-icon-color);
+}
+
+.edit-inner::after {
+  content: "";
+  display: block;
+  position: relative;
+  left: 9px;
+  top: -100%;
+
+  width: 4px;
+  height: 6px;
+  background-color: var(--edit-icon-color-eraser);
+}
+
 .hamburger-line {
   position: relative;
   width: 20px;
@@ -165,19 +213,13 @@ nav hr {
 }
 
 .nav-is-left {
-  /* position: relative; */
   transform: translate(-100%, 0);
-  /* background-color: var(--main-bk-color); */
 }
 
 .task {
   display: flex;
   justify-content: space-between;
 }
-
-/* .task > * { */
-/* margin: 3px; */
-/* } */
 
 .task-first-section,
 .task-last-section {
@@ -189,10 +231,6 @@ nav hr {
 .task-last-section > * {
   margin: 3px;
 }
-
-/* .task input { */
-/* display: flex; */
-/* } */
 
 @media only screen and (min-width: 320px) {
   body {
