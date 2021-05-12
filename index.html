@@ -23,136 +23,149 @@
       </div>
       <div class="add-task"><span class="add-task-icon">+</span> Add Task</div>
     </header>
-    <nav id="navigation" class="nav-is-left">
-      <div class="task-set nav-item-padding">All</div>
-      <div class="task-set nav-item-padding">Today</div>
-      <div class="task-set nav-item-padding">Week</div>
-      <div id="projects">
-        Projects
+    <div id="nav-main-container">
+      <nav id="navigation" class="nav-is-left">
+        <div class="task-set nav-item-padding">All</div>
+        <div class="task-set nav-item-padding">Today</div>
+        <div class="task-set nav-item-padding">Week</div>
+        <div id="projects">
+          Projects
+          <hr />
+          <div class="task-set nav-item-padding">Coding</div>
+          <div class="task-set nav-item-padding">Cooking</div>
+          <div class="task-set nav-item-padding">
+            3d Printing dogs cats bunnies
+          </div>
+          <div id="add-project" class="nav-item-padding">
+            <span id="add-project-icon">+</span> Add Project
+          </div>
+          <form id="add-project-form" class="hidden">
+            <!-- <input type="text" id="add-project-input" class="hidden" /> -->
+            <input
+              type="text"
+              id="add-project-input"
+              class=""
+              placeholder="New Project"
+            />
+          </form>
+        </div>
+      </nav>
+      <main>
+        <h2>Coding</h2>
         <hr />
-        <div class="task-set nav-item-padding">Coding</div>
-        <div class="task-set nav-item-padding">Cooking</div>
-        <div class="task-set nav-item-padding">
-          3d Printing dogs cats bunnies
-        </div>
-        <div id="add-project" class="nav-item-padding">
-          <span id="add-project-icon">+</span> Add Project
-        </div>
-      </div>
-    </nav>
-    <main>
-      <h2>Coding</h2>
-      <hr />
-      <div class="task">
-        <div class="task-first-section">
-          <input type="checkbox" name="task-box" />
-          <label for="task-box" class="task-description"
-            >Buy a whiteboard</label
-          >
-        </div>
-        <div class="task-last-section">
-          <div class="day-of-week">M</div>
-          <div class="due-date">5/30/21</div>
-          <div class="edit-icon">
-            <div class="edit-inner"></div>
+        <div class="task">
+          <div class="task-first-section">
+            <input type="checkbox" name="task-box" />
+            <label for="task-box" class="task-description"
+              >Buy a whiteboard</label
+            >
           </div>
-          <div class="delete-icon">
-            <div class="delete1"></div>
-            <div class="delete2"></div>
+          <div class="task-last-section">
+            <div class="day-of-week">M</div>
+            <div class="due-date">5/30/21</div>
+            <div class="edit-icon">
+              <div class="edit-inner"></div>
+            </div>
+            <div class="delete-icon">
+              <div class="delete1"></div>
+              <div class="delete2"></div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="task">
-        <div class="task-first-section">
-          <input type="checkbox" name="task-box" />
-          <label for="task-box" class="task-description"
-            >Buy a whiteboard and accessories</label
-          >
-        </div>
-        <div class="task-last-section">
-          <div class="day-of-week">M</div>
-          <div class="due-date">5/30/21</div>
-          <div class="edit-icon">
-            <div class="edit-inner"></div>
+        <div class="task">
+          <div class="task-first-section">
+            <input type="checkbox" name="task-box" />
+            <label for="task-box" class="task-description"
+              >Buy a whiteboard and accessories</label
+            >
           </div>
-          <div class="delete-icon">
-            <div class="delete1"></div>
-            <div class="delete2"></div>
-          </div>
-        </div>
-      </div>
-      <div class="task">
-        <div class="task-first-section">
-          <input type="checkbox" name="task-box" />
-          <label for="task-box" class="task-description"
-            >Buy a whiteboard and accessories</label
-          >
-        </div>
-        <div class="task-last-section">
-          <div class="day-of-week">M</div>
-          <div class="due-date">5/30/21</div>
-          <div class="edit-icon">
-            <div class="edit-inner"></div>
-          </div>
-          <div class="delete-icon">
-            <div class="delete1"></div>
-            <div class="delete2"></div>
+          <div class="task-last-section">
+            <div class="day-of-week">M</div>
+            <div class="due-date">5/30/21</div>
+            <div class="edit-icon">
+              <div class="edit-inner"></div>
+            </div>
+            <div class="delete-icon">
+              <div class="delete1"></div>
+              <div class="delete2"></div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="add-task"><span class="add-task-icon">+</span> Add Task</div>
-
-      <form id="manage-task" class="form-is-hidden">
-        <div class="form-row">
-          <h2 id="manage-form-title">Add Task</h2>
-        </div>
-        <div class="form-row">
-          <label for="task-title">Title:</label>
-          <input
-            type="text"
-            name="task-title"
-            value=""
-            required
-            placeholder="Your task"
-            id="first-form-row"
-          />
-        </div>
-        <div class="form-row">
-          <label for="task-descrption">Description:</label>
-          <input type="text" name="task-description" value="blah blah" />
-        </div>
-        <div class="form-row">
-          <label for="task-project">Project:</label>
-          <input
-            type="text"
-            name="task-project"
-            value=""
-            placeholder="Your project"
-          />
-        </div>
-        <div class="form-row">
-          <label for="task-date">Due Date:</label>
-          <input type="date" name="task-date" value="" />
-        </div>
-        <div class="form-row" id="form-row-urgent">
-          <label for="task-urgency">Urgent:</label>
-          <input type="checkbox" name="task-urgency" />
-        </div>
-        <div class="form-row" id="form-row-important">
-          <label for="task-importance">Important:</label>
-          <input type="checkbox" name="task-importance" />
-        </div>
-        <div class="form-row">
-          <label for="task-priority">Priority:</label>
-          <input type="number" name="task-priority" value="2" />
+        <div class="task">
+          <div class="task-first-section">
+            <input type="checkbox" name="task-box" />
+            <label for="task-box" class="task-description"
+              >Buy a whiteboard and accessories</label
+            >
+          </div>
+          <div class="task-last-section">
+            <div class="day-of-week">M</div>
+            <div class="due-date">5/30/21</div>
+            <div class="edit-icon">
+              <div class="edit-inner"></div>
+            </div>
+            <div class="delete-icon">
+              <div class="delete1"></div>
+              <div class="delete2"></div>
+            </div>
+          </div>
         </div>
 
-        <div class="form-row" id="form-row-submit">
-          <input type="submit" value="Done" />
+        <div class="add-task">
+          <span class="add-task-icon">+</span> Add Task
         </div>
-      </form>
-    </main>
+
+        <form id="manage-task" class="form-is-hidden">
+          <div class="form-row">
+            <h2 id="manage-form-title">Add Task</h2>
+          </div>
+          <div class="form-row">
+            <label for="task-title">Title:</label>
+            <input
+              type="text"
+              name="task-title"
+              value=""
+              required
+              placeholder="Your task"
+              id="first-form-row"
+            />
+          </div>
+          <div class="form-row">
+            <label for="task-descrption">Description:</label>
+            <input type="text" name="task-description" value="blah blah" />
+          </div>
+          <div class="form-row">
+            <label for="task-project">Project:</label>
+            <input
+              type="text"
+              name="task-project"
+              value=""
+              placeholder="Your project"
+            />
+          </div>
+          <div class="form-row">
+            <label for="task-date">Due Date:</label>
+            <input type="date" name="task-date" value="" />
+          </div>
+          <div class="form-row" id="form-row-urgent">
+            <label for="task-urgency">Urgent:</label>
+            <input type="checkbox" name="task-urgency" />
+          </div>
+          <div class="form-row" id="form-row-important">
+            <label for="task-importance">Important:</label>
+            <input type="checkbox" name="task-importance" />
+          </div>
+          <div class="form-row">
+            <label for="task-priority">Priority:</label>
+            <input type="number" name="task-priority" value="2" />
+          </div>
+
+          <div class="form-row" id="form-row-submit">
+            <input type="submit" value="Done" />
+          </div>
+        </form>
+      </main>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>
