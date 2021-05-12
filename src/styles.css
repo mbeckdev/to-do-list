@@ -169,6 +169,23 @@ form {
   color: var(--main-text-color);
   /* color: black; */
   background-color: var(--main-bk-color2);
+
+  position: absolute;
+
+  /* transition: all 1.5s cubic-bezier(0.77, 0.2, 0.05, 1); */
+  /* transition: all 0.5s ease-in-out; */
+  /* transform: translate(0, 0); */
+  /* transform: none; */
+  /* backface-visibility: hidden; */
+  top: 4em;
+  left: 0;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  right: 0;
+}
+main {
+  position: relative;
 }
 
 form input {
@@ -321,11 +338,6 @@ form input[type="submit"]:active {
 
   width: 1px;
   height: 10px;
-
-  /*   this makes a triangle */
-  /*   border-top: 3px solid transparent; */
-  /*   border-bottom: 3px solid transparent;  */
-  /*   border-right: 4px solid var(--edit-icon-color);  */
 }
 
 .delete2::after {
@@ -343,12 +355,10 @@ form input[type="submit"]:active {
 .edit-icon {
   display: flex;
   padding: 6px 4px;
-  /* background-color: green; */
   cursor: pointer;
 }
 
 .edit-inner {
-  /*   left: 30px; */
   top: 1px;
   width: 8px;
   height: 6px;
@@ -397,6 +407,9 @@ form input[type="submit"]:active {
 .nav-is-left {
   transform: translate(-100%, 0);
 }
+.form-is-hidden {
+  visibility: hidden;
+}
 
 .task {
   display: flex;
@@ -415,7 +428,13 @@ form input[type="submit"]:active {
 }
 
 @media only screen and (min-width: 320px) {
+  /* for desktop layout changes */
   body {
     /* color: blue; */
+  }
+}
+@media only screen and (min-width: 520px) {
+  form {
+    width: 500px;
   }
 }
