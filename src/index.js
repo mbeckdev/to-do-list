@@ -50,6 +50,7 @@ function showAddProjectInput() {
 }
 
 form2.addEventListener("submit", hideAddProjectForm);
+addProjInput.addEventListener("focusout", hideAddProjectForm);
 
 function hideAddProjectForm() {
   form2.classList.add("hidden");
