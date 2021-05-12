@@ -55,6 +55,7 @@ hr {
 
 main {
   padding: 0 3px;
+  z-index: 0;
 }
 
 nav {
@@ -63,6 +64,7 @@ nav {
   padding: 3px;
   /* padding-right: 1em; */
   position: absolute;
+  z-index: 1;
   top: 47px;
 
   background-color: var(--main-text-color);
@@ -161,7 +163,7 @@ nav hr {
   font-size: xx-large;
 }
 
-form {
+#manage-task {
   /* box-shadow: 0 0 10px var(--green); */
   box-shadow: 0 0 10px black;
   padding: 5px;
@@ -184,11 +186,12 @@ form {
   margin-right: auto;
   right: 0;
 }
+
 main {
   position: relative;
 }
 
-form input {
+#manage-task input {
   background-color: var(--main-bk-color);
   /* color: var(--main-text-color); */
   color: var(--blue);
@@ -200,7 +203,27 @@ form input {
   padding: 3px 5px;
 }
 
-form label {
+#add-project-form {
+  /* padding: 3px; */
+  /* background-color: blue; */
+  display: flex;
+}
+
+#add-project-form input {
+  background-color: var(--main-bk-color);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid var(--main-text-color);
+  border-radius: 5px;
+  padding: 3px 5px;
+  margin: 3px;
+
+  width: 100%;
+  color: var(--blue);
+}
+
+#manage-task label {
   padding-left: 3px;
 }
 
@@ -240,7 +263,7 @@ form input {
   font-weight: 700;
 }
 
-form input[type="submit"] {
+#manage-task input[type="submit"] {
   /* color: var(--main-bk-color); */
   color: black;
 
@@ -251,7 +274,7 @@ form input[type="submit"] {
   box-shadow: 0 0 8px black;
 }
 
-form input[type="submit"]:active {
+#manage-task input[type="submit"]:active {
   box-shadow: none;
 }
 
@@ -404,6 +427,9 @@ form input[type="submit"]:active {
   margin: 2px 0;
 }
 
+.hidden {
+  visibility: hidden;
+}
 .nav-is-left {
   transform: translate(-100%, 0);
 }
@@ -426,15 +452,38 @@ form input[type="submit"]:active {
 .task-last-section > * {
   margin: 3px;
 }
-
+#main-header-container {
+  position: relative;
+}
 @media only screen and (min-width: 320px) {
   /* for desktop layout changes */
   body {
-    /* color: blue; */
   }
 }
 @media only screen and (min-width: 520px) {
-  form {
+  #manage-task {
     width: 500px;
+  }
+}
+@media only screen and (min-width: 700px) {
+  #hamburger {
+    display: none;
+  }
+  main {
+  }
+  nav {
+    position: relative;
+    top: 0;
+  }
+  .nav-is-left {
+    transform: none;
+  }
+  h1 {
+    margin-left: 10px;
+  }
+  #nav-main-container {
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: auto 1fr;
   }
 }

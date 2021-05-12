@@ -20,17 +20,38 @@ document.querySelectorAll(".add-task").forEach((addTaskBtn) => {
   addTaskBtn.addEventListener("click", showTaskForm);
 });
 
-const form = document.querySelector("form");
+// const form = document.querySelector("form");
+const form1 = document.getElementById("manage-task");
 
 function showTaskForm() {
   console.log("add task btn clicked");
-  form.classList.remove("form-is-hidden");
+  form1.classList.remove("form-is-hidden");
   document.getElementById("first-form-row").focus();
 }
 
 // submit button clicked
-form.addEventListener("submit", hideTaskForm);
+form1.addEventListener("submit", hideTaskForm);
 
 function hideTaskForm() {
-  form.classList.add("form-is-hidden");
+  form1.classList.add("form-is-hidden");
+}
+
+// Add-Project 'Button'
+const addProjBtn = document.getElementById("add-project");
+addProjBtn.addEventListener("click", showAddProjectInput);
+
+const addProjInput = document.getElementById("add-project-input");
+const form2 = document.getElementById("add-project-form");
+
+function showAddProjectInput() {
+  console.log("showAddProjectInput ran");
+  form2.classList.remove("hidden");
+  addProjInput.focus();
+}
+
+form2.addEventListener("submit", hideAddProjectForm);
+
+function hideAddProjectForm() {
+  form2.classList.add("hidden");
+  console.log("done with form2");
 }
