@@ -29,6 +29,11 @@ body {
   min-width: 320px;
 }
 
+form input {
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 700;
+}
+
 h1 {
   /* margin: 0 30px; */
   font-family: "Concert One", cursive;
@@ -54,6 +59,7 @@ hr {
 }
 
 main {
+  position: relative;
   padding: 0 3px;
   z-index: 0;
 }
@@ -70,17 +76,77 @@ nav {
   background-color: var(--main-text-color);
   color: var(--main-bk-color);
 
-  transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  /* transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1); */
+  transition: all 0.3s ease;
 }
 
 nav > div,
 nav > div > div {
-  /* padding-left: 0.5em; */
   border-radius: 5px;
 }
 
 nav hr {
   border: 1px solid var(--main-bk-color2);
+}
+
+#add-project-form {
+  /* padding: 3px; */
+  /* background-color: blue; */
+  display: flex;
+}
+
+#add-project-form input {
+  background-color: var(--main-bk-color);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid var(--main-text-color);
+  border-radius: 5px;
+  padding: 3px 5px;
+  margin: 3px;
+
+  width: 100%;
+  color: var(--blue);
+}
+
+#add-project,
+.task-set {
+  cursor: pointer;
+}
+
+#add-project:hover,
+.task-set:hover {
+  color: var(--green);
+  background-color: var(--main-bk-color2);
+}
+
+#form-row-urgent,
+#form-row-important {
+  /* make sure this appears below .form-row in css */
+  flex-direction: row;
+  align-items: center;
+}
+
+#form-row-urgent input,
+#form-row-important input {
+  position: relative;
+  top: 1px;
+}
+
+#form-row-urgent input {
+  margin-left: 35px;
+}
+
+#form-row-important input {
+  margin-left: 10px;
+}
+
+#form-row-submit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 3px 8px;
+  margin: 15px 0 10px 0;
 }
 
 #hamburger {
@@ -118,6 +184,54 @@ nav hr {
 
 #main-header-container {
   display: flex;
+  position: relative;
+}
+
+#manage-task {
+  box-shadow: 0 0 10px black;
+  padding: 5px;
+
+  position: absolute;
+  top: 4em;
+  left: 0;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  right: 0;
+
+  background-color: var(--main-bk-color2);
+  color: var(--main-text-color);
+}
+
+#manage-task input {
+  background-color: var(--main-bk-color);
+  /* color: var(--main-text-color); */
+  color: var(--blue);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid var(--main-text-color);
+  border-radius: 5px;
+  padding: 3px 5px;
+}
+
+#manage-task input[type="submit"] {
+  /* color: var(--main-bk-color); */
+  color: black;
+
+  background-color: var(--green);
+  /* background: linear-gradient(0deg, var(--green), var(--blue), var(--green)); */
+  width: 60px;
+  border: none;
+  box-shadow: 0 0 8px black;
+}
+
+#manage-task input[type="submit"]:active {
+  box-shadow: none;
+}
+
+#manage-task label {
+  padding-left: 3px;
 }
 
 #projects {
@@ -129,21 +243,6 @@ nav hr {
   font-weight: normal;
 }
 
-#add-project,
-.task-set {
-  /* color: red; */
-  /* padding: 0 1em; */
-  cursor: pointer;
-}
-
-#add-project:hover,
-.task-set:hover {
-  color: var(--green);
-  background-color: var(--main-bk-color2);
-}
-.nav-item-padding {
-  padding: 2px 10px;
-}
 .add-task {
   display: flex;
   flex-direction: row;
@@ -163,164 +262,31 @@ nav hr {
   font-size: xx-large;
 }
 
-#manage-task {
-  /* box-shadow: 0 0 10px var(--green); */
-  box-shadow: 0 0 10px black;
-  padding: 5px;
-  /* color: var(--blue); */
-  color: var(--main-text-color);
-  /* color: black; */
-  background-color: var(--main-bk-color2);
-
-  position: absolute;
-
-  /* transition: all 1.5s cubic-bezier(0.77, 0.2, 0.05, 1); */
-  /* transition: all 0.5s ease-in-out; */
-  /* transform: translate(0, 0); */
-  /* transform: none; */
-  /* backface-visibility: hidden; */
-  top: 4em;
-  left: 0;
-  width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  right: 0;
-}
-
-main {
-  position: relative;
-}
-
-#manage-task input {
-  background-color: var(--main-bk-color);
-  /* color: var(--main-text-color); */
-  color: var(--blue);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid var(--main-text-color);
-  border-radius: 5px;
-  padding: 3px 5px;
-}
-
-#add-project-form {
-  /* padding: 3px; */
-  /* background-color: blue; */
-  display: flex;
-}
-
-#add-project-form input {
-  background-color: var(--main-bk-color);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid var(--main-text-color);
-  border-radius: 5px;
-  padding: 3px 5px;
-  margin: 3px;
-
-  width: 100%;
-  color: var(--blue);
-}
-
-#manage-task label {
-  padding-left: 3px;
-}
-
-.form-row {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-}
-
-.form-row h2 {
-  display: flex;
-  justify-content: center;
-  color: var(--green);
-}
-
-#form-row-urgent,
-#form-row-important {
-  /* make sure this appears below .form-row in css */
-  flex-direction: row;
-  align-items: center;
-}
-#form-row-urgent input,
-#form-row-important input {
-  position: relative;
-  top: 1px;
-}
-
-#form-row-urgent input {
-  margin-left: 35px;
-}
-#form-row-important input {
-  margin-left: 10px;
-}
-
-form input {
-  font-family: "Noto Sans TC", sans-serif;
-  font-weight: 700;
-}
-
-#manage-task input[type="submit"] {
-  /* color: var(--main-bk-color); */
-  color: black;
-
-  background-color: var(--green);
-  /* background: linear-gradient(0deg, var(--green), var(--blue), var(--green)); */
-  width: 60px;
-  border: none;
-  box-shadow: 0 0 8px black;
-}
-
-#manage-task input[type="submit"]:active {
-  box-shadow: none;
-}
-
-#form-row-submit {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 3px 8px;
-  margin: 15px 0 10px 0;
-}
-
 .delete-icon {
   display: flex;
   padding: 5px 2px 5px 3px;
   position: relative;
-  /* background-color: blue; */
 }
 
 .delete1 {
-  /*   left: 30px; */
   width: 18px;
   height: 2px;
   background-color: var(--delete-icon-color);
   display: inline-block;
   position: relative;
   top: -2px;
-  /* left: -5px; */
-
-  /*   transform: rotate(-60deg); */
 }
 
 .delete1::before {
   content: "";
   display: block;
-  background-color: var(--delete-icon-color);
   position: relative;
   top: -3px;
   left: 7px;
-
   width: 4px;
   height: 2px;
 
-  /*   this makes a triangle */
-  /*   border-top: 3px solid transparent; */
-  /*   border-bottom: 3px solid transparent;  */
-  /*   border-right: 4px solid var(--edit-icon-color);  */
+  background-color: var(--delete-icon-color);
 }
 
 .delete1::after {
@@ -332,23 +298,24 @@ form input {
 
   width: 16px;
   height: 14px;
-  background-color: var(--delete-icon-color);
 
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
+
+  background-color: var(--delete-icon-color);
 }
 
 .delete2 {
-  /*   left: 30px; */
   width: 1px;
   height: 10px;
-  background-color: var(--delete-icon-color2);
-  /*   background-color: red; */
+
   display: inline-block;
   position: relative;
 
   left: -9px;
   top: 3px;
+
+  background-color: var(--delete-icon-color2);
 }
 
 .delete2::before {
@@ -419,6 +386,18 @@ form input {
   background-color: var(--edit-icon-color-eraser);
 }
 
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.form-row h2 {
+  display: flex;
+  justify-content: center;
+  color: var(--green);
+}
+
 .hamburger-line {
   position: relative;
   width: 20px;
@@ -430,11 +409,17 @@ form input {
 .hidden {
   visibility: hidden;
 }
+
 .nav-is-left {
   transform: translate(-100%, 0);
 }
+
 .form-is-hidden {
   visibility: hidden;
+}
+
+.nav-item-padding {
+  padding: 2px 10px;
 }
 
 .task {
@@ -452,38 +437,38 @@ form input {
 .task-last-section > * {
   margin: 3px;
 }
-#main-header-container {
-  position: relative;
-}
-@media only screen and (min-width: 320px) {
-  /* for desktop layout changes */
-  body {
-  }
-}
+
+/* @media only screen and (min-width: 320px) { */
+/* for desktop layout changes */
+/* body { */
+/* } */
+/* } */
+
 @media only screen and (min-width: 520px) {
   #manage-task {
     width: 500px;
   }
 }
 @media only screen and (min-width: 700px) {
-  #hamburger {
-    display: none;
+  h1 {
+    margin-left: 10px;
   }
-  main {
-  }
+
   nav {
     position: relative;
     top: 0;
   }
-  .nav-is-left {
-    transform: none;
+
+  #hamburger {
+    display: none;
   }
-  h1 {
-    margin-left: 10px;
-  }
+
   #nav-main-container {
-    /* display: flex; */
     display: grid;
     grid-template-columns: auto 1fr;
+  }
+
+  .nav-is-left {
+    transform: none;
   }
 }
