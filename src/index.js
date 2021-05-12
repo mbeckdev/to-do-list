@@ -22,11 +22,21 @@ document.querySelectorAll(".add-task").forEach((addTaskBtn) => {
 
 // const form = document.querySelector("form");
 const form1 = document.getElementById("manage-task");
-
+const firstFormRow = document.getElementById("first-form-row");
 function showTaskForm() {
   console.log("add task btn clicked");
   form1.classList.remove("form-is-hidden");
-  document.getElementById("first-form-row").focus();
+  firstFormRow.focus();
+}
+
+//Cancel button for manage-task form
+const cancelBtn = document.getElementById("form-cancel-btn");
+cancelBtn.addEventListener("click", cancelTaskForm);
+
+function cancelTaskForm() {
+  firstFormRow.removeAttribute("required");
+
+  form1.classList.add("form-is-hidden");
 }
 
 // submit button clicked
