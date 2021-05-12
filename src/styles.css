@@ -234,6 +234,16 @@ nav hr {
   padding-left: 3px;
 }
 
+#project-title-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+#project-title-container p {
+  margin-right: 63px;
+}
+
 #projects {
   font-weight: bold;
   padding-left: 3px;
