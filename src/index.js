@@ -25,6 +25,7 @@ const form = document.querySelector("form");
 function showTaskForm() {
   console.log("add task btn clicked");
   form.classList.remove("form-is-hidden");
+  document.getElementById("first-form-row").focus();
 }
 
 // submit button clicked
