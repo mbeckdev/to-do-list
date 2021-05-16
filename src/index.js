@@ -1,20 +1,6 @@
 "use strict";
 import css from "./styles.css";
 
-// Move menu in and out on mobile version
-const hamburger = document.getElementById("hamburger");
-hamburger.addEventListener("click", toggleNav);
-
-const nav = document.getElementById("navigation");
-function toggleNav() {
-  console.log("toggling nav");
-  if (nav.classList.contains("nav-is-left")) {
-    nav.classList.remove("nav-is-left");
-  } else {
-    nav.classList.add("nav-is-left");
-  }
-}
-
 // Add-Task Buttons
 document.querySelectorAll(".add-task").forEach((addTaskBtn) => {
   addTaskBtn.addEventListener("click", showTaskForm);
@@ -96,3 +82,56 @@ function showTaskDescription(e) {
     descriptionSection.classList.add("hidden-no-empty-space");
   }
 }
+
+// a module pattern called once, but we can call the inner stuff multiple times elsewhere
+// perhaps split this into a separate .js file
+let dom = (function () {
+  const theElements = {
+    hamburger: document.getElementById("hamburger"),
+    nav: document.getElementById("navigation"),
+  };
+
+  // Move menu in and out on mobile version
+  // const hamburger = document.getElementById("hamburger");
+  theElements.hamburger.addEventListener("click", toggleNav);
+
+  // const nav = document.getElementById("navigation");
+  function toggleNav() {
+    console.log("toggling nav");
+
+    if (theElements.nav.classList.contains("nav-is-left")) {
+      theElements.nav.classList.remove("nav-is-left");
+    } else {
+      theElements.nav.classList.add("nav-is-left");
+    }
+  }
+
+  function addNewTask(title, description, dueDate, priority) {
+    console.log("adding new dom task now");
+  }
+
+  function setUpInitialDom() {
+    console.log("setting up initial dom now");
+    // set up initial few tasks for testing
+    // then later get stuff from localHost that you saved from last time you loaded it
+  }
+
+  return {
+    addNewTask: addNewTask,
+    setUpInitialDom: setUpInitialDom,
+    toggleNav: toggleNav,
+  };
+})();
+
+dom.addNewTask();
+dom.setUpInitialDom();
+
+//to do:
+// A factory function to create new tasks
+
+// An object to hold each task's - title, description, dueDate, priority
+//  project?
+// An object to hold all the projects (there is a default one too)
+
+// An object to keep all the DOM stuff together
+// A separate place to keep all the task manipulation stuff together.
