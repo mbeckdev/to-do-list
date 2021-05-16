@@ -1,37 +1,6 @@
 "use strict";
 import css from "./styles.css";
 
-// Add-Task Buttons
-document.querySelectorAll(".add-task").forEach((addTaskBtn) => {
-  addTaskBtn.addEventListener("click", showTaskForm);
-});
-
-// const form = document.querySelector("form");
-const form1 = document.getElementById("manage-task");
-const firstFormRow = document.getElementById("first-form-row");
-function showTaskForm() {
-  console.log("add task btn clicked");
-  form1.classList.remove("form-is-hidden");
-  firstFormRow.focus();
-}
-
-//Cancel button for manage-task form
-const cancelBtn = document.getElementById("form-cancel-btn");
-cancelBtn.addEventListener("click", cancelTaskForm);
-
-function cancelTaskForm() {
-  firstFormRow.removeAttribute("required");
-
-  form1.classList.add("form-is-hidden");
-}
-
-// submit button clicked
-form1.addEventListener("submit", hideTaskForm);
-
-function hideTaskForm() {
-  form1.classList.add("form-is-hidden");
-}
-
 // Add-Project 'Button'
 const addProjBtn = document.getElementById("add-project");
 addProjBtn.addEventListener("click", showAddProjectInput);
@@ -89,6 +58,9 @@ let dom = (function () {
   const theElements = {
     hamburger: document.getElementById("hamburger"),
     nav: document.getElementById("navigation"),
+    form1: document.getElementById("manage-task"),
+    firstFormRow: document.getElementById("first-form-row"),
+    cancelBtn: document.getElementById("form-cancel-btn"),
   };
 
   // Move menu in and out on mobile version
@@ -114,6 +86,39 @@ let dom = (function () {
     console.log("setting up initial dom now");
     // set up initial few tasks for testing
     // then later get stuff from localHost that you saved from last time you loaded it
+    _addTaskBtnsEListeners();
+    _addCancelBtnEListeners();
+  }
+
+  function _addTaskBtnsEListeners() {
+    // Add-Task Buttons
+    document.querySelectorAll(".add-task").forEach((addTaskBtn) => {
+      addTaskBtn.addEventListener("click", showTaskForm);
+    });
+  }
+  // const form = document.querySelector("form");
+
+  function showTaskForm() {
+    console.log("add task btn clicked");
+    theElements.form1.classList.remove("form-is-hidden");
+    theElements.firstFormRow.focus();
+  }
+
+  function _addCancelBtnEListeners() {
+    //Cancel button for manage-task form
+    theElements.cancelBtn.addEventListener("click", _cancelTaskForm);
+  }
+
+  function _cancelTaskForm() {
+    theElements.firstFormRow.removeAttribute("required");
+    theElements.form1.classList.add("form-is-hidden");
+  }
+
+  // submit button clicked
+  theElements.form1.addEventListener("submit", hideTaskForm);
+
+  function hideTaskForm() {
+    theElements.form1.classList.add("form-is-hidden");
   }
 
   return {
