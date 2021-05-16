@@ -66,3 +66,33 @@ function hideAddProjectForm() {
   form2.classList.add("hidden");
   console.log("done with form2");
 }
+
+// Show description when clicking on task
+const tasks = document.querySelectorAll(".task-first-section");
+tasks.forEach((thisTask) => {
+  thisTask.addEventListener("click", showTaskDescription);
+});
+
+function showTaskDescription(e) {
+  console.log("show task description! tbd");
+  //Figure out how to get thisTask
+
+  // thisTask.classList.remove('hidden');
+
+  console.log(e.target.parentElement);
+  console.log(
+    e.target.parentElement.parentElement.parentElement.querySelector(
+      ".task-description-section"
+    )
+  );
+
+  const descriptionSection = e.target.parentElement.parentElement.parentElement.querySelector(
+    ".task-description-section"
+  );
+
+  if (descriptionSection.classList.contains("hidden-no-empty-space")) {
+    descriptionSection.classList.remove("hidden-no-empty-space");
+  } else {
+    descriptionSection.classList.add("hidden-no-empty-space");
+  }
+}

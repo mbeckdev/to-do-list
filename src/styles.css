@@ -438,6 +438,12 @@ nav hr {
   visibility: hidden;
 }
 
+.hidden-no-empty-space {
+  display: none;
+  transition: all 0.5s ease;
+  color: blue;
+}
+
 .nav-is-left {
   transform: translate(-100%, 0);
 }
@@ -450,9 +456,21 @@ nav hr {
   padding: 2px 10px;
 }
 
-.task {
-  display: flex;
-  justify-content: space-between;
+.task-first-row-main {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.task-description-main {
+  /* background-color: blue; */
+  margin: 0px 3px 0 30px;
+  padding: 0 3px;
+  line-height: 1.2em;
+}
+.task-title-main {
+  width: auto;
 }
 
 .task-first-section {
