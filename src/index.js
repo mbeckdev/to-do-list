@@ -3,8 +3,9 @@ import css from "./styles.css";
 
 import { dom } from "./dom.js";
 
-dom.addNewTask();
+// dom.createNewTask();
 dom.setUpInitialDom();
+console.log("done with index.js");
 //to do:
 // A factory function to create new tasks
 

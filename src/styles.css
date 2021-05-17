@@ -262,12 +262,12 @@ nav hr {
   margin-right: 60px;
 }
 
-#projects {
+#project-container {
   font-weight: bold;
   padding-left: 3px;
 }
 
-#projects div {
+#project-container div {
   font-weight: normal;
 }
 
