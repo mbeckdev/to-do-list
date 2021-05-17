@@ -3,7 +3,7 @@
 // a module pattern called once, but we can call the inner stuff multiple times elsewhere
 // perhaps split this into a separate .js file
 let dom = (function () {
-  const theElements = {
+  let theElements = {
     hamburger: document.getElementById("hamburger"),
     nav: document.getElementById("navigation"),
     form1: document.getElementById("manage-task"),
@@ -15,6 +15,70 @@ let dom = (function () {
     tasks: document.querySelectorAll(".task-first-section"),
   };
 
+  function createSections() {
+    // This setup goes against the guideline of doing it in this order
+    // create1 create2 create3
+    // append3 under 2, append2 under 1, append1 under body
+    // but if this works, I believe the code clarity will be worth it.
+    createAndAdd("header", document.body, "header2");
+    createAndAdd("div", document.body, "navMainContainer", [
+      "id",
+      "nav-main-container",
+      "class",
+      "class-dur",
+    ]);
+    // theElements.navMainContainer.setAttribute("id", "nav-main-container");
+
+    createAndAdd("div", theElements.header2, "lol1");
+    createAndAdd("div", theElements.header2, "lol2");
+
+    console.log(theElements.header2);
+  }
+  createSections();
+
+  function createAndAdd(
+    elementType,
+    appendUnder,
+    thisName2,
+    optAttributeArray
+    //[optAttributeType, optAttributeValue]
+  ) {
+    theElements[thisName2] = document.createElement(elementType);
+    appendUnder.appendChild(theElements[thisName2]);
+
+    if (!(optAttributeArray == undefined)) {
+      console.log("optAttributeArray exists. ");
+      if ((optAttributeArray.length + 1) % 2) {
+        console.log("optAttributeArray is even. good.");
+
+        for (let i = 0; i < optAttributeArray.length; i += 2) {
+          console.log("durr");
+          theElements[thisName2].setAttribute(
+            optAttributeArray[i],
+            optAttributeArray[i + 1]
+          );
+        }
+      }
+    }
+
+    // if ((optAttributeArray.length + 1) % 2) && (!(optAttributeArray == undefined)){
+    //   //then array is even number, we always want even like 'id', 'blah', 'class', 'blah2'
+    //   console.log("optAttributeArray is even. good.");
+    // }
+    // if (!(optAttributeType == undefined)) {
+    //   theElements[thisName2].setAttribute(optAttributeType, optAttributeValue);
+    // } else {
+    //   console.log("optAttributeType = undefined");
+    // }
+  }
+
+  // const header2 = document.createElement("header");
+  // document.body.appendChild(header2);
+
+  // const theElements.navMainContainer = document.createElement("div");
+  // const theElements.nav = document.createElement('nav');
+  // theElements.navMainContainer.appendChild(theElements.nav);
+  // document.body.appendChild(navMainContainer);
   function addNewTask(title, description, dueDate, priority) {
     console.log("adding new dom task now");
   }
