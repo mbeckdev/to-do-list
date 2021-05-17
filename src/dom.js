@@ -21,12 +21,15 @@ let dom = (function () {
     // append3 under 2, append2 under 1, append1 under body
     // but if this works, I believe the code clarity will be worth it.
     createAndAdd("header", document.body, "header2");
-    createAndAdd("div", document.body, "navMainContainer", [
+    createAndAdd(
+      "div",
+      document.body,
+      "navMainContainer",
       "id",
       "nav-main-container",
       "class",
-      "class-dur",
-    ]);
+      "class-dur"
+    );
     // theElements.navMainContainer.setAttribute("id", "nav-main-container");
 
     createAndAdd("div", theElements.header2, "lol1");
@@ -40,12 +43,14 @@ let dom = (function () {
     elementType,
     appendUnder,
     thisName2,
-    optAttributeArray
-    //[optAttributeType, optAttributeValue]
+    ...optAttributeArray
   ) {
     theElements[thisName2] = document.createElement(elementType);
     appendUnder.appendChild(theElements[thisName2]);
 
+    // ...optAttributeArray should look like this:
+    // [optAttributeType, optAttributeValue,
+    // optAttributeType2, optAttributeValue2,]
     if (!(optAttributeArray == undefined)) {
       console.log("optAttributeArray exists. ");
       if ((optAttributeArray.length + 1) % 2) {
@@ -58,6 +63,10 @@ let dom = (function () {
             optAttributeArray[i + 1]
           );
         }
+      } else {
+        console.log(
+          "Error, optAttributeArray is odd, you want an even number of arguments here."
+        );
       }
     }
 
