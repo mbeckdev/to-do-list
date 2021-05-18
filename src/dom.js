@@ -3,17 +3,7 @@
 // a module pattern called once, but we can call the inner stuff multiple times elsewhere
 // perhaps split this into a separate .js file
 let dom = (function () {
-  let theElements = {
-    // hamburger: document.getElementById("hamburger"),
-    nav: document.getElementById("navigation"),
-    form1: document.getElementById("manage-task"),
-    firstFormRow: document.getElementById("first-form-row"),
-    cancelBtn: document.getElementById("form-cancel-btn"),
-    addProjBtn: document.getElementById("add-project"),
-    addProjInput: document.getElementById("add-project-input"),
-    form2: document.getElementById("add-project-form"),
-    tasks: document.querySelectorAll(".task-first-section"),
-  };
+  let theElements = {};
 
   function _createSections() {
     // This setup goes against the guideline of doing it in this order
@@ -22,6 +12,19 @@ let dom = (function () {
     // but if this works, I believe the code clarity will be worth it.
     _createHeader();
     _createNavMainContainer();
+    _setInitialElements();
+  }
+
+  function _setInitialElements() {
+    // hamburger: document.getElementById("hamburger"),
+    theElements.nav = document.getElementById("navigation");
+    theElements.form1 = document.getElementById("manage-task");
+    theElements.firstFormRow = document.getElementById("first-form-row");
+    theElements.cancelBtn = document.getElementById("form-cancel-btn");
+    theElements.addProjBtn = document.getElementById("add-project");
+    theElements.addProjInput = document.getElementById("add-project-input");
+    theElements.form2 = document.getElementById("add-project-form");
+    theElements.tasks = document.querySelectorAll(".task-first-section");
   }
 
   function _createHeader() {
@@ -115,19 +118,19 @@ let dom = (function () {
     createAndAddAProject("Cooking");
     createAndAddAProject("3d Printing dogs cats bunnies");
 
-    createAndAdd("div", theElements.projectContainer, "addProject", [
+    createAndAdd("div", theElements.projectContainer, "addProjBtn", [
       "id",
       "add-project",
       "class",
       "nav-item-padding",
     ]);
-    createAndAdd("span", theElements.addProject, "addProjectIcon", [
+    createAndAdd("span", theElements.addProjBtn, "addProjectIcon", [
       "id",
       "add-project-icon",
     ]);
     theElements.addProjectIcon.textContent = "+";
 
-    createAndAdd("span", theElements.addProject, "addProjectText");
+    createAndAdd("span", theElements.addProjBtn, "addProjectText");
     theElements.addProjectText.textContent = "Add Project";
 
     createAndAdd("form", theElements.projectContainer, "form2", [
@@ -177,6 +180,158 @@ let dom = (function () {
     createNewTask("a", "a", "a", "a");
     createNewTask("bb", "a", "a", "a");
     createNewTask("cc", "a", "a", "a");
+
+    createAndAdd("div", theElements.main, "addTaskInMain", [
+      "class",
+      "add-task",
+    ]);
+    createAndAdd("span", theElements.addTaskInMain, "addTaskInMainSpan1", [
+      "class",
+      "add-task-icon",
+    ]);
+    theElements.addTaskInMainSpan1.textContent = "+";
+    createAndAdd("span", theElements.addTaskInMain, "addTaskInMainSpan2");
+    theElements.addTaskInMainSpan2.textContent = "Add Task";
+
+    _createManageTaskForm();
+  }
+
+  function _createManageTaskForm() {
+    createAndAdd("form", theElements.main, "manageTaskForm", [
+      "id",
+      "manage-task",
+      "class",
+      "form-is-hidden",
+    ]);
+    createAndAdd("div", theElements.manageTaskForm, "formRowForTitle", [
+      "class",
+      "form-row",
+    ]);
+    createAndAdd("h2", theElements.formRowForTitle, "formRowTitle", [
+      "id",
+      "manage-form-title",
+    ]);
+    theElements.formRowTitle.textContent = "Add Task";
+    createAndAdd("div", theElements.manageTaskForm, "formRowTaskTitle", [
+      "class",
+      "form-row",
+    ]);
+    createAndAdd(
+      "label",
+      theElements.formRowTaskTitle,
+      "manageTaskTaskTitleLabel",
+      ["for", "task-title"]
+    );
+    theElements.manageTaskTaskTitleLabel.textContent = "Title:";
+    createAndAdd(
+      "input",
+      theElements.formRowTaskTitle,
+      "manageTaskTaskTitleInput",
+      [
+        "type",
+        "text",
+        "name",
+        "task-title",
+        "placeholder",
+        "Your task",
+        "id",
+        "first-form-row",
+      ]
+    );
+
+    // theElements.manageTaskTaskTitleInput.attributes.required = "required";
+    theElements.manageTaskTaskTitleInput.required = true;
+
+    createAndAdd("div", theElements.manageTaskForm, "formRowTaskDescription", [
+      "class",
+      "form-row",
+    ]);
+    createAndAdd(
+      "label",
+      theElements.formRowTaskDescription,
+      "manageTaskTaskDescriptionLabel",
+      ["for", "task-description"]
+    );
+    theElements.manageTaskTaskDescriptionLabel.textContent = "Description:";
+    createAndAdd(
+      "input",
+      theElements.formRowTaskDescription,
+      "manageTaskTaskDescriptionInput",
+      ["type", "text", "name", "task-description", "value", "blah blah"]
+    );
+
+    createAndAdd("div", theElements.manageTaskForm, "formRowTaskProject", [
+      "class",
+      "form-row",
+    ]);
+    createAndAdd(
+      "label",
+      theElements.formRowTaskProject,
+      "manageTaskTaskProjectLabel",
+      ["for", "task-project"]
+    );
+    theElements.manageTaskTaskProjectLabel.textContent = "Project:";
+    createAndAdd(
+      "label",
+      theElements.formRowTaskProject,
+      "manageTaskTaskProjectInput",
+      ["type", "text", "name", "task-project", "placeholder", "Your project"]
+    );
+
+    createAndAdd("div", theElements.manageTaskForm, "formRowTaskDate", [
+      "class",
+      "form-row",
+    ]);
+    createAndAdd(
+      "label",
+      theElements.formRowTaskDate,
+      "manageTaskTaskDateLabel",
+      ["for", "task-date"]
+    );
+    theElements.manageTaskTaskDateLabel.textContent = "Due Date:";
+    createAndAdd(
+      "input",
+      theElements.formRowTaskDate,
+      "manageTaskTaskDateInput",
+      ["type", "date", "name", "task-date"]
+    );
+
+    createAndAdd("div", theElements.manageTaskForm, "formRowTaskPriority", [
+      "class",
+      "form-row",
+    ]);
+    createAndAdd(
+      "label",
+      theElements.formRowTaskPriority,
+      "manageTaskTaskPriorityLabel",
+      ["for", "task-priority"]
+    );
+    theElements.manageTaskTaskPriorityLabel.textContent = "Priority:";
+    createAndAdd(
+      "input",
+      theElements.formRowTaskPriority,
+      "manageTaskTaskPriorityInput",
+      ["type", "number", "name", "task-priority", "value", "2"]
+    );
+
+    createAndAdd("div", theElements.manageTaskForm, "formRowTaskSubmit", [
+      "class",
+      "form-row",
+      "id",
+      "form-row-submit",
+    ]);
+    createAndAdd("input", theElements.formRowTaskSubmit, "manageTaskSubmit", [
+      "type",
+      "submit",
+      "value",
+      "Done",
+    ]);
+
+    createAndAdd("button", theElements.manageTaskForm, "cancelBtn", [
+      "id",
+      "form-cancel-btn",
+    ]);
+    theElements.cancelBtn.textContent = "x";
   }
 
   function createNewTask(title, description, dueDate, priority) {
@@ -374,9 +529,10 @@ let dom = (function () {
   }
 
   function _showTaskDescription(e) {
-    const descriptionSection = e.target.parentElement.parentElement.parentElement.querySelector(
-      ".task-description-section"
-    );
+    const descriptionSection =
+      e.target.parentElement.parentElement.parentElement.querySelector(
+        ".task-description-section"
+      );
 
     if (descriptionSection.classList.contains("hidden-no-empty-space")) {
       descriptionSection.classList.remove("hidden-no-empty-space");
