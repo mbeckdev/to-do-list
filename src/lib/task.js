@@ -1,10 +1,13 @@
 "use strict";
+import { tasks } from "./tasks.js";
 
 let task = function (varTitle, varDescription, varDueDate, varPriority) {
   let title = varTitle;
   let description = varDescription;
   let dueDate = varDueDate;
   let priority = varPriority;
+  // console.log(tasks);
+  // tasks.push(this);
 
   function setTitle(setToThis) {
     title = setToThis;

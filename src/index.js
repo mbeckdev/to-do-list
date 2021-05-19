@@ -11,6 +11,9 @@ console.log("done with index.js");
 // console.log(allTasks.tasks[0]);
 
 const task2 = task("asfd2", "asdfa2", "23422", "32");
+const task3 = task("asfd23", "asdfa23", "234223", "323");
+tasks.push(task2);
+tasks.push(task3);
 // console.log(task2.getTitle());
 
 console.log(tasks);
