@@ -10,7 +10,7 @@ dom.setUpInitialDom();
 console.log("done with index.js");
 // console.log(allTasks.tasks[0]);
 
-// const task2 = task("asfd2", "asdfa2", "23422", "32");
+const task2 = task("asfd2", "asdfa2", "23422", "32");
 // console.log(task2.getTitle());
 
 console.log(tasks);
