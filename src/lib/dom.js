@@ -158,7 +158,7 @@ let dom = (function () {
   }
 
   function _createMain() {
-    console.log("asdf");
+    console.log("Creating main in DOM");
     createAndAdd("main", theElements.navMainContainer, "main");
     createAndAdd("div", theElements.main, "projectTitleContainer", [
       "id",
@@ -177,9 +177,14 @@ let dom = (function () {
       "task-container",
     ]);
 
-    createNewTask("a", "a", "a", "a");
-    createNewTask("bb", "a", "a", "a");
-    createNewTask("cc", "a", "a", "a");
+    createNewTask(
+      "a",
+      "Some description stufffff yep I want pancakes and stuff. Lorem ipsum. Need to buy some other stuff also. Maybe a unicorn. I tried but failed.",
+      "5/30/21",
+      "a"
+    );
+    createNewTask("bb", "blue chickens", "5/31/21", "a");
+    createNewTask("cc", "nonsense words haha nonsense date", "5/32/21", "a");
 
     createAndAdd("div", theElements.main, "addTaskInMain", [
       "class",
@@ -257,7 +262,7 @@ let dom = (function () {
       "input",
       theElements.formRowTaskDescription,
       "manageTaskTaskDescriptionInput",
-      ["type", "text", "name", "task-description", "value", "blah blah"]
+      ["type", "text", "name", "task-description"]
     );
 
     createAndAdd("div", theElements.manageTaskForm, "formRowTaskProject", [
@@ -336,11 +341,8 @@ let dom = (function () {
 
   function createNewTask(title, description, dueDate, priority) {
     console.log("adding new dom task now");
-    //
-    //
+
     createAndAdd("div", theElements.taskContainer, title, ["class", "task"]);
-    //
-    //
 
     createAndAdd("div", theElements[title], "taskFirstRowMain", [
       "class",
@@ -362,7 +364,7 @@ let dom = (function () {
       "class",
       "task-title-main",
     ]);
-    theElements.taskBoxLabel.textContent = "Buy a Whiteboard";
+    theElements.taskBoxLabel.textContent = title;
 
     createAndAdd("div", theElements.taskFirstRowMain, "taskLastSection", [
       "class",
@@ -377,7 +379,7 @@ let dom = (function () {
       "class",
       "due-date",
     ]);
-    theElements.dueDate.textContent = "5/30/21";
+    theElements.dueDate.textContent = dueDate;
     createAndAdd("div", theElements.taskLastSection, "editIcon", [
       "class",
       "edit-icon",
@@ -409,8 +411,7 @@ let dom = (function () {
       "taskDescriptionMain",
       ["class", "task-description-main"]
     );
-    theElements.taskDescriptionMain.textContent =
-      "Some description stufffff yep I want pancakes and stuff. Lorem ipsum. Need to buy some other stuff also. Maybe a unicorn. I tried but failed.";
+    theElements.taskDescriptionMain.textContent = description;
   }
 
   function createAndAdd(
@@ -432,12 +433,11 @@ let dom = (function () {
     // [optAttributeType, optAttributeValue,
     // optAttributeType2, optAttributeValue2,]
     if (!(optAttributeArray == undefined)) {
-      console.log("optAttributeArray exists. ");
+      // console.log("optAttributeArray exists. ");
       if ((optAttributeArray.length + 1) % 2) {
-        console.log("optAttributeArray is even. good.");
+        // console.log("optAttributeArray is even. good.");
 
         for (let i = 0; i < optAttributeArray.length; i += 2) {
-          console.log("durr");
           theElements[thisName2].setAttribute(
             optAttributeArray[i],
             optAttributeArray[i + 1]

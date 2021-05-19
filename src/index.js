@@ -1,11 +1,21 @@
 "use strict";
 import css from "./styles.css";
 
-import { dom } from "./dom.js";
+import { dom } from "./lib/dom.js";
+import { tasks } from "./lib/tasks.js";
+import { task } from "./lib/task.js";
 
 // dom.createNewTask();
 dom.setUpInitialDom();
 console.log("done with index.js");
+// console.log(allTasks.tasks[0]);
+
+// const task2 = task("asfd2", "asdfa2", "23422", "32");
+// console.log(task2.getTitle());
+
+console.log(tasks);
+
+// let dur = Task("asdf", "asdf", "asdf", "asdf");
 //to do:
 // A factory function to create new tasks
 
