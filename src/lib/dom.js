@@ -1,5 +1,7 @@
 "use strict";
 
+import { tasks } from "./tasks";
+
 // a module pattern called once, but we can call the inner stuff multiple times elsewhere
 // perhaps split this into a separate .js file
 let dom = (function () {
@@ -412,6 +414,13 @@ let dom = (function () {
       ["class", "task-description-main"]
     );
     theElements.taskDescriptionMain.textContent = description;
+
+    // theElements[title].addEventListener("click", _addShowDescriptionEListener);
+    // theElements[title].addEventListener("click", _showTaskDescription);
+    theElements.taskFirstSection.addEventListener(
+      "click",
+      _showTaskDescription
+    );
   }
 
   function createAndAdd(
@@ -481,7 +490,7 @@ let dom = (function () {
     _addAddProjectBtnEListener();
     _addHideAddProjectFormEListeners();
     _addSubmitBtnEListener();
-    _addShowDescriptionEListener();
+    // _addShowDescriptionEListener();
   }
 
   // Section for functions that add Event Listeners
@@ -506,6 +515,9 @@ let dom = (function () {
     theElements.tasks.forEach((thisTask) => {
       thisTask.addEventListener("click", _showTaskDescription);
     });
+    // tasks.forEach((thisTask) => {
+    //   thisTask.addEventListener("click", _showTaskDescription);
+    // });
   }
 
   function _addTaskBtnsEListeners() {
@@ -529,10 +541,17 @@ let dom = (function () {
   }
 
   function _showTaskDescription(e) {
-    const descriptionSection =
-      e.target.parentElement.parentElement.parentElement.querySelector(
-        ".task-description-section"
-      );
+    // we need to check if they clicked on two elements
+    // one is the title text and the other is the empty space to the right of it
+    let descriptionSection = "";
+    if (e.target.classList.contains("task-title-main")) {
+      // we clicked on the task title letters
+      descriptionSection =
+        e.target.parentElement.parentElement.nextElementSibling;
+    } else if (e.target.classList.contains("task-first-section")) {
+      // we clicked the empty space to the right of the task title
+      descriptionSection = e.target.parentElement.nextElementSibling;
+    }
 
     if (descriptionSection.classList.contains("hidden-no-empty-space")) {
       descriptionSection.classList.remove("hidden-no-empty-space");

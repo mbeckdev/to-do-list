@@ -4,21 +4,26 @@ import css from "./styles.css";
 import { dom } from "./lib/dom.js";
 import { tasks } from "./lib/tasks.js";
 import { task } from "./lib/task.js";
+import { createANewTask } from "./lib/create-a-new-task";
 
 // dom.createNewTask();
 dom.setUpInitialDom();
 console.log("done with index.js");
 // console.log(allTasks.tasks[0]);
 
-const task2 = task("asfd2", "asdfa2", "23422", "32");
-const task3 = task("asfd23", "asdfa23", "234223", "323");
-tasks.push(task2);
-tasks.push(task3);
+let task4 = createANewTask("asfd2", "desc-asdfa2", "23422", "32");
+let task5 = createANewTask("asfd5", "desc-asdfa5", "23425", "35");
+console.log(task4);
+console.log(task5);
+
+// const task2 = task("asfd2", "asdfa2", "23422", "32");
+// const task3 = task("asfd23", "asdfa23", "234223", "323");
+// tasks.push(task2);
+// tasks.push(task3);
 // console.log(task2.getTitle());
 
 console.log(tasks);
 
-// let dur = Task("asdf", "asdf", "asdf", "asdf");
 //to do:
 // A factory function to create new tasks
 
