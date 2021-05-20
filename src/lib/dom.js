@@ -1,5 +1,6 @@
 "use strict";
 
+import { createANewTask } from "./create-a-new-task";
 import { tasks } from "./tasks";
 
 // a module pattern called once, but we can call the inner stuff multiple times elsewhere
@@ -567,7 +568,7 @@ let dom = (function () {
 
   function _addSubmitBtnEListener() {
     // submit button clicked
-    theElements.form1.addEventListener("submit", hideTaskForm);
+    theElements.form1.addEventListener("submit", endFormManageTask);
   }
 
   // Functions called from event listeners:
@@ -583,7 +584,20 @@ let dom = (function () {
     console.log("done with form2");
   }
 
-  function hideTaskForm() {
+  function endFormManageTask(e) {
+    hideTaskForm(e);
+
+    let formTitle = theElements.manageTaskTaskTitleInput.value;
+    let formDescription = theElements.manageTaskTaskDescriptionInput.value;
+    let formDueDate = theElements.manageTaskTaskDateInput.value;
+    let formPriority = theElements.manageTaskTaskPriorityInput.value;
+    createANewTask(formTitle, formDescription, formDueDate, formPriority);
+  }
+
+  function captureFormData() {}
+
+  function hideTaskForm(e) {
+    e.preventDefault();
     theElements.form1.classList.add("form-is-hidden");
   }
 
