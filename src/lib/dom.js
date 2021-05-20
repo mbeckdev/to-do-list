@@ -180,15 +180,6 @@ let dom = (function () {
       "task-container",
     ]);
 
-    createNewTask(
-      "a",
-      "Some description stufffff yep I want pancakes and stuff. Lorem ipsum. Need to buy some other stuff also. Maybe a unicorn. I tried but failed.",
-      "5/30/21",
-      "a"
-    );
-    createNewTask("bb", "blue chickens", "5/31/21", "a");
-    createNewTask("cc", "nonsense words haha nonsense date", "5/32/21", "a");
-
     createAndAdd("div", theElements.main, "addTaskInMain", [
       "class",
       "add-task",
@@ -593,8 +584,6 @@ let dom = (function () {
     let formPriority = theElements.manageTaskTaskPriorityInput.value;
     createANewTask(formTitle, formDescription, formDueDate, formPriority);
   }
-
-  function captureFormData() {}
 
   function hideTaskForm(e) {
     e.preventDefault();
