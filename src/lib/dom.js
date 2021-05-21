@@ -1,7 +1,8 @@
 "use strict";
 
-import { createANewTask } from "./create-a-new-task";
-import { tasks } from "./tasks";
+import { createANewTask } from "./create-a-new-task.js";
+import { tasks } from "./tasks.js";
+import { changeTaskStatus } from "./change-task-status.js";
 
 // a module pattern called once, but we can call the inner stuff multiple times elsewhere
 // perhaps split this into a separate .js file
@@ -352,6 +353,16 @@ let dom = (function () {
       "name",
       "task-box",
     ]);
+    // theElements.taskBoxInput.addEventListener(
+    //   "change",
+    //   changeTaskStatus(theElements.taskBoxInput)
+    // );
+    theElements.taskBoxInput.addEventListener("change", () => {
+      console.log("it wooooooooooooooooooooorks");
+      setTaskComplete(theElements.lastClickedBox);
+      changeTaskStatus(theElements.lastClickedBox);
+    });
+
     createAndAdd("label", theElements.taskFirstSection, "taskBoxLabel", [
       "for",
       "task-box",
@@ -478,10 +489,11 @@ let dom = (function () {
 
     _addTaskBtnsEListeners();
     _addCancelBtnEListeners();
-    _addToggleNaveEListener();
+    _addToggleNavEListener();
     _addAddProjectBtnEListener();
     _addHideAddProjectFormEListeners();
     _addSubmitBtnEListener();
+
     // _addShowDescriptionEListener();
   }
 
@@ -520,7 +532,7 @@ let dom = (function () {
   }
   // const form = document.querySelector("form");
 
-  function _addToggleNaveEListener() {
+  function _addToggleNavEListener() {
     // Move menu in and out on mobile version
     // const hamburger = document.getElementById("hamburger");
     theElements.hamburger.addEventListener("click", toggleNav);
@@ -536,19 +548,25 @@ let dom = (function () {
     // we need to check if they clicked on two elements
     // one is the title text and the other is the empty space to the right of it
     let descriptionSection = "";
-    if (e.target.classList.contains("task-title-main")) {
-      // we clicked on the task title letters
-      descriptionSection =
-        e.target.parentElement.parentElement.nextElementSibling;
-    } else if (e.target.classList.contains("task-first-section")) {
-      // we clicked the empty space to the right of the task title
-      descriptionSection = e.target.parentElement.nextElementSibling;
-    }
+    theElements.lastClickedBox = e.target;
 
-    if (descriptionSection.classList.contains("hidden-no-empty-space")) {
-      descriptionSection.classList.remove("hidden-no-empty-space");
+    if (e.target.getAttribute("type") == "checkbox") {
+      //it's a checkbox, don't worry about it
     } else {
-      descriptionSection.classList.add("hidden-no-empty-space");
+      if (e.target.classList.contains("task-title-main")) {
+        // we clicked on the task title letters
+        descriptionSection =
+          e.target.parentElement.parentElement.nextElementSibling;
+      } else if (e.target.classList.contains("task-first-section")) {
+        // we clicked the empty space to the right of the task title
+        descriptionSection = e.target.parentElement.nextElementSibling;
+      }
+
+      if (descriptionSection.classList.contains("hidden-no-empty-space")) {
+        descriptionSection.classList.remove("hidden-no-empty-space");
+      } else {
+        descriptionSection.classList.add("hidden-no-empty-space");
+      }
     }
   }
 
@@ -600,6 +618,12 @@ let dom = (function () {
       theElements.nav.classList.add("nav-is-left");
     }
   }
+
+  function setTaskComplete(checkbox) {
+    //do dom stuff like cross out title
+    const thisTitle = checkbox.nextElementSibling;
+    thisTitle.style.color = "green";
+  }
   // End of functions called from event listeners
 
   return {
@@ -608,6 +632,7 @@ let dom = (function () {
     toggleNav: toggleNav,
     theElements: theElements,
     createAndAddAProject: createAndAddAProject,
+    setTaskComplete: setTaskComplete,
   };
 })();
 

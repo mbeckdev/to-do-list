@@ -6,6 +6,7 @@ let task = function (varTitle, varDescription, varDueDate, varPriority) {
   let description = varDescription;
   let dueDate = varDueDate;
   let priority = varPriority;
+  let complete = false;
   // console.log(tasks);
   // tasks.push(this);
 
@@ -41,6 +42,15 @@ let task = function (varTitle, varDescription, varDueDate, varPriority) {
     return priority;
   }
 
+  function setComplete(setToThis) {
+    // true or false;
+    complete = setToThis;
+  }
+
+  function getComplete() {
+    return complete;
+  }
+
   return {
     setTitle: setTitle,
     getTitle: getTitle,
@@ -50,6 +60,8 @@ let task = function (varTitle, varDescription, varDueDate, varPriority) {
     getDueDate,
     setPriority,
     getPriority,
+    setComplete,
+    getComplete,
     // title,
     // description,
     // dueDate,
