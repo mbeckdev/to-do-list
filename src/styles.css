@@ -7,6 +7,8 @@
   --main-bk-color: rgb(40, 44, 52);
   --main-bk-color2: rgb(50, 54, 62);
   --main-text-color: rgb(171, 178, 191);
+  --main-text-color-muted: hsl(219, 13.5%, 41%);
+  /* 219,13.5,71.0 */
   --red: rgb(224, 108, 117);
   --delete-icon-color: var(--main-text-color);
   --delete-icon-color2: var(--main-bk-color);
@@ -288,6 +290,11 @@ nav hr {
 .add-task-icon {
   margin-right: 10px;
   font-size: xx-large;
+}
+
+.crossed-out {
+  text-decoration: line-through;
+  color: var(--main-text-color-muted);
 }
 
 .delete-icon {

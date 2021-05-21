@@ -622,7 +622,9 @@ let dom = (function () {
   function setTaskComplete(checkbox) {
     //do dom stuff like cross out title
     const thisTitle = checkbox.nextElementSibling;
-    thisTitle.style.color = "green";
+    // thisTitle.style.color = "green";
+    thisTitle.classList.add("crossed-out");
+    thisTitle.parentElement.parentElement.classList.add("crossed-out");
   }
   // End of functions called from event listeners
 
