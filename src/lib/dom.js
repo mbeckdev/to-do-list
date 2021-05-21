@@ -3,6 +3,7 @@
 import { createANewTask } from "./create-a-new-task.js";
 import { tasks } from "./tasks.js";
 import { changeTaskStatus } from "./change-task-status.js";
+import { deleteATask } from "./delete-task.js";
 
 // a module pattern called once, but we can call the inner stuff multiple times elsewhere
 // perhaps split this into a separate .js file
@@ -424,6 +425,15 @@ let dom = (function () {
       "click",
       _showTaskDescription
     );
+
+    //delete icon E Listener
+    theElements.deleteIcon.addEventListener("click", deleteATask);
+  }
+
+  function deleteATaskFromScreen(task) {
+    // task.parentElement.
+    // document.remove(task);
+    task.remove();
   }
 
   function createAndAdd(
@@ -644,6 +654,7 @@ let dom = (function () {
     createAndAddAProject: createAndAddAProject,
     setTaskComplete: setTaskComplete,
     setTaskNotComplete: setTaskNotComplete,
+    deleteATaskFromScreen: deleteATaskFromScreen,
   };
 })();
 
