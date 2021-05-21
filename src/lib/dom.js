@@ -359,7 +359,7 @@ let dom = (function () {
     // );
     theElements.taskBoxInput.addEventListener("change", () => {
       console.log("it wooooooooooooooooooooorks");
-      setTaskComplete(theElements.lastClickedBox);
+      // setTaskComplete(theElements.lastClickedBox);
       changeTaskStatus(theElements.lastClickedBox);
     });
 
@@ -626,6 +626,14 @@ let dom = (function () {
     thisTitle.classList.add("crossed-out");
     thisTitle.parentElement.parentElement.classList.add("crossed-out");
   }
+
+  function setTaskNotComplete(checkbox) {
+    //do dom stuff like cross out title
+    const thisTitle = checkbox.nextElementSibling;
+    // thisTitle.style.color = "green";
+    thisTitle.classList.remove("crossed-out");
+    thisTitle.parentElement.parentElement.classList.remove("crossed-out");
+  }
   // End of functions called from event listeners
 
   return {
@@ -635,6 +643,7 @@ let dom = (function () {
     theElements: theElements,
     createAndAddAProject: createAndAddAProject,
     setTaskComplete: setTaskComplete,
+    setTaskNotComplete: setTaskNotComplete,
   };
 })();
 
