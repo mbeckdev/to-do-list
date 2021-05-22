@@ -2,8 +2,9 @@
 
 import { createANewTask } from "./create-a-new-task.js";
 import { tasks } from "./tasks.js";
+import { project } from "./project.js";
 import { changeTaskStatus } from "./change-task-status.js";
-import { deleteATask } from "./delete-task.js";
+import { deleteAClickedTask } from "./delete-task.js";
 import { editATask } from "./edit-task.js";
 
 // a module pattern called once, but we can call the inner stuff multiple times elsewhere
@@ -353,7 +354,6 @@ let dom = (function () {
     console.log("adding new dom task now");
 
     createAndAdd("div", theElements.taskContainer, title, ["class", "task"]);
-
     createAndAdd("div", theElements[title], "taskFirstRowMain", [
       "class",
       "task-first-row-main",
@@ -368,10 +368,7 @@ let dom = (function () {
       "name",
       "task-box",
     ]);
-    // theElements.taskBoxInput.addEventListener(
-    //   "change",
-    //   changeTaskStatus(theElements.taskBoxInput)
-    // );
+
     theElements.taskBoxInput.addEventListener("change", () => {
       console.log("it wooooooooooooooooooooorks");
       // setTaskComplete(theElements.lastClickedBox);
@@ -431,17 +428,16 @@ let dom = (function () {
       "taskDescriptionMain",
       ["class", "task-description-main"]
     );
+
     theElements.taskDescriptionMain.textContent = description;
 
-    // theElements[title].addEventListener("click", _addShowDescriptionEListener);
-    // theElements[title].addEventListener("click", _showTaskDescription);
     theElements.taskFirstSection.addEventListener(
       "click",
       _showTaskDescription
     );
 
     //delete icon E Listener
-    theElements.deleteIcon.addEventListener("click", deleteATask);
+    theElements.deleteIcon.addEventListener("click", deleteAClickedTask);
 
     //edit icon E Listener
     theElements.editIcon.addEventListener("click", editATask);
@@ -515,6 +511,7 @@ let dom = (function () {
     _createSections();
 
     _addTaskBtnsEListeners();
+    _addProjectBtnsEListeners();
     _addCancelBtnEListeners();
     _addToggleNavEListener();
     _addAddProjectBtnEListener();
@@ -525,6 +522,19 @@ let dom = (function () {
   }
 
   // Section for functions that add Event Listeners
+
+  function _addProjectBtnsEListeners() {
+    let allProjectsOnScreen = document.querySelectorAll(".task-set");
+
+    allProjectsOnScreen.forEach((projectOnScreen) => {
+      let projectName = "";
+      projectName = projectOnScreen.textContent;
+      projectOnScreen.addEventListener("click", () => {
+        project.showTasksOnlyFrom(projectName);
+      });
+      // projectOnScreen.addEventListener("click", project.igotthis);
+    });
+  }
 
   function _addAddProjectBtnEListener() {
     // Add-Project 'Button'

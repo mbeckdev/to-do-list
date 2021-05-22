@@ -4,7 +4,7 @@ import { dom } from "./dom.js";
 // import { task } from "./task.js";
 import { tasks } from "./tasks.js";
 
-let deleteATask = function (e) {
+let deleteAClickedTask = function (e) {
   let nodeClicked = e.target;
   let taskNode = "";
   if (
@@ -32,4 +32,4 @@ let deleteATask = function (e) {
   tasks.splice(thisIndex, 1);
 };
 
-export { deleteATask };
+export { deleteAClickedTask };
