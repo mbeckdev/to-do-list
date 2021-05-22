@@ -4,11 +4,18 @@ import { createANewTask } from "./create-a-new-task.js";
 import { tasks } from "./tasks.js";
 import { changeTaskStatus } from "./change-task-status.js";
 import { deleteATask } from "./delete-task.js";
+import { editATask } from "./edit-task.js";
 
 // a module pattern called once, but we can call the inner stuff multiple times elsewhere
 // perhaps split this into a separate .js file
 let dom = (function () {
   let theElements = {};
+
+  // marker to tell if the manage form came from an addTask or an editTask thing.
+  let formCameFrom = "durrrrrrr";
+  // used to keep track of which index of the tasks array we're editing
+  let editingThisTaskIndex = -1;
+  let editingThisTaskOldTitle = "";
 
   function _createSections() {
     // This setup goes against the guideline of doing it in this order
@@ -428,6 +435,9 @@ let dom = (function () {
 
     //delete icon E Listener
     theElements.deleteIcon.addEventListener("click", deleteATask);
+
+    //edit icon E Listener
+    theElements.editIcon.addEventListener("click", editATask);
   }
 
   function deleteATaskFromScreen(task) {
@@ -537,7 +547,8 @@ let dom = (function () {
   function _addTaskBtnsEListeners() {
     // Add-Task Buttons
     document.querySelectorAll(".add-task").forEach((addTaskBtn) => {
-      addTaskBtn.addEventListener("click", _showTaskForm);
+      dom.formCameFrom = "addTask";
+      addTaskBtn.addEventListener("click", showTaskForm);
     });
   }
   // const form = document.querySelector("form");
@@ -548,10 +559,30 @@ let dom = (function () {
     theElements.hamburger.addEventListener("click", toggleNav);
   }
 
-  function _showTaskForm() {
-    console.log("add task btn clicked");
+  function showTaskForm() {
+    // console.log("add task btn clicked"); or called from editATask
     theElements.form1.classList.remove("form-is-hidden");
     theElements.firstFormRow.focus();
+
+    theElements.manageTaskTaskTitleInput.value = "";
+    theElements.manageTaskTaskDescriptionInput.value = "";
+    theElements.manageTaskTaskDateInput.value = "";
+    theElements.manageTaskTaskPriorityInput.value = "2";
+  }
+
+  function fillTaskFormWithData(taskIndex) {
+    let title = tasks[taskIndex].getTitle();
+    let description = tasks[taskIndex].getDescription();
+    let dueDate = tasks[taskIndex].getDueDate();
+    let priority = tasks[taskIndex].getPriority();
+
+    theElements.manageTaskTaskTitleInput.value = title;
+    theElements.manageTaskTaskDescriptionInput.value = description;
+    theElements.manageTaskTaskDateInput.value = dueDate;
+    theElements.manageTaskTaskPriorityInput.value = priority;
+
+    console.log("aaaaaaaaaaaaaaa");
+    // formCameFrom = "editTask";
   }
 
   function _showTaskDescription(e) {
@@ -610,7 +641,47 @@ let dom = (function () {
     let formDescription = theElements.manageTaskTaskDescriptionInput.value;
     let formDueDate = theElements.manageTaskTaskDateInput.value;
     let formPriority = theElements.manageTaskTaskPriorityInput.value;
-    createANewTask(formTitle, formDescription, formDueDate, formPriority);
+
+    if (dom.formCameFrom == "addTask") {
+      // came from someone clicking an Add Task button
+      createANewTask(formTitle, formDescription, formDueDate, formPriority);
+    } else if ((dom.formCameFrom = "editTask")) {
+      // came from someone clicking an Edit Task button/icon
+      console.log("tbddddddddddd");
+      // replace data in tasks[thisIndex]
+
+      let thisIndex = dom.editingThisTaskIndex;
+
+      tasks[thisIndex].setTitle(formTitle);
+      tasks[thisIndex].setDescription(formDescription);
+      tasks[thisIndex].setDueDate(formDueDate);
+      tasks[thisIndex].setPriority(formPriority);
+
+      //redraw tasks[thisIndex] to screen
+      _redrawOneTaskAfterEdit(thisIndex);
+    }
+  }
+
+  function _redrawOneTaskAfterEdit(thisIndex) {
+    let allDomTasks = document.querySelectorAll(".task");
+    let taskToRewrite = "";
+    allDomTasks.forEach((taskElement) => {
+      if (
+        taskElement.querySelector(".task-title-main").textContent ==
+        dom.editingThisTaskOldTitle
+      ) {
+        taskToRewrite = taskElement;
+      }
+    });
+
+    taskToRewrite.querySelector(".task-title-main").textContent =
+      tasks[thisIndex].getTitle();
+    taskToRewrite.querySelector(".task-description-main").textContent =
+      tasks[thisIndex].getDescription();
+    taskToRewrite.querySelector(".due-date").textContent =
+      tasks[thisIndex].getDueDate();
+    // taskToRewrite.querySelector('.priority').textContent = tasks[thisIndex].getPriority();
+    // priority is not shown on screen yet
   }
 
   function hideTaskForm(e) {
@@ -655,6 +726,11 @@ let dom = (function () {
     setTaskComplete: setTaskComplete,
     setTaskNotComplete: setTaskNotComplete,
     deleteATaskFromScreen: deleteATaskFromScreen,
+    showTaskForm: showTaskForm,
+    fillTaskFormWithData: fillTaskFormWithData,
+    formCameFrom: formCameFrom,
+    editingThisTaskIndex: editingThisTaskIndex,
+    editingThisTaskOldTitle: editingThisTaskOldTitle,
   };
 })();
 
