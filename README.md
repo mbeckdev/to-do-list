@@ -28,3 +28,4 @@ A to-do list made with webpack
 - I'm using an array of task objects to keep track, instead of using a data-id attribute, I'm keeping track by the title of the task. So all titles must be unique.
 - I wonder If I could somehow setup an easier way to keep track of all the addEventListeners and functions that go with each.
 - I made the trashcan icon out of a container div and two inside divs. When you click it, you're clicking any one of the three. I wonder if there a way to disable the inner ones so I only need to check one e.target
+- Error 'is not a function at eval' could mean that my factory function needs to be a module pattern!
