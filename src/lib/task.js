@@ -1,12 +1,19 @@
 "use strict";
 import { tasks } from "./tasks.js";
 
-let task = function (varTitle, varDescription, varDueDate, varPriority) {
+let task = function (
+  varTitle,
+  varDescription,
+  varDueDate,
+  varPriority,
+  varProject
+) {
   let title = varTitle;
   let description = varDescription;
   let dueDate = varDueDate;
   let priority = varPriority;
   let complete = false;
+  let project = varProject || "default";
   // console.log(tasks);
   // tasks.push(this);
 
@@ -51,6 +58,15 @@ let task = function (varTitle, varDescription, varDueDate, varPriority) {
     return complete;
   }
 
+  function setProject(setToThis) {
+    // true or false;
+    project = setToThis;
+  }
+
+  function getProject() {
+    return project;
+  }
+
   return {
     setTitle: setTitle,
     getTitle: getTitle,
@@ -62,6 +78,8 @@ let task = function (varTitle, varDescription, varDueDate, varPriority) {
     getPriority,
     setComplete,
     getComplete,
+    setProject,
+    getProject,
     // title,
     // description,
     // dueDate,

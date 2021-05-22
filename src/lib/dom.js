@@ -265,7 +265,14 @@ let dom = (function () {
       "input",
       theElements.formRowTaskDescription,
       "manageTaskTaskDescriptionInput",
-      ["type", "text", "name", "task-description"]
+      [
+        "type",
+        "text",
+        "name",
+        "task-description",
+        "placeholder",
+        "Your description",
+      ]
     );
 
     createAndAdd("div", theElements.manageTaskForm, "formRowTaskProject", [
@@ -280,7 +287,7 @@ let dom = (function () {
     );
     theElements.manageTaskTaskProjectLabel.textContent = "Project:";
     createAndAdd(
-      "label",
+      "input",
       theElements.formRowTaskProject,
       "manageTaskTaskProjectInput",
       ["type", "text", "name", "task-project", "placeholder", "Your project"]
@@ -342,7 +349,7 @@ let dom = (function () {
     theElements.cancelBtn.textContent = "x";
   }
 
-  function createNewTask(title, description, dueDate, priority) {
+  function createNewTask(title, description, dueDate, priority, project) {
     console.log("adding new dom task now");
 
     createAndAdd("div", theElements.taskContainer, title, ["class", "task"]);
@@ -573,11 +580,13 @@ let dom = (function () {
   function fillTaskFormWithData(taskIndex) {
     let title = tasks[taskIndex].getTitle();
     let description = tasks[taskIndex].getDescription();
+    let project = tasks[taskIndex].getProject();
     let dueDate = tasks[taskIndex].getDueDate();
     let priority = tasks[taskIndex].getPriority();
 
     theElements.manageTaskTaskTitleInput.value = title;
     theElements.manageTaskTaskDescriptionInput.value = description;
+    theElements.manageTaskTaskProjectInput.value = project;
     theElements.manageTaskTaskDateInput.value = dueDate;
     theElements.manageTaskTaskPriorityInput.value = priority;
 
@@ -641,10 +650,17 @@ let dom = (function () {
     let formDescription = theElements.manageTaskTaskDescriptionInput.value;
     let formDueDate = theElements.manageTaskTaskDateInput.value;
     let formPriority = theElements.manageTaskTaskPriorityInput.value;
+    let formProject = theElements.manageTaskTaskProjectInput.value;
 
     if (dom.formCameFrom == "addTask") {
       // came from someone clicking an Add Task button
-      createANewTask(formTitle, formDescription, formDueDate, formPriority);
+      createANewTask(
+        formTitle,
+        formDescription,
+        formDueDate,
+        formPriority,
+        formProject
+      );
     } else if ((dom.formCameFrom = "editTask")) {
       // came from someone clicking an Edit Task button/icon
       console.log("tbddddddddddd");
@@ -656,6 +672,7 @@ let dom = (function () {
       tasks[thisIndex].setDescription(formDescription);
       tasks[thisIndex].setDueDate(formDueDate);
       tasks[thisIndex].setPriority(formPriority);
+      tasks[thisIndex].setProject(formProject);
 
       //redraw tasks[thisIndex] to screen
       _redrawOneTaskAfterEdit(thisIndex);
@@ -682,6 +699,8 @@ let dom = (function () {
       tasks[thisIndex].getDueDate();
     // taskToRewrite.querySelector('.priority').textContent = tasks[thisIndex].getPriority();
     // priority is not shown on screen yet
+    // taskToRewrite.querySelector('.project').textContent = tasks[thisIndex].getProject();
+    // project is not shown on screen
   }
 
   function hideTaskForm(e) {
