@@ -392,12 +392,25 @@ let dom = (function () {
       "class",
       "day-of-week",
     ]);
-    theElements.dayOfWeek.textContent = "M";
+    // let theDayOfTheWeek = format(dueDate, "EEEEE");
+    //"M" or "T W T F"
+    // theElements.dayOfWeek.textContent = theDayOfTheWeek;
+    let formattedDayOfWeek = format(dueDate, "EEEEE");
+    if (format(dueDate, "EEEEEE") == "Th") {
+      formattedDayOfWeek = "Th";
+    }
+    // theElements.dayOfWeek.textContent = "Tue";
+    theElements.dayOfWeek.textContent = formattedDayOfWeek;
+
     createAndAdd("div", theElements.taskLastSection, "dueDate", [
       "class",
       "due-date",
     ]);
-    theElements.dueDate.textContent = dueDate;
+
+    // let formattedDate = format(new Date("05-05-2021"), "MM-dd-yy");
+    let formattedDate = format(dueDate, "MM-dd-yy");
+    theElements.dueDate.textContent = formattedDate;
+
     createAndAdd("div", theElements.taskLastSection, "editIcon", [
       "class",
       "edit-icon",
@@ -660,9 +673,12 @@ let dom = (function () {
     let formTitle = theElements.manageTaskTaskTitleInput.value;
     let formDescription = theElements.manageTaskTaskDescriptionInput.value;
     // let formDueDate = new Date(theElements.manageTaskTaskDateInput.value);
-    let formDueDate = format(
-      new Date(theElements.manageTaskTaskDateInput.value),
-      "MM-dd-yy"
+    // let formDueDate = format(
+    //   new Date(theElements.manageTaskTaskDateInput.value),
+    //   "MM-dd-yy"
+    // );
+    let formDueDate = new Date(
+      theElements.manageTaskTaskDateInput.value + " 00:00"
     );
     let formPriority = theElements.manageTaskTaskPriorityInput.value;
     let formProject = theElements.manageTaskTaskProjectInput.value;

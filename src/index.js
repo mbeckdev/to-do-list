@@ -5,7 +5,7 @@ import { dom } from "./lib/dom.js";
 import { tasks } from "./lib/tasks.js";
 import { task } from "./lib/task.js";
 import { createANewTask } from "./lib/create-a-new-task";
-// import { format, formatDistance, subDays } from "date-fns";
+import { format, formatDistance, subDays } from "date-fns";
 
 // formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true });
 
@@ -17,13 +17,15 @@ console.log("done with index.js");
 let task1 = createANewTask(
   "asfd2",
   "desc-asdfa2",
-  format(new Date("05-05-2021"), "MM-dd-yy"),
+  // format(new Date("05-05-2021"), "MM-dd-yy"),
+  // new Date("05-05-2021"),
+  new Date("2021-05-05 00:00"),
   "32"
 );
 let task2 = createANewTask(
   "asfd5",
   "desc-asdfa5",
-  format(new Date("05-06-2021"), "MM-dd-yy"),
+  new Date("05-06-2021 00:00"),
   "35"
 );
 console.log(task1);
