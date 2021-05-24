@@ -388,29 +388,39 @@ let dom = (function () {
       "class",
       "task-last-section",
     ]);
+
     createAndAdd("div", theElements.taskLastSection, "dayOfWeek", [
       "class",
       "day-of-week",
     ]);
-    // let theDayOfTheWeek = format(dueDate, "EEEEE");
-    //"M" or "T W T F"
-    // theElements.dayOfWeek.textContent = theDayOfTheWeek;
-    let formattedDayOfWeek = format(dueDate, "EEEEE");
-    if (format(dueDate, "EEEEEE") == "Th") {
-      formattedDayOfWeek = "Th";
-    } else if (format(dueDate, "EEEEEE") == "Su") {
-      formattedDayOfWeek = "Su";
-    }
-    // theElements.dayOfWeek.textContent = "Tue";
-    theElements.dayOfWeek.textContent = formattedDayOfWeek;
-
     createAndAdd("div", theElements.taskLastSection, "dueDate", [
       "class",
       "due-date",
     ]);
+    // let theDayOfTheWeek = format(dueDate, "EEEEE");
+    //"M" or "T W T F"
+    // theElements.dayOfWeek.textContent = theDayOfTheWeek;
 
-    // let formattedDate = format(new Date("05-05-2021"), "MM-dd-yy");
-    let formattedDate = format(dueDate, "MM-dd-yy");
+    // If a date was not entered:
+    let formattedDayOfWeek = "";
+    let formattedDate = "";
+
+    if (isNaN(dueDate.getTime())) {
+      // Date was not entered:
+      console.log("Date wasn't entered");
+    } else {
+      // Date was entered:
+      formattedDayOfWeek = format(dueDate, "EEEEE");
+      if (format(dueDate, "EEEEEE") == "Th") {
+        formattedDayOfWeek = "Th";
+      } else if (format(dueDate, "EEEEEE") == "Su") {
+        formattedDayOfWeek = "Su";
+      }
+
+      formattedDate = format(dueDate, "MM-dd-yy");
+    }
+
+    theElements.dayOfWeek.textContent = formattedDayOfWeek;
     theElements.dueDate.textContent = formattedDate;
 
     createAndAdd("div", theElements.taskLastSection, "editIcon", [
