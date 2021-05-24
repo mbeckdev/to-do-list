@@ -24,7 +24,7 @@ A to-do list made with webpack
 ## Code Notes
 
 - Just learned about a bunch of JavaScript fundamentals like the SOLID JavaScript principles, modules, factory functions, module patterns, IIFE, and I hope to use as much of them as I can while building this project.
-- I might even try bringing in [date-fns](https://date-fns.org/) -- I don't know anything about it so it'll be like me going out into the wild and capturing an exotic animal and taming it.
+- I brought in [date-fns](https://date-fns.org/) -- I didn't know anything about it so it's like me going out into the wild and capturing an exotic animal and taming it, except unlike an animal, I can keep it in a code folder and don't even have to feed it. Plus, I can format dates easily with it. Success!
 - I'm using an array of task objects to keep track, instead of using a data-id attribute, I'm keeping track by the title of the task. So all titles must be unique.
 - I wonder If I could somehow setup an easier way to keep track of all the addEventListeners and functions that go with each.
 - I made the trashcan icon out of a container div and two inside divs. When you click it, you're clicking any one of the three. I wonder if there a way to disable the inner ones so I only need to check one e.target
