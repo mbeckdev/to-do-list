@@ -623,11 +623,18 @@ let dom = (function () {
     theElements.manageTaskTaskTitleInput.value = title;
     theElements.manageTaskTaskDescriptionInput.value = description;
     theElements.manageTaskTaskProjectInput.value = project;
-    theElements.manageTaskTaskDateInput.value = dueDate;
-    theElements.manageTaskTaskPriorityInput.value = priority;
 
-    console.log("aaaaaaaaaaaaaaa");
-    // formCameFrom = "editTask";
+    let formDateValueToAdd = "";
+    if (isNaN(dueDate.getTime())) {
+      // Date was not entered:
+      // console.log("Date wasn't entered");
+    } else {
+      // Date was entered:
+      formDateValueToAdd = format(dueDate, "yyy-MM-dd");
+    }
+
+    theElements.manageTaskTaskDateInput.value = formDateValueToAdd;
+    theElements.manageTaskTaskPriorityInput.value = priority;
   }
 
   function _showTaskDescription(e) {
