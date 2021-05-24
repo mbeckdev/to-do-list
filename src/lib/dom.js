@@ -398,6 +398,8 @@ let dom = (function () {
     let formattedDayOfWeek = format(dueDate, "EEEEE");
     if (format(dueDate, "EEEEEE") == "Th") {
       formattedDayOfWeek = "Th";
+    } else if (format(dueDate, "EEEEEE") == "Su") {
+      formattedDayOfWeek = "Su";
     }
     // theElements.dayOfWeek.textContent = "Tue";
     theElements.dayOfWeek.textContent = formattedDayOfWeek;
