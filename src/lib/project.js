@@ -17,7 +17,25 @@ let project = (function () {
 
     // write only tasks that have the project -projectToShow to the screen
     tasks.forEach((task) => {
-      if (task.getProject() == projectNameToShow) {
+      if (projectNameToShow == "All") {
+        let taskToShow = task;
+
+        dom.createNewTask(
+          taskToShow.getTitle(),
+          taskToShow.getDescription(),
+          taskToShow.getDueDate(),
+          taskToShow.getPriority(),
+          taskToShow.getProject()
+        );
+        // } else if (projectNameToShow = 'Today') {
+        //   if (task.getDueDate == today) {
+        //     //show task
+        //   }
+        // } else if (projectNameToShow = 'Week') {
+        //   if (task.getDueDate == a range of a week out to today) {
+        //     //show task
+        //   }
+      } else if (task.getProject() == projectNameToShow) {
         let taskToShow = task;
 
         dom.createNewTask(
