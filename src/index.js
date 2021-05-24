@@ -5,14 +5,27 @@ import { dom } from "./lib/dom.js";
 import { tasks } from "./lib/tasks.js";
 import { task } from "./lib/task.js";
 import { createANewTask } from "./lib/create-a-new-task";
+// import { format, formatDistance, subDays } from "date-fns";
+
+// formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true });
 
 // dom.createNewTask();
 dom.setUpInitialDom();
 console.log("done with index.js");
 // console.log(allTasks.tasks[0]);
 
-let task1 = createANewTask("asfd2", "desc-asdfa2", "05-20-21", "32");
-let task2 = createANewTask("asfd5", "desc-asdfa5", "23425", "35");
+let task1 = createANewTask(
+  "asfd2",
+  "desc-asdfa2",
+  format(new Date("05-05-2021"), "MM-dd-yy"),
+  "32"
+);
+let task2 = createANewTask(
+  "asfd5",
+  "desc-asdfa5",
+  format(new Date("05-06-2021"), "MM-dd-yy"),
+  "35"
+);
 console.log(task1);
 console.log(task2);
 
