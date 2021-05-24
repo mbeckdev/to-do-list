@@ -3,7 +3,7 @@
 import { dom } from "./dom.js";
 import { tasks } from "./tasks.js";
 import { projects } from "./projects.js";
-import { isToday } from "date-fns";
+import { isToday, isThisWeek } from "date-fns";
 
 let project = (function () {
   // addTask
@@ -52,7 +52,20 @@ let project = (function () {
             taskToShow.getProject()
           );
         }
-      } else if (task.getProject() == "Week") {
+      } else if (projectNameToShow == "Week") {
+        let taskDueDate = task.getDueDate();
+        let itIsThisWeek = isThisWeek(taskDueDate, { weekStartsOn: 1 });
+        if (itIsThisWeek) {
+          // weekStartsOn:1 means a 'week' starts on a Monday
+          let taskToShow = task;
+          dom.createNewTask(
+            taskToShow.getTitle(),
+            taskToShow.getDescription(),
+            taskToShow.getDueDate(),
+            taskToShow.getPriority(),
+            taskToShow.getProject()
+          );
+        }
         //
       } else if (task.getProject() == projectNameToShow) {
         let taskToShow = task;
