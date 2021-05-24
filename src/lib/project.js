@@ -3,6 +3,7 @@
 import { dom } from "./dom.js";
 import { tasks } from "./tasks.js";
 import { projects } from "./projects.js";
+import { isToday } from "date-fns";
 
 let project = (function () {
   // addTask
@@ -35,6 +36,24 @@ let project = (function () {
         //   if (task.getDueDate == a range of a week out to today) {
         //     //show task
         //   }
+      } else if (projectNameToShow == "Today") {
+        // if (isToday(task.getDueDate()) {
+        console.log("a task is today");
+        // }
+        let taskDueDate = task.getDueDate();
+        if (isToday(taskDueDate)) {
+          // isToday is part of date-fns
+          let taskToShow = task;
+          dom.createNewTask(
+            taskToShow.getTitle(),
+            taskToShow.getDescription(),
+            taskToShow.getDueDate(),
+            taskToShow.getPriority(),
+            taskToShow.getProject()
+          );
+        }
+      } else if (task.getProject() == "Week") {
+        //
       } else if (task.getProject() == projectNameToShow) {
         let taskToShow = task;
 
