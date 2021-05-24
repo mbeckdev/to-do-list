@@ -1,4 +1,5 @@
 "use strict";
+import format from "date-fns/format";
 import { tasks } from "./tasks.js";
 
 let task = function (
@@ -40,6 +41,16 @@ let task = function (
   function getDueDate() {
     return dueDate;
   }
+  function getFormattedDueDate() {
+    return format(dueDate, "MM-dd-yy");
+  }
+  function getFormattedDayOfWeekDueDate() {
+    let formattedDayOfWeek = format(dueDate, "EEEEE");
+    if (format(dueDate, "EEEEEE") == "Th") {
+      formattedDayOfWeek = "Th";
+    }
+    return formattedDayOfWeek;
+  }
 
   function setPriority(setToThis) {
     priority = setToThis;
@@ -74,6 +85,8 @@ let task = function (
     getDescription,
     setDueDate,
     getDueDate,
+    getFormattedDueDate,
+    getFormattedDayOfWeekDueDate,
     setPriority,
     getPriority,
     setComplete,

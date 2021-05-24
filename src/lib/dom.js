@@ -727,7 +727,9 @@ let dom = (function () {
     taskToRewrite.querySelector(".task-description-main").textContent =
       tasks[thisIndex].getDescription();
     taskToRewrite.querySelector(".due-date").textContent =
-      tasks[thisIndex].getDueDate();
+      tasks[thisIndex].getFormattedDueDate();
+    taskToRewrite.querySelector(".day-of-week").textContent =
+      tasks[thisIndex].getFormattedDayOfWeekDueDate();
     // taskToRewrite.querySelector('.priority').textContent = tasks[thisIndex].getPriority();
     // priority is not shown on screen yet
     // taskToRewrite.querySelector('.project').textContent = tasks[thisIndex].getProject();
