@@ -6,9 +6,15 @@ import { projects } from "./projects.js";
 import { isToday, isThisWeek } from "date-fns";
 
 let project = (function () {
-  // addTask
+  // holds 'All' 'default' 'Today' 'Week' ...then user created stuff: 'Coding' 'Cooking'
+  let currentlySelectedProjet = "default";
+
   function showTasksOnlyFrom(projectNameToShow) {
+    currentlySelectedProjet = projectNameToShow;
     console.log("showTasksOnlyFrom is working");
+
+    // Change title above tasks
+    dom.changeTitle(projectNameToShow);
 
     // delete all shown tasks on screen
     let allTasksOnScreen = document.querySelectorAll(".task");
@@ -28,18 +34,9 @@ let project = (function () {
           taskToShow.getPriority(),
           taskToShow.getProject()
         );
-        // } else if (projectNameToShow = 'Today') {
-        //   if (task.getDueDate == today) {
-        //     //show task
-        //   }
-        // } else if (projectNameToShow = 'Week') {
-        //   if (task.getDueDate == a range of a week out to today) {
-        //     //show task
-        //   }
       } else if (projectNameToShow == "Today") {
-        // if (isToday(task.getDueDate()) {
         console.log("a task is today");
-        // }
+
         let taskDueDate = task.getDueDate();
         if (isToday(taskDueDate)) {
           // isToday is part of date-fns
@@ -88,6 +85,7 @@ let project = (function () {
   return {
     showTasksOnlyFrom: showTasksOnlyFrom,
     igotthis: igotthis,
+    currentlySelectedProjet: currentlySelectedProjet,
   };
 })();
 

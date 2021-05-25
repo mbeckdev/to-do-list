@@ -535,6 +535,10 @@ let dom = (function () {
     // }
   }
 
+  function changeTitle(titleText) {
+    theElements.h2.textContent = titleText;
+  }
+
   // const header2 = document.createElement("header");
   // document.body.appendChild(header2);
 
@@ -835,6 +839,7 @@ let dom = (function () {
     formCameFrom: formCameFrom,
     editingThisTaskIndex: editingThisTaskIndex,
     editingThisTaskOldTitle: editingThisTaskOldTitle,
+    changeTitle: changeTitle,
   };
 })();
 
