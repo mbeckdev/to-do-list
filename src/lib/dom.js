@@ -328,7 +328,18 @@ let dom = (function () {
       "input",
       theElements.formRowTaskPriority,
       "manageTaskTaskPriorityInput",
-      ["type", "number", "name", "task-priority", "value", "2"]
+      [
+        "type",
+        "number",
+        "name",
+        "task-priority",
+        "value",
+        "2",
+        "min",
+        "1",
+        "max",
+        "3",
+      ]
     );
 
     createAndAdd("div", theElements.manageTaskForm, "formRowTaskSubmit", [
