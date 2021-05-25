@@ -334,9 +334,9 @@ let dom = (function () {
         "name",
         "task-priority",
         "value",
-        "2",
+        "0",
         "min",
-        "1",
+        "0",
         "max",
         "3",
       ]
@@ -623,7 +623,7 @@ let dom = (function () {
     theElements.manageTaskTaskTitleInput.value = "";
     theElements.manageTaskTaskDescriptionInput.value = "";
     theElements.manageTaskTaskDateInput.value = "";
-    theElements.manageTaskTaskPriorityInput.value = "2";
+    theElements.manageTaskTaskPriorityInput.value = "0";
   }
 
   function fillTaskFormWithData(taskIndex) {
