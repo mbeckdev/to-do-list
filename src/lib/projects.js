@@ -1,5 +1,10 @@
 "use strict";
 
-let projects = [];
+let projects = (function () {
+  let allProjects = [];
+  return {
+    allProjects: allProjects,
+  };
+})();
 
 export { projects };

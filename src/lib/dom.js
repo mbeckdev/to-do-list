@@ -7,6 +7,7 @@ import { changeTaskStatus } from "./change-task-status.js";
 import { deleteAClickedTask } from "./delete-task.js";
 import { editATask } from "./edit-task.js";
 import { format } from "date-fns";
+import { projects } from "./projects.js";
 
 // a module pattern called once, but we can call the inner stuff multiple times elsewhere
 // perhaps split this into a separate .js file
@@ -169,6 +170,7 @@ let dom = (function () {
       "task-set nav-item-padding",
     ]);
     theElements[newProjectName].textContent = newProjectName;
+    projects.allProjects.push(newProjectName);
   }
 
   function _createMain() {
