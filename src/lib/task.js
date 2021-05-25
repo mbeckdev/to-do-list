@@ -57,15 +57,11 @@ let task = function (
       let formattedDayOfWeek = format(dueDate, "EEEEE");
       if (format(dueDate, "EEEEEE") == "Th") {
         formattedDayOfWeek = "Th";
+      } else if (format(dueDate, "EEEEEE") == "Su") {
+        formattedDayOfWeek = "Su";
       }
       return formattedDayOfWeek;
     }
-
-    let formattedDayOfWeek = format(dueDate, "EEEEE");
-    if (format(dueDate, "EEEEEE") == "Th") {
-      formattedDayOfWeek = "Th";
-    }
-    return formattedDayOfWeek;
   }
 
   function setPriority(setToThis) {
