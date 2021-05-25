@@ -617,6 +617,7 @@ let dom = (function () {
 
   function showTaskForm() {
     // console.log("add task btn clicked"); or called from editATask
+    dom.formCameFrom = "addTask";
     theElements.form1.classList.remove("form-is-hidden");
     theElements.firstFormRow.focus();
 
@@ -679,6 +680,7 @@ let dom = (function () {
   function _cancelTaskForm() {
     theElements.firstFormRow.removeAttribute("required");
     theElements.form1.classList.add("form-is-hidden");
+    dom.formCameFrom = "cancelled";
   }
 
   function _addSubmitBtnEListener() {
@@ -702,57 +704,41 @@ let dom = (function () {
   function endFormManageTask(e) {
     hideTaskForm(e);
 
-    let formTitle = theElements.manageTaskTaskTitleInput.value;
-    let formDescription = theElements.manageTaskTaskDescriptionInput.value;
-    // let formDueDate = new Date(theElements.manageTaskTaskDateInput.value);
-    // let formDueDate = format(
-    //   new Date(theElements.manageTaskTaskDateInput.value),
-    //   "MM-dd-yy"
-    // );
-
-    // let formDueDate = "";
-    // if (isNaN(dueDate.getTime())) {
-    // Date was not entered:
-    // } else {
-    let formDueDate = new Date(
-      theElements.manageTaskTaskDateInput.value + " 00:00"
-    );
-    // }
-
-    let formPriority = theElements.manageTaskTaskPriorityInput.value;
-    let formProject = theElements.manageTaskTaskProjectInput.value;
-
-    if (dom.formCameFrom == "addTask") {
-      // came from someone clicking an Add Task button
-      createANewTask(
-        formTitle,
-        formDescription,
-        formDueDate,
-        formPriority,
-        formProject
+    if (dom.formCameFrom == "addTask" || dom.formCameFrom == "editTask") {
+      let formTitle = theElements.manageTaskTaskTitleInput.value;
+      let formDescription = theElements.manageTaskTaskDescriptionInput.value;
+      let formDueDate = new Date(
+        theElements.manageTaskTaskDateInput.value + " 00:00"
       );
-    } else if ((dom.formCameFrom = "editTask")) {
-      // came from someone clicking an Edit Task button/icon
-      console.log("tbddddddddddd");
-      // replace data in tasks[thisIndex]
+      let formPriority = theElements.manageTaskTaskPriorityInput.value;
+      let formProject = theElements.manageTaskTaskProjectInput.value;
 
-      let thisIndex = dom.editingThisTaskIndex;
+      if (dom.formCameFrom == "addTask") {
+        // came from someone clicking an Add Task button
+        createANewTask(
+          formTitle,
+          formDescription,
+          formDueDate,
+          formPriority,
+          formProject
+        );
+      } else if ((dom.formCameFrom = "editTask")) {
+        // came from someone clicking an Edit Task button/icon
+        console.log("tbddddddddddd");
+        // replace data in tasks[thisIndex]
 
-      tasks[thisIndex].setTitle(formTitle);
-      tasks[thisIndex].setDescription(formDescription);
+        let thisIndex = dom.editingThisTaskIndex;
 
-      // if (isNaN(formDueDate.getTime())) {
-      // Date was not entered:
-      // tasks[thisIndex].setDueDate("");
-      // } else {
-      tasks[thisIndex].setDueDate(formDueDate);
-      // }
+        tasks[thisIndex].setTitle(formTitle);
+        tasks[thisIndex].setDescription(formDescription);
+        tasks[thisIndex].setDueDate(formDueDate);
+        tasks[thisIndex].setPriority(formPriority);
+        tasks[thisIndex].setProject(formProject);
 
-      tasks[thisIndex].setPriority(formPriority);
-      tasks[thisIndex].setProject(formProject);
-
-      //redraw tasks[thisIndex] to screen
-      _redrawOneTaskAfterEdit(thisIndex);
+        //redraw tasks[thisIndex] to screen
+        _redrawOneTaskAfterEdit(thisIndex);
+      }
+    } else if ((dom.formCameFrom = "cancelled")) {
     }
   }
 
