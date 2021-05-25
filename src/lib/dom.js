@@ -623,6 +623,7 @@ let dom = (function () {
 
     theElements.manageTaskTaskTitleInput.value = "";
     theElements.manageTaskTaskDescriptionInput.value = "";
+    theElements.manageTaskTaskProjectInput.value = "";
     theElements.manageTaskTaskDateInput.value = "";
     theElements.manageTaskTaskPriorityInput.value = "0";
   }
