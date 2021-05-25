@@ -20,13 +20,13 @@ let task1 = createANewTask(
   // format(new Date("05-05-2021"), "MM-dd-yy"),
   // new Date("05-05-2021"),
   new Date("2021-05-05 00:00"),
-  "32"
+  "3"
 );
 let task2 = createANewTask(
   "asfd5",
   "desc-asdfa5",
   new Date("05-06-2021 00:00"),
-  "35"
+  "1"
 );
 console.log(task1);
 console.log(task2);

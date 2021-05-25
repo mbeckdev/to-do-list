@@ -42,9 +42,25 @@ let task = function (
     return dueDate;
   }
   function getFormattedDueDate() {
-    return format(dueDate, "MM-dd-yy");
+    if (isNaN(dueDate.getTime())) {
+      // Date was not entered:
+      return "";
+    } else {
+      return format(dueDate, "MM-dd-yy");
+    }
   }
   function getFormattedDayOfWeekDueDate() {
+    if (isNaN(dueDate.getTime())) {
+      // Date was not entered:
+      return "";
+    } else {
+      let formattedDayOfWeek = format(dueDate, "EEEEE");
+      if (format(dueDate, "EEEEEE") == "Th") {
+        formattedDayOfWeek = "Th";
+      }
+      return formattedDayOfWeek;
+    }
+
     let formattedDayOfWeek = format(dueDate, "EEEEE");
     if (format(dueDate, "EEEEEE") == "Th") {
       formattedDayOfWeek = "Th";

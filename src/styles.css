@@ -463,6 +463,16 @@ nav hr {
   padding: 2px 10px;
 }
 
+.priority1-color {
+  color: orangered;
+}
+.priority2-color {
+  color: orange;
+}
+.priority3-color {
+  color: yellow;
+}
+
 .task-first-row-main {
   /* display: flex; */
   /* justify-content: space-between; */

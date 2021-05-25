@@ -468,6 +468,8 @@ let dom = (function () {
 
     theElements.taskDescriptionMain.textContent = description;
 
+    _setTaskColorByPriority(theElements[title], priority);
+
     theElements.taskFirstSection.addEventListener(
       "click",
       _showTaskDescription
@@ -707,9 +709,16 @@ let dom = (function () {
     //   new Date(theElements.manageTaskTaskDateInput.value),
     //   "MM-dd-yy"
     // );
+
+    // let formDueDate = "";
+    // if (isNaN(dueDate.getTime())) {
+    // Date was not entered:
+    // } else {
     let formDueDate = new Date(
       theElements.manageTaskTaskDateInput.value + " 00:00"
     );
+    // }
+
     let formPriority = theElements.manageTaskTaskPriorityInput.value;
     let formProject = theElements.manageTaskTaskProjectInput.value;
 
@@ -731,7 +740,14 @@ let dom = (function () {
 
       tasks[thisIndex].setTitle(formTitle);
       tasks[thisIndex].setDescription(formDescription);
+
+      // if (isNaN(formDueDate.getTime())) {
+      // Date was not entered:
+      // tasks[thisIndex].setDueDate("");
+      // } else {
       tasks[thisIndex].setDueDate(formDueDate);
+      // }
+
       tasks[thisIndex].setPriority(formPriority);
       tasks[thisIndex].setProject(formProject);
 
@@ -760,10 +776,29 @@ let dom = (function () {
       tasks[thisIndex].getFormattedDueDate();
     taskToRewrite.querySelector(".day-of-week").textContent =
       tasks[thisIndex].getFormattedDayOfWeekDueDate();
-    // taskToRewrite.querySelector('.priority').textContent = tasks[thisIndex].getPriority();
-    // priority is not shown on screen yet
-    // taskToRewrite.querySelector('.project').textContent = tasks[thisIndex].getProject();
-    // project is not shown on screen
+
+    _setTaskColorByPriority(taskToRewrite, tasks[thisIndex].getPriority());
+  }
+
+  function _setTaskColorByPriority(task, priorityNum) {
+    let priorityNumber = priorityNum;
+    if (task.classList.contains("priority1-color")) {
+      task.classList.remove("priority1-color");
+    }
+    if (task.classList.contains("priority2-color")) {
+      task.classList.remove("priority2-color");
+    }
+    if (task.classList.contains("priority3-color")) {
+      task.classList.remove("priority3-color");
+    }
+
+    if (priorityNumber == 1) {
+      task.classList.add("priority1-color");
+    } else if (priorityNumber == 2) {
+      task.classList.add("priority2-color");
+    } else if (priorityNumber == 3) {
+      task.classList.add("priority3-color");
+    }
   }
 
   function hideTaskForm(e) {
