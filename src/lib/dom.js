@@ -628,9 +628,15 @@ let dom = (function () {
 
     theElements.manageTaskTaskTitleInput.value = "";
     theElements.manageTaskTaskDescriptionInput.value = "";
-    theElements.manageTaskTaskProjectInput.value = "";
     theElements.manageTaskTaskDateInput.value = "";
     theElements.manageTaskTaskPriorityInput.value = "0";
+
+    if (theElements.h2.textContent != "All") {
+      theElements.manageTaskTaskProjectInput.value =
+        project.getCurrentlySelectedProject();
+    } else {
+      theElements.manageTaskTaskProjectInput.value = "";
+    }
   }
 
   function fillTaskFormWithData(taskIndex) {
@@ -705,9 +711,10 @@ let dom = (function () {
   function hideAddProjectForm(e) {
     e.preventDefault();
     theElements.form2.classList.add("hidden");
-
+    console.log("hideAddProjectForm ran");
     let typedProjectName = theElements.addProjInput.value;
     createAndAddAProject(typedProjectName);
+    theElements.addProjInput.value = "";
   }
 
   function endFormManageTask(e) {

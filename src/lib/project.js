@@ -7,10 +7,18 @@ import { isToday, isThisWeek } from "date-fns";
 
 let project = (function () {
   // holds 'All' 'default' 'Today' 'Week' ...then user created stuff: 'Coding' 'Cooking'
-  let currentlySelectedProjet = "default";
+  let currentlySelectedProject = "default";
+
+  function getCurrentlySelectedProject() {
+    return currentlySelectedProject;
+  }
+  function setCurrentlySelectedProject(setToThis) {
+    currentlySelectedProject = setToThis;
+  }
 
   function showTasksOnlyFrom(projectNameToShow) {
-    currentlySelectedProjet = projectNameToShow;
+    // currentlySelectedProject = projectNameToShow;
+    setCurrentlySelectedProject(projectNameToShow);
     console.log("showTasksOnlyFrom is working");
 
     // Change title above tasks
@@ -87,7 +95,9 @@ let project = (function () {
   return {
     showTasksOnlyFrom: showTasksOnlyFrom,
     // addNewProject: addnewProject,
-    currentlySelectedProjet: currentlySelectedProjet,
+    currentlySelectedProject: currentlySelectedProject,
+    getCurrentlySelectedProject: getCurrentlySelectedProject,
+    setCurrentlySelectedProject: setCurrentlySelectedProject,
   };
 })();
 
