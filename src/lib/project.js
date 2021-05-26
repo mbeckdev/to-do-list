@@ -78,13 +78,15 @@ let project = (function () {
     });
   }
 
-  function igotthis() {
+  function addNewProject(typedProjectName) {
     console.log("igotthis");
+    projects.allProjects.push(typedProjectName);
+    // dom.createAndAddAProject
   }
 
   return {
     showTasksOnlyFrom: showTasksOnlyFrom,
-    igotthis: igotthis,
+    // addNewProject: addnewProject,
     currentlySelectedProjet: currentlySelectedProjet,
   };
 })();

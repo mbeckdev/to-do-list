@@ -129,9 +129,7 @@ let dom = (function () {
     theElements.projectContainer.textContent = "Projects";
     createAndAdd("hr", theElements.projectContainer, "hr");
 
-    createAndAddAProject("Coding");
-    createAndAddAProject("Cooking");
-    createAndAddAProject("3d Printing dogs cats bunnies");
+    //fromhere
 
     createAndAdd("div", theElements.projectContainer, "addProjBtn", [
       "id",
@@ -162,14 +160,26 @@ let dom = (function () {
       "placeholder",
       "New Project",
     ]);
+
+    createAndAddAProject("Coding");
+    createAndAddAProject("Cooking");
+    createAndAddAProject("3d Printing dogs cats bunnies");
   }
 
   function createAndAddAProject(newProjectName) {
-    createAndAdd("div", theElements.projectContainer, newProjectName, [
-      "class",
-      "task-set nav-item-padding",
-    ]);
+    theElements[newProjectName] = document.createElement("div");
+    theElements[newProjectName].classList.add("task-set", "nav-item-padding");
+
+    theElements.projectContainer.insertBefore(
+      theElements[newProjectName],
+      theElements.addProjBtn
+    );
+
     theElements[newProjectName].textContent = newProjectName;
+    theElements[newProjectName].addEventListener("click", () => {
+      project.showTasksOnlyFrom(newProjectName);
+    });
+
     projects.allProjects.push(newProjectName);
   }
 
@@ -695,23 +705,9 @@ let dom = (function () {
   function hideAddProjectForm(e) {
     e.preventDefault();
     theElements.form2.classList.add("hidden");
-    console.log("done with form2");
+
     let typedProjectName = theElements.addProjInput.value;
-
-    theElements[typedProjectName] = document.createElement("div");
-    theElements[typedProjectName].classList.add("task-set", "nav-item-padding");
-
-    theElements.projectContainer.insertBefore(
-      theElements[typedProjectName],
-      theElements.addProjBtn
-    );
-
-    projects.allProjects.push(typedProjectName);
-
-    theElements[typedProjectName].textContent = typedProjectName;
-    theElements[typedProjectName].addEventListener("click", () => {
-      project.showTasksOnlyFrom(typedProjectName);
-    });
+    createAndAddAProject(typedProjectName);
   }
 
   function endFormManageTask(e) {
