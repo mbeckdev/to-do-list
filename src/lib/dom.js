@@ -525,16 +525,6 @@ let dom = (function () {
         );
       }
     }
-
-    // if ((optAttributeArray.length + 1) % 2) && (!(optAttributeArray == undefined)){
-    //   //then array is even number, we always want even like 'id', 'blah', 'class', 'blah2'
-    //   console.log("optAttributeArray is even. good.");
-    // }
-    // if (!(optAttributeType == undefined)) {
-    //   theElements[thisName2].setAttribute(optAttributeType, optAttributeValue);
-    // } else {
-    //   console.log("optAttributeType = undefined");
-    // }
   }
 
   function changeTitle(titleText) {
@@ -577,7 +567,6 @@ let dom = (function () {
       projectOnScreen.addEventListener("click", () => {
         project.showTasksOnlyFrom(projectName);
       });
-      // projectOnScreen.addEventListener("click", project.igotthis);
     });
   }
 
@@ -703,9 +692,26 @@ let dom = (function () {
     theElements.addProjInput.focus();
   }
 
-  function hideAddProjectForm() {
+  function hideAddProjectForm(e) {
+    e.preventDefault();
     theElements.form2.classList.add("hidden");
     console.log("done with form2");
+    let typedProjectName = theElements.addProjInput.value;
+
+    theElements[typedProjectName] = document.createElement("div");
+    theElements[typedProjectName].classList.add("task-set", "nav-item-padding");
+
+    theElements.projectContainer.insertBefore(
+      theElements[typedProjectName],
+      theElements.addProjBtn
+    );
+
+    projects.allProjects.push(typedProjectName);
+
+    theElements[typedProjectName].textContent = typedProjectName;
+    theElements[typedProjectName].addEventListener("click", () => {
+      project.showTasksOnlyFrom(typedProjectName);
+    });
   }
 
   function endFormManageTask(e) {
