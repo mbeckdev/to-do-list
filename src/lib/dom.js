@@ -16,6 +16,7 @@ let dom = (function () {
 
   // marker to tell if the manage form came from an addTask or an editTask thing.
   let formCameFrom = "durrrrrrr";
+  let addProjectFormWasCancelled = false;
   // used to keep track of which index of the tasks array we're editing
   let editingThisTaskIndex = -1;
   let editingThisTaskOldTitle = "";
@@ -592,7 +593,10 @@ let dom = (function () {
 
   function _addHideAddProjectFormEListeners() {
     theElements.form2.addEventListener("submit", hideAddProjectForm);
-    theElements.addProjInput.addEventListener("focusout", hideAddProjectForm);
+    theElements.addProjInput.addEventListener("focusout", (e) => {
+      dom.addProjectFormWasCancelled = true;
+      hideAddProjectForm(e);
+    });
   }
 
   function _addShowDescriptionEListener() {
@@ -711,9 +715,15 @@ let dom = (function () {
   function hideAddProjectForm(e) {
     e.preventDefault();
     theElements.form2.classList.add("hidden");
-    let typedProjectName = theElements.addProjInput.value;
 
-    project.addNewProject(typedProjectName);
+    if (dom.addProjectFormWasCancelled) {
+      //dont add a new project -- do nothing
+    } else {
+      let typedProjectName = theElements.addProjInput.value;
+      project.addNewProject(typedProjectName);
+    }
+
+    dom.addProjectFormWasCancelled = false;
     theElements.addProjInput.value = "";
     console.log("hideAddProjectForm ran");
   }
@@ -859,6 +869,7 @@ let dom = (function () {
     showTaskForm: showTaskForm,
     fillTaskFormWithData: fillTaskFormWithData,
     formCameFrom: formCameFrom,
+    addProjectFormWasCancelled: addProjectFormWasCancelled,
     editingThisTaskIndex: editingThisTaskIndex,
     editingThisTaskOldTitle: editingThisTaskOldTitle,
     changeTitle: changeTitle,
