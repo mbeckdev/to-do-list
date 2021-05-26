@@ -261,7 +261,11 @@ nav hr {
 }
 
 #project-title-container p {
-  margin-right: 60px;
+  margin-right: 53px;
+}
+
+#project-title-container h2 {
+  margin-left: 19px;
 }
 
 #project-container {
