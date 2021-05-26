@@ -87,14 +87,14 @@ let project = (function () {
   }
 
   function addNewProject(typedProjectName) {
-    console.log("igotthis");
     projects.allProjects.push(typedProjectName);
-    // dom.createAndAddAProject
+    dom.createAndAddAProject(typedProjectName);
+    console.log("added new project");
   }
 
   return {
     showTasksOnlyFrom: showTasksOnlyFrom,
-    // addNewProject: addnewProject,
+    addNewProject: addNewProject,
     currentlySelectedProject: currentlySelectedProject,
     getCurrentlySelectedProject: getCurrentlySelectedProject,
     setCurrentlySelectedProject: setCurrentlySelectedProject,

@@ -161,9 +161,9 @@ let dom = (function () {
       "New Project",
     ]);
 
-    createAndAddAProject("Coding");
-    createAndAddAProject("Cooking");
-    createAndAddAProject("3d Printing dogs cats bunnies");
+    project.addNewProject("Coding");
+    project.addNewProject("Cooking");
+    project.addNewProject("3d Printing dogs cats bunnies");
   }
 
   function createAndAddAProject(newProjectName) {
@@ -180,7 +180,7 @@ let dom = (function () {
       project.showTasksOnlyFrom(newProjectName);
     });
 
-    projects.allProjects.push(newProjectName);
+    // projects.allProjects.push(newProjectName);
   }
 
   function _createMain() {
@@ -711,10 +711,11 @@ let dom = (function () {
   function hideAddProjectForm(e) {
     e.preventDefault();
     theElements.form2.classList.add("hidden");
-    console.log("hideAddProjectForm ran");
     let typedProjectName = theElements.addProjInput.value;
-    createAndAddAProject(typedProjectName);
+
+    project.addNewProject(typedProjectName);
     theElements.addProjInput.value = "";
+    console.log("hideAddProjectForm ran");
   }
 
   function endFormManageTask(e) {
@@ -728,6 +729,16 @@ let dom = (function () {
       );
       let formPriority = theElements.manageTaskTaskPriorityInput.value;
       let formProject = theElements.manageTaskTaskProjectInput.value;
+
+      //if project isn't in the projects list, add it, and add to screen
+      for (let i = 0; i < projects.allProjects.length; i++) {
+        if (projects.allProjects[i] == formProject) {
+          //it exists already, don't add it
+        } else {
+          project.addNewProject(formProject);
+          break;
+        }
+      }
 
       if (dom.formCameFrom == "addTask") {
         // came from someone clicking an Add Task button
