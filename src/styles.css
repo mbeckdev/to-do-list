@@ -169,6 +169,11 @@ nav hr {
   margin: 15px 0 10px 0;
 }
 
+#h2-container {
+  display: flex;
+  align-items: center;
+}
+
 #hamburger {
   position: relative;
 
@@ -265,7 +270,7 @@ nav hr {
 }
 
 #project-title-container h2 {
-  margin-left: 19px;
+  padding-left: 10px;
 }
 
 #project-container {

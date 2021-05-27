@@ -191,8 +191,32 @@ let dom = (function () {
       "id",
       "project-title-container",
     ]);
-    createAndAdd("h2", theElements.projectTitleContainer, "h2");
-    theElements.h2.textContent = "Coding";
+
+    createAndAdd("div", theElements.projectTitleContainer, "h2Container", [
+      "id",
+      "h2-container",
+    ]);
+
+    createAndAdd("div", theElements.h2Container, "deleteIconForProject", [
+      "class",
+      "delete-icon hidden",
+    ]);
+    createAndAdd(
+      "div",
+      theElements.deleteIconForProject,
+      "deleteIconPart1ForProject",
+      ["class", "delete1"]
+    );
+    createAndAdd(
+      "div",
+      theElements.deleteIconForProject,
+      "deleteIconPart2ForProject",
+      ["class", "delete2"]
+    );
+
+    createAndAdd("h2", theElements.h2Container, "h2");
+    theElements.h2.textContent = "All";
+
     createAndAdd("p", theElements.projectTitleContainer, "aP");
     createAndAdd("strong", theElements.aP, "dueDateTitleText");
     theElements.dueDateTitleText.textContent = "Due Date";
@@ -455,6 +479,7 @@ let dom = (function () {
       "class",
       "edit-inner",
     ]);
+
     createAndAdd("div", theElements.taskLastSection, "deleteIcon", [
       "class",
       "delete-icon",
@@ -563,11 +588,30 @@ let dom = (function () {
     _addAddProjectBtnEListener();
     _addHideAddProjectFormEListeners();
     _addSubmitBtnEListener();
+    _addProjectDeleteBtnEListener();
 
     // _addShowDescriptionEListener();
   }
 
   // Section for functions that add Event Listeners
+
+  function _addProjectDeleteBtnEListener() {
+    theElements.projectTitleContainer.addEventListener(
+      "mouseover",
+      showProjectDeleteBtn
+    );
+    theElements.projectTitleContainer.addEventListener(
+      "mouseout",
+      hideProjectDeleteBtn
+    );
+  }
+
+  function showProjectDeleteBtn() {
+    theElements.deleteIconForProject.classList.remove("hidden");
+  }
+  function hideProjectDeleteBtn() {
+    theElements.deleteIconForProject.classList.add("hidden");
+  }
 
   function _addProjectBtnsEListeners() {
     let allProjectsOnScreen = document.querySelectorAll(".task-set");
