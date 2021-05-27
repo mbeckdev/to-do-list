@@ -8,6 +8,7 @@ import { deleteAClickedTask } from "./delete-task.js";
 import { editATask } from "./edit-task.js";
 import { format } from "date-fns";
 import { projects } from "./projects.js";
+import { storage } from "./storage.js";
 
 // a module pattern called once, but we can call the inner stuff multiple times elsewhere
 // perhaps split this into a separate .js file
@@ -825,6 +826,8 @@ let dom = (function () {
         let thisIndex = dom.editingThisTaskIndex;
 
         tasks[thisIndex].setTitle(formTitle);
+        tasks[thisIndex].title = formTitle;
+
         tasks[thisIndex].setDescription(formDescription);
         tasks[thisIndex].setDueDate(formDueDate);
         tasks[thisIndex].setPriority(formPriority);
@@ -832,6 +835,7 @@ let dom = (function () {
 
         //redraw tasks[thisIndex] to screen
         _redrawOneTaskAfterEdit(thisIndex);
+        storage.setLocalStorage();
       }
     } else if ((dom.formCameFrom = "cancelled")) {
     }

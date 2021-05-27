@@ -106,9 +106,11 @@ let task = function (
     setProject,
     getProject,
     // title,
-    // description,
+    description: description,
     // dueDate,
     // priority,
+    // complete,
+    // project,
   };
 };
 

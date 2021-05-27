@@ -3,6 +3,7 @@
 import { dom } from "./dom.js";
 import { task } from "./task.js";
 import { tasks } from "./tasks.js";
+import { storage } from "./storage.js";
 
 let createANewTask = function (title, description, date, priority, project) {
   let newTask = task(title, description, date, priority, project);
@@ -16,6 +17,8 @@ let createANewTask = function (title, description, date, priority, project) {
     newTask.getPriority(),
     newTask.getProject()
   );
+
+  storage.setLocalStorage();
 };
 
 export { createANewTask };
