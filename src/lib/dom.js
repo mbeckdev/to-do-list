@@ -169,7 +169,11 @@ let dom = (function () {
 
   function createAndAddAProject(newProjectName) {
     theElements[newProjectName] = document.createElement("div");
-    theElements[newProjectName].classList.add("task-set", "nav-item-padding");
+    theElements[newProjectName].classList.add(
+      "task-set",
+      "nav-item-padding",
+      "nav-project"
+    );
 
     theElements.projectContainer.insertBefore(
       theElements[newProjectName],
@@ -604,13 +608,23 @@ let dom = (function () {
       "mouseout",
       hideProjectDeleteBtn
     );
+    theElements.projectTitleContainer.addEventListener("click", () => {
+      project.deleteProject(theElements.h2.textContent);
+    });
   }
 
-  function showProjectDeleteBtn() {
-    theElements.deleteIconForProject.classList.remove("hidden");
-  }
-  function hideProjectDeleteBtn() {
-    theElements.deleteIconForProject.classList.add("hidden");
+  function redrawProjects() {
+    // delete all projects from menu
+    document.querySelectorAll(".nav-project").forEach((navProjectElement) => {
+      navProjectElement.remove();
+    });
+
+    for (let i = 0; i < projects.allProjects.length; i++) {
+      dom.createAndAddAProject(projects.allProjects[i]);
+    }
+    // draw all projects in menu according to what's in projects.allProjects
+
+    console.log("redrawing projects - done");
   }
 
   function _addProjectBtnsEListeners() {
@@ -873,6 +887,14 @@ let dom = (function () {
     theElements.form1.classList.add("form-is-hidden");
   }
 
+  function showProjectDeleteBtn() {
+    theElements.deleteIconForProject.classList.remove("hidden");
+  }
+
+  function hideProjectDeleteBtn() {
+    theElements.deleteIconForProject.classList.add("hidden");
+  }
+
   function toggleNav() {
     // const nav = document.getElementById("navigation");
     console.log("toggling nav");
@@ -917,6 +939,7 @@ let dom = (function () {
     editingThisTaskIndex: editingThisTaskIndex,
     editingThisTaskOldTitle: editingThisTaskOldTitle,
     changeTitle: changeTitle,
+    redrawProjects: redrawProjects,
   };
 })();
 

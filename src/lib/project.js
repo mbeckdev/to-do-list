@@ -92,12 +92,33 @@ let project = (function () {
     console.log("added new project");
   }
 
+  function deleteProject(projectName) {
+    //don't delete 'All', 'Today', or 'Week'
+    if (projectName == ("All" || "Today" || "Week")) {
+      //do nothing
+    } else {
+      let projectIndex = "";
+      for (let i = 0; i < projects.allProjects.length; i++) {
+        if (projects.allProjects[i] == projectName) {
+          projectIndex = i;
+          projects.allProjects.splice(projectIndex, 1);
+          // break;
+        }
+      }
+      dom.redrawProjects();
+      project.showTasksOnlyFrom("All");
+
+      console.log(projectName + "project deleted");
+    }
+  }
+
   return {
     showTasksOnlyFrom: showTasksOnlyFrom,
     addNewProject: addNewProject,
     currentlySelectedProject: currentlySelectedProject,
     getCurrentlySelectedProject: getCurrentlySelectedProject,
     setCurrentlySelectedProject: setCurrentlySelectedProject,
+    deleteProject: deleteProject,
   };
 })();
 
