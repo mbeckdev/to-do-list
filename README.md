@@ -34,9 +34,9 @@ A to-do list made with webpack
 ## Things I Learned
 
 - Error 'is not a function at eval' could mean that my factory function needs to be a module pattern!
+- When you only have two bugs left to fix, if you fix one you'll have only 5 left to fix. haha.
 
 ## Things to improve
 
 - Style the checkboxes.
 - Sort projects alphabetically.
-- Check for existing projects when you add or edit a task and have a project name in the field - it makes a new project always.
