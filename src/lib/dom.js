@@ -95,8 +95,6 @@ let dom = (function () {
   }
 
   function _createNav() {
-    console.log("creating nav in DOM");
-
     createAndAdd("div", document.body, "navMainContainer", [
       "id",
       "nav-main-container",
@@ -163,9 +161,9 @@ let dom = (function () {
       "New Project",
     ]);
 
-    project.addNewProject("Coding");
-    project.addNewProject("Cooking");
-    project.addNewProject("3d Printing dogs cats bunnies");
+    // project.addNewProject("Coding");
+    // project.addNewProject("Cooking");
+    // project.addNewProject("3d Printing dogs cats bunnies");
   }
 
   function createAndAddAProject(newProjectName) {
@@ -185,12 +183,9 @@ let dom = (function () {
     theElements[newProjectName].addEventListener("click", () => {
       project.showTasksOnlyFrom(newProjectName);
     });
-
-    // projects.allProjects.push(newProjectName);
   }
 
   function _createMain() {
-    console.log("Creating main in DOM");
     createAndAdd("main", theElements.navMainContainer, "main");
     createAndAdd("div", theElements.main, "projectTitleContainer", [
       "id",
@@ -291,7 +286,6 @@ let dom = (function () {
       ]
     );
 
-    // theElements.manageTaskTaskTitleInput.attributes.required = "required";
     theElements.manageTaskTaskTitleInput.required = true;
 
     createAndAdd("div", theElements.manageTaskForm, "formRowTaskDescription", [
@@ -405,8 +399,6 @@ let dom = (function () {
   }
 
   function createNewTask(title, description, dueDate, priority, project) {
-    console.log("adding new dom task now");
-
     createAndAdd("div", theElements.taskContainer, title, ["class", "task"]);
     createAndAdd("div", theElements[title], "taskFirstRowMain", [
       "class",
@@ -424,7 +416,6 @@ let dom = (function () {
     ]);
 
     theElements.taskBoxInput.addEventListener("change", () => {
-      console.log("it wooooooooooooooooooooorks");
       // setTaskComplete(theElements.lastClickedBox);
       changeTaskStatus(theElements.lastClickedBox);
     });
@@ -460,7 +451,6 @@ let dom = (function () {
 
     if (isNaN(dueDate.getTime())) {
       // Date was not entered:
-      console.log("Date wasn't entered");
     } else {
       // Date was entered:
       formattedDayOfWeek = format(dueDate, "EEEEE");
@@ -581,7 +571,6 @@ let dom = (function () {
   // document.body.appendChild(navMainContainer);
 
   function setUpInitialDom() {
-    console.log("setting up initial dom now");
     // set up initial few tasks for testing
     // then later get stuff from localHost that you saved from last time you loaded it
     _createSections();
@@ -620,12 +609,10 @@ let dom = (function () {
       navProjectElement.remove();
     });
 
+    // draw all projects in menu according to what's in projects.allProjects
     for (let i = 0; i < projects.allProjects.length; i++) {
       dom.createAndAddAProject(projects.allProjects[i]);
     }
-    // draw all projects in menu according to what's in projects.allProjects
-
-    console.log("redrawing projects - done");
   }
 
   function _addProjectBtnsEListeners() {
@@ -684,7 +671,6 @@ let dom = (function () {
   }
 
   function showTaskForm() {
-    // console.log("add task btn clicked"); or called from editATask
     dom.formCameFrom = "addTask";
     theElements.form1.classList.remove("form-is-hidden");
     theElements.firstFormRow.focus();
@@ -716,7 +702,6 @@ let dom = (function () {
     let formDateValueToAdd = "";
     if (isNaN(dueDate.getTime())) {
       // Date was not entered:
-      // console.log("Date wasn't entered");
     } else {
       // Date was entered:
       formDateValueToAdd = format(dueDate, "yyy-MM-dd");
@@ -766,7 +751,6 @@ let dom = (function () {
   // Functions called from event listeners:
 
   function showAddProjectInput() {
-    console.log("showAddProjectInput ran");
     theElements.form2.classList.remove("hidden");
     theElements.addProjInput.focus();
   }
@@ -779,12 +763,27 @@ let dom = (function () {
       //dont add a new project -- do nothing
     } else {
       let typedProjectName = theElements.addProjInput.value;
-      project.addNewProject(typedProjectName);
+
+      //if project isn't in the projects list, add it, and add to screen
+      let counter = 0;
+      for (let i = 0; i < projects.allProjects.length; i++) {
+        if (projects.allProjects[i] == typedProjectName) {
+          //it exists already, don't add it
+          break;
+        } else {
+          counter++;
+        }
+      }
+
+      // if we went through all the projects and none of them matched - add project
+      if (counter == projects.allProjects.length) {
+        project.addNewProject(typedProjectName);
+        storage.setLocalStorage();
+      }
     }
 
     dom.addProjectFormWasCancelled = false;
     theElements.addProjInput.value = "";
-    console.log("hideAddProjectForm ran");
   }
 
   function endFormManageTask(e) {
@@ -800,13 +799,19 @@ let dom = (function () {
       let formProject = theElements.manageTaskTaskProjectInput.value;
 
       //if project isn't in the projects list, add it, and add to screen
+      let counter = 0;
       for (let i = 0; i < projects.allProjects.length; i++) {
         if (projects.allProjects[i] == formProject) {
           //it exists already, don't add it
-        } else {
-          project.addNewProject(formProject);
           break;
+        } else {
+          counter++;
         }
+      }
+
+      // if we went through all the projects and none of them matched - add project
+      if (counter == projects.allProjects.length) {
+        project.addNewProject(formProject);
       }
 
       if (dom.formCameFrom == "addTask") {
@@ -818,9 +823,9 @@ let dom = (function () {
           formPriority,
           formProject
         );
+        storage.setLocalStorage();
       } else if ((dom.formCameFrom = "editTask")) {
         // came from someone clicking an Edit Task button/icon
-        console.log("tbddddddddddd");
         // replace data in tasks[thisIndex]
 
         let thisIndex = dom.editingThisTaskIndex;
@@ -900,9 +905,6 @@ let dom = (function () {
   }
 
   function toggleNav() {
-    // const nav = document.getElementById("navigation");
-    console.log("toggling nav");
-
     if (theElements.nav.classList.contains("nav-is-left")) {
       theElements.nav.classList.remove("nav-is-left");
     } else {

@@ -1,6 +1,7 @@
 "use strict";
 
 import { dom } from "./dom.js";
+import { task } from "./task.js";
 import { tasks } from "./tasks.js";
 import { projects } from "./projects.js";
 import { isToday, isThisWeek } from "date-fns";
@@ -12,13 +13,11 @@ let storage = (function () {
   function setLocalStorage() {
     objectToSave = {};
     objectToSave.theProjects = projects.allProjects;
-    console.log(objectToSave);
 
     let arrayOfObjectTasksToSave = [];
 
     for (let i = 0; i < tasks.length; i++) {
       arrayOfObjectTasksToSave.push({});
-      console.log(arrayOfObjectTasksToSave);
       let title = tasks[i].getTitle();
       let description = tasks[i].getDescription();
       let dueDate = tasks[i].getDueDate();
@@ -33,22 +32,15 @@ let storage = (function () {
       arrayOfObjectTasksToSave[i].project = project;
     }
     objectToSave.theTasks = arrayOfObjectTasksToSave;
-    console.log("is ok");
 
     localStorage.objectToSave = JSON.stringify(objectToSave);
-    // getLocalStorage();
   }
 
   function getLocalStorage() {
     let theTasks = JSON.parse(localStorage.objectToSave).theTasks;
     let theProjects = JSON.parse(localStorage.objectToSave).theProjects;
+    projects.allProjects = theProjects;
 
-    let dateCheck = theTasks[0].dueDate;
-    console.log(objectToSave.theTasks);
-    console.log(objectToSave.theProjects);
-    console.log("aaaaaaaaaaaaaa");
-
-    // tasks = [];
     tasks.splice(0, tasks.length);
     for (let i = 0; i < dom.theElements.tasks.length; i++) {
       dom.deleteATaskFromScreen(dom.theElements.tasks[i]);
@@ -59,7 +51,21 @@ let storage = (function () {
       let dueDate = new Date(theTasks[i].dueDate);
       let priority = theTasks[i].priority;
       let project = theTasks[i].project;
-      createANewTask(title, description, dueDate, priority, project);
+
+      let newTask = task(title, description, dueDate, priority, project);
+      tasks.push(newTask);
+      dom.createNewTask(
+        newTask.getTitle(),
+        newTask.getDescription(),
+        newTask.getDueDate(),
+        newTask.getPriority(),
+        newTask.getProject()
+      );
+    }
+
+    //write projects
+    for (let i = 0; i < theProjects.length; i++) {
+      dom.createAndAddAProject(theProjects[i]);
     }
   }
   return {

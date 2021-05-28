@@ -15,8 +15,6 @@ let task = function (
   let priority = varPriority;
   let complete = false;
   let project = varProject || "default";
-  // console.log(tasks);
-  // tasks.push(this);
 
   function setTitle(setToThis) {
     title = setToThis;
@@ -106,7 +104,7 @@ let task = function (
     setProject,
     getProject,
     // title,
-    description: description,
+    // description: description,
     // dueDate,
     // priority,
     // complete,

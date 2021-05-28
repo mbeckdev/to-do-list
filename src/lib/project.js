@@ -4,6 +4,7 @@ import { dom } from "./dom.js";
 import { tasks } from "./tasks.js";
 import { projects } from "./projects.js";
 import { isToday, isThisWeek } from "date-fns";
+import { storage } from "./storage.js";
 
 let project = (function () {
   // holds 'All' 'default' 'Today' 'Week' ...then user created stuff: 'Coding' 'Cooking'
@@ -89,6 +90,7 @@ let project = (function () {
   function addNewProject(typedProjectName) {
     projects.allProjects.push(typedProjectName);
     dom.createAndAddAProject(typedProjectName);
+    storage.setLocalStorage();
     console.log("added new project");
   }
 
@@ -106,6 +108,7 @@ let project = (function () {
         }
       }
       dom.redrawProjects();
+      storage.setLocalStorage();
       project.showTasksOnlyFrom("All");
 
       console.log(projectName + "project deleted");
