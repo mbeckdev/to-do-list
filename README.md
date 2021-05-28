@@ -28,7 +28,15 @@ A to-do list made with webpack
 - I'm using an array of task objects to keep track, instead of using a data-id attribute, I'm keeping track by the title of the task. So all titles must be unique.
 - I wonder If I could somehow setup an easier way to keep track of all the addEventListeners and functions that go with each.
 - I made the trashcan icon out of a container div and two inside divs. When you click it, you're clicking any one of the three. I wonder if there a way to disable the inner ones so I only need to check one e.target
+- I just learned about the SOLID principles so I was trying to follow them. Like, make everything have only one responsibility.
+- I made each task item private and you can only get to them by using getters and setters. It would keep the items private but it was a pain when I tried to JSON.stringify all the tasks, because you can't stringify functions, or you can't parse them back. Anyway so I had to pull them all out in order to use them in a JSON string for the localStorage. 
 
 ## Things I Learned
 
 - Error 'is not a function at eval' could mean that my factory function needs to be a module pattern!
+
+## Things to improve
+
+- Style the checkboxes.
+- Sort projects alphabetically.
+- Check for existing projects when you add or edit a task and have a project name in the field - it makes a new project always.
