@@ -16,8 +16,8 @@ A to-do list made with webpack
 
 ## It's like a checklist, but in computer form!
 
-- Check it out [here](#). (link coming soon)
-- Made with webpack
+- Check it out [here](https://mbeckdev.github.io/to-do-list/)
+- Made with Webpack, HTML, CSS, & JavaScript
 
 <hr>
 
