@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
-import { dom } from "./dom.js";
-import { task } from "./task.js";
-import { tasks } from "./tasks.js";
-import { projects } from "./projects.js";
-import { isToday, isThisWeek } from "date-fns";
-import { createANewTask } from "./create-a-new-task.js";
+import { dom } from './dom.js';
+import { task } from './task.js';
+import { tasks } from './tasks.js';
+import { projects } from './projects.js';
+import { isToday, isThisWeek } from 'date-fns';
+import { createANewTask } from './create-a-new-task.js';
 
 let storage = (function () {
   let objectToSave = {};

@@ -1,6 +1,6 @@
-"use strict";
-import format from "date-fns/format";
-import { tasks } from "./tasks.js";
+'use strict';
+import format from 'date-fns/format';
+import { tasks } from './tasks.js';
 
 let task = function (
   varTitle,
@@ -14,7 +14,7 @@ let task = function (
   let dueDate = varDueDate;
   let priority = varPriority;
   let complete = false;
-  let project = varProject || "default";
+  let project = varProject || 'default';
 
   function setTitle(setToThis) {
     title = setToThis;
@@ -42,21 +42,21 @@ let task = function (
   function getFormattedDueDate() {
     if (isNaN(dueDate.getTime())) {
       // Date was not entered:
-      return "";
+      return '';
     } else {
-      return format(dueDate, "MM-dd-yy");
+      return format(dueDate, 'MM-dd-yy');
     }
   }
   function getFormattedDayOfWeekDueDate() {
     if (isNaN(dueDate.getTime())) {
       // Date was not entered:
-      return "";
+      return '';
     } else {
-      let formattedDayOfWeek = format(dueDate, "EEEEE");
-      if (format(dueDate, "EEEEEE") == "Th") {
-        formattedDayOfWeek = "Th";
-      } else if (format(dueDate, "EEEEEE") == "Su") {
-        formattedDayOfWeek = "Su";
+      let formattedDayOfWeek = format(dueDate, 'EEEEE');
+      if (format(dueDate, 'EEEEEE') == 'Th') {
+        formattedDayOfWeek = 'Th';
+      } else if (format(dueDate, 'EEEEEE') == 'Su') {
+        formattedDayOfWeek = 'Su';
       }
       return formattedDayOfWeek;
     }

@@ -1,14 +1,14 @@
-"use strict";
+'use strict';
 
-import { createANewTask } from "./create-a-new-task.js";
-import { tasks } from "./tasks.js";
-import { project } from "./project.js";
-import { changeTaskStatus } from "./change-task-status.js";
-import { deleteAClickedTask } from "./delete-task.js";
-import { editATask } from "./edit-task.js";
-import { format } from "date-fns";
-import { projects } from "./projects.js";
-import { storage } from "./storage.js";
+import { createANewTask } from './create-a-new-task.js';
+import { tasks } from './tasks.js';
+import { project } from './project.js';
+import { changeTaskStatus } from './change-task-status.js';
+import { deleteAClickedTask } from './delete-task.js';
+import { editATask } from './edit-task.js';
+import { format } from 'date-fns';
+import { projects } from './projects.js';
+import { storage } from './storage.js';
 
 // a module pattern called once, but we can call the inner stuff multiple times elsewhere
 // perhaps split this into a separate .js file
@@ -16,11 +16,11 @@ let dom = (function () {
   let theElements = {};
 
   // marker to tell if the manage form came from an addTask or an editTask thing.
-  let formCameFrom = "durrrrrrr";
+  let formCameFrom = 'durrrrrrr';
   let addProjectFormWasCancelled = false;
   // used to keep track of which index of the tasks array we're editing
   let editingThisTaskIndex = -1;
-  let editingThisTaskOldTitle = "";
+  let editingThisTaskOldTitle = '';
 
   function _createSections() {
     // This setup goes against the guideline of doing it in this order
@@ -34,59 +34,59 @@ let dom = (function () {
 
   function _setInitialElements() {
     // hamburger: document.getElementById("hamburger"),
-    theElements.nav = document.getElementById("navigation");
-    theElements.form1 = document.getElementById("manage-task");
-    theElements.firstFormRow = document.getElementById("first-form-row");
-    theElements.cancelBtn = document.getElementById("form-cancel-btn");
-    theElements.addProjBtn = document.getElementById("add-project");
-    theElements.addProjInput = document.getElementById("add-project-input");
-    theElements.form2 = document.getElementById("add-project-form");
-    theElements.tasks = document.querySelectorAll(".task-first-section");
+    theElements.nav = document.getElementById('navigation');
+    theElements.form1 = document.getElementById('manage-task');
+    theElements.firstFormRow = document.getElementById('first-form-row');
+    theElements.cancelBtn = document.getElementById('form-cancel-btn');
+    theElements.addProjBtn = document.getElementById('add-project');
+    theElements.addProjInput = document.getElementById('add-project-input');
+    theElements.form2 = document.getElementById('add-project-form');
+    theElements.tasks = document.querySelectorAll('.task-first-section');
   }
 
   function _createHeader() {
-    createAndAdd("header", document.body, "myHeader");
+    createAndAdd('header', document.body, 'myHeader');
 
-    createAndAdd("div", theElements.myHeader, "mainHeaderContainer", [
-      "id",
-      "main-header-container",
+    createAndAdd('div', theElements.myHeader, 'mainHeaderContainer', [
+      'id',
+      'main-header-container',
     ]);
-    createAndAdd("div", theElements.mainHeaderContainer, "hamburger", [
-      "id",
-      "hamburger",
+    createAndAdd('div', theElements.mainHeaderContainer, 'hamburger', [
+      'id',
+      'hamburger',
     ]);
 
     for (let i = 0; i < 3; i++) {
-      createAndAdd("div", theElements.hamburger, "hamburgerLine", [
-        "class",
-        "hamburger-line",
+      createAndAdd('div', theElements.hamburger, 'hamburgerLine', [
+        'class',
+        'hamburger-line',
       ]);
     }
 
-    createAndAdd("div", theElements.mainHeaderContainer, "icon", [
-      "id",
-      "icon",
+    createAndAdd('div', theElements.mainHeaderContainer, 'icon', [
+      'id',
+      'icon',
     ]);
-    theElements.icon.textContent = "T";
-    createAndAdd("h1", theElements.mainHeaderContainer, "theH1");
-    theElements.theH1.textContent = "TO-DO LIST";
+    theElements.icon.textContent = 'T';
+    createAndAdd('h1', theElements.mainHeaderContainer, 'theH1');
+    theElements.theH1.textContent = 'TO-DO LIST';
 
     //
     //
     //
     // in header  the "+ Add Task" on the right
-    createAndAdd("div", theElements.myHeader, "addTaskHeader", [
-      "class",
-      "add-task",
+    createAndAdd('div', theElements.myHeader, 'addTaskHeader', [
+      'class',
+      'add-task',
     ]);
 
-    createAndAdd("span", theElements.addTaskHeader, "span1", [
-      "class",
-      "add-task-icon",
+    createAndAdd('span', theElements.addTaskHeader, 'span1', [
+      'class',
+      'add-task-icon',
     ]);
-    theElements.span1.textContent = "+";
-    createAndAdd("span", theElements.addTaskHeader, "span2");
-    theElements.span2.textContent = "Add Task";
+    theElements.span1.textContent = '+';
+    createAndAdd('span', theElements.addTaskHeader, 'span2');
+    theElements.span2.textContent = 'Add Task';
   }
 
   function _createNavMainContainer() {
@@ -95,70 +95,70 @@ let dom = (function () {
   }
 
   function _createNav() {
-    createAndAdd("div", document.body, "navMainContainer", [
-      "id",
-      "nav-main-container",
+    createAndAdd('div', document.body, 'navMainContainer', [
+      'id',
+      'nav-main-container',
     ]);
-    createAndAdd("nav", theElements.navMainContainer, "nav", [
-      "id",
-      "navigation",
-      "class",
-      "nav-is-left",
+    createAndAdd('nav', theElements.navMainContainer, 'nav', [
+      'id',
+      'navigation',
+      'class',
+      'nav-is-left',
     ]);
-    createAndAdd("div", theElements.nav, "projectAll", [
-      "class",
-      "task-set nav-item-padding",
+    createAndAdd('div', theElements.nav, 'projectAll', [
+      'class',
+      'task-set nav-item-padding',
     ]);
-    theElements.projectAll.textContent = "All";
-    createAndAdd("div", theElements.nav, "projectToday", [
-      "class",
-      "task-set nav-item-padding",
+    theElements.projectAll.textContent = 'All';
+    createAndAdd('div', theElements.nav, 'projectToday', [
+      'class',
+      'task-set nav-item-padding',
     ]);
-    theElements.projectToday.textContent = "Today";
-    createAndAdd("div", theElements.nav, "projectWeek", [
-      "class",
-      "task-set nav-item-padding",
+    theElements.projectToday.textContent = 'Today';
+    createAndAdd('div', theElements.nav, 'projectWeek', [
+      'class',
+      'task-set nav-item-padding',
     ]);
-    theElements.projectWeek.textContent = "Week";
+    theElements.projectWeek.textContent = 'Week';
 
-    createAndAdd("div", theElements.nav, "projectContainer", [
-      "id",
-      "project-container",
+    createAndAdd('div', theElements.nav, 'projectContainer', [
+      'id',
+      'project-container',
     ]);
 
-    theElements.projectContainer.textContent = "Projects";
-    createAndAdd("hr", theElements.projectContainer, "hr");
+    theElements.projectContainer.textContent = 'Projects';
+    createAndAdd('hr', theElements.projectContainer, 'hr');
 
     //fromhere
 
-    createAndAdd("div", theElements.projectContainer, "addProjBtn", [
-      "id",
-      "add-project",
-      "class",
-      "nav-item-padding",
+    createAndAdd('div', theElements.projectContainer, 'addProjBtn', [
+      'id',
+      'add-project',
+      'class',
+      'nav-item-padding',
     ]);
-    createAndAdd("span", theElements.addProjBtn, "addProjectIcon", [
-      "id",
-      "add-project-icon",
+    createAndAdd('span', theElements.addProjBtn, 'addProjectIcon', [
+      'id',
+      'add-project-icon',
     ]);
-    theElements.addProjectIcon.textContent = "+";
+    theElements.addProjectIcon.textContent = '+';
 
-    createAndAdd("span", theElements.addProjBtn, "addProjectText");
-    theElements.addProjectText.textContent = "Add Project";
+    createAndAdd('span', theElements.addProjBtn, 'addProjectText');
+    theElements.addProjectText.textContent = 'Add Project';
 
-    createAndAdd("form", theElements.projectContainer, "form2", [
-      "id",
-      "add-project-form",
-      "class",
-      "hidden",
+    createAndAdd('form', theElements.projectContainer, 'form2', [
+      'id',
+      'add-project-form',
+      'class',
+      'hidden',
     ]);
-    createAndAdd("input", theElements.form2, "form2Input", [
-      "type",
-      "text",
-      "id",
-      "add-project-input",
-      "placeholder",
-      "New Project",
+    createAndAdd('input', theElements.form2, 'form2Input', [
+      'type',
+      'text',
+      'id',
+      'add-project-input',
+      'placeholder',
+      'New Project',
     ]);
 
     // project.addNewProject("Coding");
@@ -167,11 +167,11 @@ let dom = (function () {
   }
 
   function createAndAddAProject(newProjectName) {
-    theElements[newProjectName] = document.createElement("div");
+    theElements[newProjectName] = document.createElement('div');
     theElements[newProjectName].classList.add(
-      "task-set",
-      "nav-item-padding",
-      "nav-project"
+      'task-set',
+      'nav-item-padding',
+      'nav-project'
     );
 
     theElements.projectContainer.insertBefore(
@@ -180,323 +180,323 @@ let dom = (function () {
     );
 
     theElements[newProjectName].textContent = newProjectName;
-    theElements[newProjectName].addEventListener("click", () => {
+    theElements[newProjectName].addEventListener('click', () => {
       project.showTasksOnlyFrom(newProjectName);
     });
   }
 
   function _createMain() {
-    createAndAdd("main", theElements.navMainContainer, "main");
-    createAndAdd("div", theElements.main, "projectTitleContainer", [
-      "id",
-      "project-title-container",
+    createAndAdd('main', theElements.navMainContainer, 'main');
+    createAndAdd('div', theElements.main, 'projectTitleContainer', [
+      'id',
+      'project-title-container',
     ]);
 
-    createAndAdd("div", theElements.projectTitleContainer, "h2Container", [
-      "id",
-      "h2-container",
+    createAndAdd('div', theElements.projectTitleContainer, 'h2Container', [
+      'id',
+      'h2-container',
     ]);
 
-    createAndAdd("div", theElements.h2Container, "deleteIconForProject", [
-      "class",
-      "delete-icon hidden",
+    createAndAdd('div', theElements.h2Container, 'deleteIconForProject', [
+      'class',
+      'delete-icon hidden',
     ]);
     createAndAdd(
-      "div",
+      'div',
       theElements.deleteIconForProject,
-      "deleteIconPart1ForProject",
-      ["class", "delete1"]
+      'deleteIconPart1ForProject',
+      ['class', 'delete1']
     );
     createAndAdd(
-      "div",
+      'div',
       theElements.deleteIconForProject,
-      "deleteIconPart2ForProject",
-      ["class", "delete2"]
+      'deleteIconPart2ForProject',
+      ['class', 'delete2']
     );
 
-    createAndAdd("h2", theElements.h2Container, "h2");
-    theElements.h2.textContent = "All";
+    createAndAdd('h2', theElements.h2Container, 'h2');
+    theElements.h2.textContent = 'All';
 
-    createAndAdd("p", theElements.projectTitleContainer, "aP");
-    createAndAdd("strong", theElements.aP, "dueDateTitleText");
-    theElements.dueDateTitleText.textContent = "Due Date";
+    createAndAdd('p', theElements.projectTitleContainer, 'aP');
+    createAndAdd('strong', theElements.aP, 'dueDateTitleText');
+    theElements.dueDateTitleText.textContent = 'Due Date';
 
-    createAndAdd("hr", theElements.main, "mainHr");
+    createAndAdd('hr', theElements.main, 'mainHr');
 
-    createAndAdd("div", theElements.main, "taskContainer", [
-      "id",
-      "task-container",
+    createAndAdd('div', theElements.main, 'taskContainer', [
+      'id',
+      'task-container',
     ]);
 
-    createAndAdd("div", theElements.main, "addTaskInMain", [
-      "class",
-      "add-task",
+    createAndAdd('div', theElements.main, 'addTaskInMain', [
+      'class',
+      'add-task',
     ]);
-    createAndAdd("span", theElements.addTaskInMain, "addTaskInMainSpan1", [
-      "class",
-      "add-task-icon",
+    createAndAdd('span', theElements.addTaskInMain, 'addTaskInMainSpan1', [
+      'class',
+      'add-task-icon',
     ]);
-    theElements.addTaskInMainSpan1.textContent = "+";
-    createAndAdd("span", theElements.addTaskInMain, "addTaskInMainSpan2");
-    theElements.addTaskInMainSpan2.textContent = "Add Task";
+    theElements.addTaskInMainSpan1.textContent = '+';
+    createAndAdd('span', theElements.addTaskInMain, 'addTaskInMainSpan2');
+    theElements.addTaskInMainSpan2.textContent = 'Add Task';
 
     _createManageTaskForm();
   }
 
   function _createManageTaskForm() {
-    createAndAdd("form", theElements.main, "manageTaskForm", [
-      "id",
-      "manage-task",
-      "class",
-      "form-is-hidden",
+    createAndAdd('form', theElements.main, 'manageTaskForm', [
+      'id',
+      'manage-task',
+      'class',
+      'form-is-hidden',
     ]);
-    createAndAdd("div", theElements.manageTaskForm, "formRowForTitle", [
-      "class",
-      "form-row",
+    createAndAdd('div', theElements.manageTaskForm, 'formRowForTitle', [
+      'class',
+      'form-row',
     ]);
-    createAndAdd("h2", theElements.formRowForTitle, "formRowTitle", [
-      "id",
-      "manage-form-title",
+    createAndAdd('h2', theElements.formRowForTitle, 'formRowTitle', [
+      'id',
+      'manage-form-title',
     ]);
-    theElements.formRowTitle.textContent = "Add Task";
-    createAndAdd("div", theElements.manageTaskForm, "formRowTaskTitle", [
-      "class",
-      "form-row",
+    theElements.formRowTitle.textContent = 'Add Task';
+    createAndAdd('div', theElements.manageTaskForm, 'formRowTaskTitle', [
+      'class',
+      'form-row',
     ]);
     createAndAdd(
-      "label",
+      'label',
       theElements.formRowTaskTitle,
-      "manageTaskTaskTitleLabel",
-      ["for", "task-title"]
+      'manageTaskTaskTitleLabel',
+      ['for', 'task-title']
     );
-    theElements.manageTaskTaskTitleLabel.textContent = "Title:";
+    theElements.manageTaskTaskTitleLabel.textContent = 'Title:';
     createAndAdd(
-      "input",
+      'input',
       theElements.formRowTaskTitle,
-      "manageTaskTaskTitleInput",
+      'manageTaskTaskTitleInput',
       [
-        "type",
-        "text",
-        "name",
-        "task-title",
-        "placeholder",
-        "Your task",
-        "id",
-        "first-form-row",
+        'type',
+        'text',
+        'name',
+        'task-title',
+        'placeholder',
+        'Your task',
+        'id',
+        'first-form-row',
       ]
     );
 
     theElements.manageTaskTaskTitleInput.required = true;
 
-    createAndAdd("div", theElements.manageTaskForm, "formRowTaskDescription", [
-      "class",
-      "form-row",
+    createAndAdd('div', theElements.manageTaskForm, 'formRowTaskDescription', [
+      'class',
+      'form-row',
     ]);
     createAndAdd(
-      "label",
+      'label',
       theElements.formRowTaskDescription,
-      "manageTaskTaskDescriptionLabel",
-      ["for", "task-description"]
+      'manageTaskTaskDescriptionLabel',
+      ['for', 'task-description']
     );
-    theElements.manageTaskTaskDescriptionLabel.textContent = "Description:";
+    theElements.manageTaskTaskDescriptionLabel.textContent = 'Description:';
     createAndAdd(
-      "input",
+      'input',
       theElements.formRowTaskDescription,
-      "manageTaskTaskDescriptionInput",
+      'manageTaskTaskDescriptionInput',
       [
-        "type",
-        "text",
-        "name",
-        "task-description",
-        "placeholder",
-        "Your description",
+        'type',
+        'text',
+        'name',
+        'task-description',
+        'placeholder',
+        'Your description',
       ]
     );
 
-    createAndAdd("div", theElements.manageTaskForm, "formRowTaskProject", [
-      "class",
-      "form-row",
+    createAndAdd('div', theElements.manageTaskForm, 'formRowTaskProject', [
+      'class',
+      'form-row',
     ]);
     createAndAdd(
-      "label",
+      'label',
       theElements.formRowTaskProject,
-      "manageTaskTaskProjectLabel",
-      ["for", "task-project"]
+      'manageTaskTaskProjectLabel',
+      ['for', 'task-project']
     );
-    theElements.manageTaskTaskProjectLabel.textContent = "Project:";
+    theElements.manageTaskTaskProjectLabel.textContent = 'Project:';
     createAndAdd(
-      "input",
+      'input',
       theElements.formRowTaskProject,
-      "manageTaskTaskProjectInput",
-      ["type", "text", "name", "task-project", "placeholder", "Your project"]
+      'manageTaskTaskProjectInput',
+      ['type', 'text', 'name', 'task-project', 'placeholder', 'Your project']
     );
 
-    createAndAdd("div", theElements.manageTaskForm, "formRowTaskDate", [
-      "class",
-      "form-row",
+    createAndAdd('div', theElements.manageTaskForm, 'formRowTaskDate', [
+      'class',
+      'form-row',
     ]);
     createAndAdd(
-      "label",
+      'label',
       theElements.formRowTaskDate,
-      "manageTaskTaskDateLabel",
-      ["for", "task-date"]
+      'manageTaskTaskDateLabel',
+      ['for', 'task-date']
     );
-    theElements.manageTaskTaskDateLabel.textContent = "Due Date:";
+    theElements.manageTaskTaskDateLabel.textContent = 'Due Date:';
     createAndAdd(
-      "input",
+      'input',
       theElements.formRowTaskDate,
-      "manageTaskTaskDateInput",
-      ["type", "date", "name", "task-date"]
+      'manageTaskTaskDateInput',
+      ['type', 'date', 'name', 'task-date']
     );
 
-    createAndAdd("div", theElements.manageTaskForm, "formRowTaskPriority", [
-      "class",
-      "form-row",
+    createAndAdd('div', theElements.manageTaskForm, 'formRowTaskPriority', [
+      'class',
+      'form-row',
     ]);
     createAndAdd(
-      "label",
+      'label',
       theElements.formRowTaskPriority,
-      "manageTaskTaskPriorityLabel",
-      ["for", "task-priority"]
+      'manageTaskTaskPriorityLabel',
+      ['for', 'task-priority']
     );
-    theElements.manageTaskTaskPriorityLabel.textContent = "Priority:";
+    theElements.manageTaskTaskPriorityLabel.textContent = 'Priority:';
     createAndAdd(
-      "input",
+      'input',
       theElements.formRowTaskPriority,
-      "manageTaskTaskPriorityInput",
+      'manageTaskTaskPriorityInput',
       [
-        "type",
-        "number",
-        "name",
-        "task-priority",
-        "value",
-        "0",
-        "min",
-        "0",
-        "max",
-        "3",
+        'type',
+        'number',
+        'name',
+        'task-priority',
+        'value',
+        '0',
+        'min',
+        '0',
+        'max',
+        '3',
       ]
     );
 
-    createAndAdd("div", theElements.manageTaskForm, "formRowTaskSubmit", [
-      "class",
-      "form-row",
-      "id",
-      "form-row-submit",
+    createAndAdd('div', theElements.manageTaskForm, 'formRowTaskSubmit', [
+      'class',
+      'form-row',
+      'id',
+      'form-row-submit',
     ]);
-    createAndAdd("input", theElements.formRowTaskSubmit, "manageTaskSubmit", [
-      "type",
-      "submit",
-      "value",
-      "Done",
+    createAndAdd('input', theElements.formRowTaskSubmit, 'manageTaskSubmit', [
+      'type',
+      'submit',
+      'value',
+      'Done',
     ]);
 
-    createAndAdd("button", theElements.manageTaskForm, "cancelBtn", [
-      "id",
-      "form-cancel-btn",
+    createAndAdd('button', theElements.manageTaskForm, 'cancelBtn', [
+      'id',
+      'form-cancel-btn',
     ]);
-    theElements.cancelBtn.textContent = "x";
+    theElements.cancelBtn.textContent = 'x';
   }
 
   function createNewTask(title, description, dueDate, priority, project) {
-    createAndAdd("div", theElements.taskContainer, title, ["class", "task"]);
-    createAndAdd("div", theElements[title], "taskFirstRowMain", [
-      "class",
-      "task-first-row-main",
+    createAndAdd('div', theElements.taskContainer, title, ['class', 'task']);
+    createAndAdd('div', theElements[title], 'taskFirstRowMain', [
+      'class',
+      'task-first-row-main',
     ]);
-    createAndAdd("div", theElements.taskFirstRowMain, "taskFirstSection", [
-      "class",
-      "task-first-section",
+    createAndAdd('div', theElements.taskFirstRowMain, 'taskFirstSection', [
+      'class',
+      'task-first-section',
     ]);
-    createAndAdd("input", theElements.taskFirstSection, "taskBoxInput", [
-      "type",
-      "checkbox",
-      "name",
-      "task-box",
+    createAndAdd('input', theElements.taskFirstSection, 'taskBoxInput', [
+      'type',
+      'checkbox',
+      'name',
+      'task-box',
     ]);
 
-    theElements.taskBoxInput.addEventListener("change", () => {
+    theElements.taskBoxInput.addEventListener('change', () => {
       // setTaskComplete(theElements.lastClickedBox);
       changeTaskStatus(theElements.lastClickedBox);
     });
 
-    createAndAdd("label", theElements.taskFirstSection, "taskBoxLabel", [
-      "for",
-      "task-box",
-      "class",
-      "task-title-main",
+    createAndAdd('label', theElements.taskFirstSection, 'taskBoxLabel', [
+      'for',
+      'task-box',
+      'class',
+      'task-title-main',
     ]);
     theElements.taskBoxLabel.textContent = title;
 
-    createAndAdd("div", theElements.taskFirstRowMain, "taskLastSection", [
-      "class",
-      "task-last-section",
+    createAndAdd('div', theElements.taskFirstRowMain, 'taskLastSection', [
+      'class',
+      'task-last-section',
     ]);
 
-    createAndAdd("div", theElements.taskLastSection, "dayOfWeek", [
-      "class",
-      "day-of-week",
+    createAndAdd('div', theElements.taskLastSection, 'dayOfWeek', [
+      'class',
+      'day-of-week',
     ]);
-    createAndAdd("div", theElements.taskLastSection, "dueDate", [
-      "class",
-      "due-date",
+    createAndAdd('div', theElements.taskLastSection, 'dueDate', [
+      'class',
+      'due-date',
     ]);
     // let theDayOfTheWeek = format(dueDate, "EEEEE");
     //"M" or "T W T F"
     // theElements.dayOfWeek.textContent = theDayOfTheWeek;
 
     // If a date was not entered:
-    let formattedDayOfWeek = "";
-    let formattedDate = "";
+    let formattedDayOfWeek = '';
+    let formattedDate = '';
 
     if (isNaN(dueDate.getTime())) {
       // Date was not entered:
     } else {
       // Date was entered:
-      formattedDayOfWeek = format(dueDate, "EEEEE");
-      if (format(dueDate, "EEEEEE") == "Th") {
-        formattedDayOfWeek = "Th";
-      } else if (format(dueDate, "EEEEEE") == "Su") {
-        formattedDayOfWeek = "Su";
+      formattedDayOfWeek = format(dueDate, 'EEEEE');
+      if (format(dueDate, 'EEEEEE') == 'Th') {
+        formattedDayOfWeek = 'Th';
+      } else if (format(dueDate, 'EEEEEE') == 'Su') {
+        formattedDayOfWeek = 'Su';
       }
 
-      formattedDate = format(dueDate, "MM-dd-yy");
+      formattedDate = format(dueDate, 'MM-dd-yy');
     }
 
     theElements.dayOfWeek.textContent = formattedDayOfWeek;
     theElements.dueDate.textContent = formattedDate;
 
-    createAndAdd("div", theElements.taskLastSection, "editIcon", [
-      "class",
-      "edit-icon",
+    createAndAdd('div', theElements.taskLastSection, 'editIcon', [
+      'class',
+      'edit-icon',
     ]);
-    createAndAdd("div", theElements.editIcon, "editInner", [
-      "class",
-      "edit-inner",
-    ]);
-
-    createAndAdd("div", theElements.taskLastSection, "deleteIcon", [
-      "class",
-      "delete-icon",
-    ]);
-    createAndAdd("div", theElements.deleteIcon, "deleteIconPart1", [
-      "class",
-      "delete1",
-    ]);
-    createAndAdd("div", theElements.deleteIcon, "deleteIconPart2", [
-      "class",
-      "delete2",
+    createAndAdd('div', theElements.editIcon, 'editInner', [
+      'class',
+      'edit-inner',
     ]);
 
-    createAndAdd("div", theElements[title], "taskDescriptionSection", [
-      "class",
-      "task-description-section hidden-no-empty-space",
+    createAndAdd('div', theElements.taskLastSection, 'deleteIcon', [
+      'class',
+      'delete-icon',
+    ]);
+    createAndAdd('div', theElements.deleteIcon, 'deleteIconPart1', [
+      'class',
+      'delete1',
+    ]);
+    createAndAdd('div', theElements.deleteIcon, 'deleteIconPart2', [
+      'class',
+      'delete2',
+    ]);
+
+    createAndAdd('div', theElements[title], 'taskDescriptionSection', [
+      'class',
+      'task-description-section hidden-no-empty-space',
     ]);
     createAndAdd(
-      "div",
+      'div',
       theElements.taskDescriptionSection,
-      "taskDescriptionMain",
-      ["class", "task-description-main"]
+      'taskDescriptionMain',
+      ['class', 'task-description-main']
     );
 
     theElements.taskDescriptionMain.textContent = description;
@@ -504,15 +504,15 @@ let dom = (function () {
     _setTaskColorByPriority(theElements[title], priority);
 
     theElements.taskFirstSection.addEventListener(
-      "click",
+      'click',
       _showTaskDescription
     );
 
     //delete icon E Listener
-    theElements.deleteIcon.addEventListener("click", deleteAClickedTask);
+    theElements.deleteIcon.addEventListener('click', deleteAClickedTask);
 
     //edit icon E Listener
-    theElements.editIcon.addEventListener("click", editATask);
+    theElements.editIcon.addEventListener('click', editATask);
   }
 
   function deleteATaskFromScreen(task) {
@@ -552,7 +552,7 @@ let dom = (function () {
         }
       } else {
         console.log(
-          "Error, optAttributeArray is odd, you want an even number of arguments here."
+          'Error, optAttributeArray is odd, you want an even number of arguments here.'
         );
       }
     }
@@ -591,21 +591,21 @@ let dom = (function () {
 
   function _addProjectDeleteBtnEListener() {
     theElements.projectTitleContainer.addEventListener(
-      "mouseover",
+      'mouseover',
       showProjectDeleteBtn
     );
     theElements.projectTitleContainer.addEventListener(
-      "mouseout",
+      'mouseout',
       hideProjectDeleteBtn
     );
-    theElements.projectTitleContainer.addEventListener("click", () => {
+    theElements.projectTitleContainer.addEventListener('click', () => {
       project.deleteProject(theElements.h2.textContent);
     });
   }
 
   function redrawProjects() {
     // delete all projects from menu
-    document.querySelectorAll(".nav-project").forEach((navProjectElement) => {
+    document.querySelectorAll('.nav-project').forEach((navProjectElement) => {
       navProjectElement.remove();
     });
 
@@ -616,12 +616,12 @@ let dom = (function () {
   }
 
   function _addProjectBtnsEListeners() {
-    let allProjectsOnScreen = document.querySelectorAll(".task-set");
+    let allProjectsOnScreen = document.querySelectorAll('.task-set');
 
     allProjectsOnScreen.forEach((projectOnScreen) => {
-      let projectName = "";
+      let projectName = '';
       projectName = projectOnScreen.textContent;
-      projectOnScreen.addEventListener("click", () => {
+      projectOnScreen.addEventListener('click', () => {
         project.showTasksOnlyFrom(projectName);
       });
     });
@@ -629,17 +629,17 @@ let dom = (function () {
 
   function _addAddProjectBtnEListener() {
     // Add-Project 'Button'
-    theElements.addProjBtn.addEventListener("click", showAddProjectInput);
+    theElements.addProjBtn.addEventListener('click', showAddProjectInput);
   }
 
   function _addCancelBtnEListeners() {
     //Cancel button for manage-task form
-    theElements.cancelBtn.addEventListener("click", _cancelTaskForm);
+    theElements.cancelBtn.addEventListener('click', _cancelTaskForm);
   }
 
   function _addHideAddProjectFormEListeners() {
-    theElements.form2.addEventListener("submit", hideAddProjectForm);
-    theElements.addProjInput.addEventListener("focusout", (e) => {
+    theElements.form2.addEventListener('submit', hideAddProjectForm);
+    theElements.addProjInput.addEventListener('focusout', (e) => {
       dom.addProjectFormWasCancelled = true;
       hideAddProjectForm(e);
     });
@@ -648,7 +648,7 @@ let dom = (function () {
   function _addShowDescriptionEListener() {
     // Show description when clicking on task
     theElements.tasks.forEach((thisTask) => {
-      thisTask.addEventListener("click", _showTaskDescription);
+      thisTask.addEventListener('click', _showTaskDescription);
     });
     // tasks.forEach((thisTask) => {
     //   thisTask.addEventListener("click", _showTaskDescription);
@@ -657,9 +657,9 @@ let dom = (function () {
 
   function _addTaskBtnsEListeners() {
     // Add-Task Buttons
-    document.querySelectorAll(".add-task").forEach((addTaskBtn) => {
-      dom.formCameFrom = "addTask";
-      addTaskBtn.addEventListener("click", showTaskForm);
+    document.querySelectorAll('.add-task').forEach((addTaskBtn) => {
+      dom.formCameFrom = 'addTask';
+      addTaskBtn.addEventListener('click', showTaskForm);
     });
   }
   // const form = document.querySelector("form");
@@ -667,24 +667,24 @@ let dom = (function () {
   function _addToggleNavEListener() {
     // Move menu in and out on mobile version
     // const hamburger = document.getElementById("hamburger");
-    theElements.hamburger.addEventListener("click", toggleNav);
+    theElements.hamburger.addEventListener('click', toggleNav);
   }
 
   function showTaskForm() {
-    dom.formCameFrom = "addTask";
-    theElements.form1.classList.remove("form-is-hidden");
+    dom.formCameFrom = 'addTask';
+    theElements.form1.classList.remove('form-is-hidden');
     theElements.firstFormRow.focus();
 
-    theElements.manageTaskTaskTitleInput.value = "";
-    theElements.manageTaskTaskDescriptionInput.value = "";
-    theElements.manageTaskTaskDateInput.value = "";
-    theElements.manageTaskTaskPriorityInput.value = "0";
+    theElements.manageTaskTaskTitleInput.value = '';
+    theElements.manageTaskTaskDescriptionInput.value = '';
+    theElements.manageTaskTaskDateInput.value = '';
+    theElements.manageTaskTaskPriorityInput.value = '0';
 
-    if (theElements.h2.textContent != "All") {
+    if (theElements.h2.textContent != 'All') {
       theElements.manageTaskTaskProjectInput.value =
         project.getCurrentlySelectedProject();
     } else {
-      theElements.manageTaskTaskProjectInput.value = "";
+      theElements.manageTaskTaskProjectInput.value = '';
     }
   }
 
@@ -699,12 +699,12 @@ let dom = (function () {
     theElements.manageTaskTaskDescriptionInput.value = description;
     theElements.manageTaskTaskProjectInput.value = project;
 
-    let formDateValueToAdd = "";
+    let formDateValueToAdd = '';
     if (isNaN(dueDate.getTime())) {
       // Date was not entered:
     } else {
       // Date was entered:
-      formDateValueToAdd = format(dueDate, "yyy-MM-dd");
+      formDateValueToAdd = format(dueDate, 'yyy-MM-dd');
     }
 
     theElements.manageTaskTaskDateInput.value = formDateValueToAdd;
@@ -714,50 +714,50 @@ let dom = (function () {
   function _showTaskDescription(e) {
     // we need to check if they clicked on two elements
     // one is the title text and the other is the empty space to the right of it
-    let descriptionSection = "";
+    let descriptionSection = '';
     theElements.lastClickedBox = e.target;
 
-    if (e.target.getAttribute("type") == "checkbox") {
+    if (e.target.getAttribute('type') == 'checkbox') {
       //it's a checkbox, don't worry about it
     } else {
-      if (e.target.classList.contains("task-title-main")) {
+      if (e.target.classList.contains('task-title-main')) {
         // we clicked on the task title letters
         descriptionSection =
           e.target.parentElement.parentElement.nextElementSibling;
-      } else if (e.target.classList.contains("task-first-section")) {
+      } else if (e.target.classList.contains('task-first-section')) {
         // we clicked the empty space to the right of the task title
         descriptionSection = e.target.parentElement.nextElementSibling;
       }
 
-      if (descriptionSection.classList.contains("hidden-no-empty-space")) {
-        descriptionSection.classList.remove("hidden-no-empty-space");
+      if (descriptionSection.classList.contains('hidden-no-empty-space')) {
+        descriptionSection.classList.remove('hidden-no-empty-space');
       } else {
-        descriptionSection.classList.add("hidden-no-empty-space");
+        descriptionSection.classList.add('hidden-no-empty-space');
       }
     }
   }
 
   function _cancelTaskForm() {
-    theElements.firstFormRow.removeAttribute("required");
-    theElements.form1.classList.add("form-is-hidden");
-    dom.formCameFrom = "cancelled";
+    theElements.firstFormRow.removeAttribute('required');
+    theElements.form1.classList.add('form-is-hidden');
+    dom.formCameFrom = 'cancelled';
   }
 
   function _addSubmitBtnEListener() {
     // submit button clicked
-    theElements.form1.addEventListener("submit", endFormManageTask);
+    theElements.form1.addEventListener('submit', endFormManageTask);
   }
 
   // Functions called from event listeners:
 
   function showAddProjectInput() {
-    theElements.form2.classList.remove("hidden");
+    theElements.form2.classList.remove('hidden');
     theElements.addProjInput.focus();
   }
 
   function hideAddProjectForm(e) {
     e.preventDefault();
-    theElements.form2.classList.add("hidden");
+    theElements.form2.classList.add('hidden');
 
     if (dom.addProjectFormWasCancelled) {
       //dont add a new project -- do nothing
@@ -783,17 +783,17 @@ let dom = (function () {
     }
 
     dom.addProjectFormWasCancelled = false;
-    theElements.addProjInput.value = "";
+    theElements.addProjInput.value = '';
   }
 
   function endFormManageTask(e) {
     hideTaskForm(e);
 
-    if (dom.formCameFrom == "addTask" || dom.formCameFrom == "editTask") {
+    if (dom.formCameFrom == 'addTask' || dom.formCameFrom == 'editTask') {
       let formTitle = theElements.manageTaskTaskTitleInput.value;
       let formDescription = theElements.manageTaskTaskDescriptionInput.value;
       let formDueDate = new Date(
-        theElements.manageTaskTaskDateInput.value + " 00:00"
+        theElements.manageTaskTaskDateInput.value + ' 00:00'
       );
       let formPriority = theElements.manageTaskTaskPriorityInput.value;
       let formProject = theElements.manageTaskTaskProjectInput.value;
@@ -814,7 +814,7 @@ let dom = (function () {
         project.addNewProject(formProject);
       }
 
-      if (dom.formCameFrom == "addTask") {
+      if (dom.formCameFrom == 'addTask') {
         // came from someone clicking an Add Task button
         createANewTask(
           formTitle,
@@ -824,7 +824,7 @@ let dom = (function () {
           formProject
         );
         storage.setLocalStorage();
-      } else if ((dom.formCameFrom = "editTask")) {
+      } else if ((dom.formCameFrom = 'editTask')) {
         // came from someone clicking an Edit Task button/icon
         // replace data in tasks[thisIndex]
 
@@ -842,29 +842,29 @@ let dom = (function () {
         _redrawOneTaskAfterEdit(thisIndex);
         storage.setLocalStorage();
       }
-    } else if ((dom.formCameFrom = "cancelled")) {
+    } else if ((dom.formCameFrom = 'cancelled')) {
     }
   }
 
   function _redrawOneTaskAfterEdit(thisIndex) {
-    let allDomTasks = document.querySelectorAll(".task");
-    let taskToRewrite = "";
+    let allDomTasks = document.querySelectorAll('.task');
+    let taskToRewrite = '';
     allDomTasks.forEach((taskElement) => {
       if (
-        taskElement.querySelector(".task-title-main").textContent ==
+        taskElement.querySelector('.task-title-main').textContent ==
         dom.editingThisTaskOldTitle
       ) {
         taskToRewrite = taskElement;
       }
     });
 
-    taskToRewrite.querySelector(".task-title-main").textContent =
+    taskToRewrite.querySelector('.task-title-main').textContent =
       tasks[thisIndex].getTitle();
-    taskToRewrite.querySelector(".task-description-main").textContent =
+    taskToRewrite.querySelector('.task-description-main').textContent =
       tasks[thisIndex].getDescription();
-    taskToRewrite.querySelector(".due-date").textContent =
+    taskToRewrite.querySelector('.due-date').textContent =
       tasks[thisIndex].getFormattedDueDate();
-    taskToRewrite.querySelector(".day-of-week").textContent =
+    taskToRewrite.querySelector('.day-of-week').textContent =
       tasks[thisIndex].getFormattedDayOfWeekDueDate();
 
     _setTaskColorByPriority(taskToRewrite, tasks[thisIndex].getPriority());
@@ -872,43 +872,43 @@ let dom = (function () {
 
   function _setTaskColorByPriority(task, priorityNum) {
     let priorityNumber = priorityNum;
-    if (task.classList.contains("priority1-color")) {
-      task.classList.remove("priority1-color");
+    if (task.classList.contains('priority1-color')) {
+      task.classList.remove('priority1-color');
     }
-    if (task.classList.contains("priority2-color")) {
-      task.classList.remove("priority2-color");
+    if (task.classList.contains('priority2-color')) {
+      task.classList.remove('priority2-color');
     }
-    if (task.classList.contains("priority3-color")) {
-      task.classList.remove("priority3-color");
+    if (task.classList.contains('priority3-color')) {
+      task.classList.remove('priority3-color');
     }
 
     if (priorityNumber == 1) {
-      task.classList.add("priority1-color");
+      task.classList.add('priority1-color');
     } else if (priorityNumber == 2) {
-      task.classList.add("priority2-color");
+      task.classList.add('priority2-color');
     } else if (priorityNumber == 3) {
-      task.classList.add("priority3-color");
+      task.classList.add('priority3-color');
     }
   }
 
   function hideTaskForm(e) {
     e.preventDefault();
-    theElements.form1.classList.add("form-is-hidden");
+    theElements.form1.classList.add('form-is-hidden');
   }
 
   function showProjectDeleteBtn() {
-    theElements.deleteIconForProject.classList.remove("hidden");
+    theElements.deleteIconForProject.classList.remove('hidden');
   }
 
   function hideProjectDeleteBtn() {
-    theElements.deleteIconForProject.classList.add("hidden");
+    theElements.deleteIconForProject.classList.add('hidden');
   }
 
   function toggleNav() {
-    if (theElements.nav.classList.contains("nav-is-left")) {
-      theElements.nav.classList.remove("nav-is-left");
+    if (theElements.nav.classList.contains('nav-is-left')) {
+      theElements.nav.classList.remove('nav-is-left');
     } else {
-      theElements.nav.classList.add("nav-is-left");
+      theElements.nav.classList.add('nav-is-left');
     }
   }
 
@@ -916,16 +916,16 @@ let dom = (function () {
     //do dom stuff like cross out title
     const thisTitle = checkbox.nextElementSibling;
     // thisTitle.style.color = "green";
-    thisTitle.classList.add("crossed-out");
-    thisTitle.parentElement.parentElement.classList.add("crossed-out");
+    thisTitle.classList.add('crossed-out');
+    thisTitle.parentElement.parentElement.classList.add('crossed-out');
   }
 
   function setTaskNotComplete(checkbox) {
     //do dom stuff like cross out title
     const thisTitle = checkbox.nextElementSibling;
     // thisTitle.style.color = "green";
-    thisTitle.classList.remove("crossed-out");
-    thisTitle.parentElement.parentElement.classList.remove("crossed-out");
+    thisTitle.classList.remove('crossed-out');
+    thisTitle.parentElement.parentElement.classList.remove('crossed-out');
   }
   // End of functions called from event listeners
 

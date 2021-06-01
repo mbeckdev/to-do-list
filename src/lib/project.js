@@ -1,14 +1,14 @@
-"use strict";
+'use strict';
 
-import { dom } from "./dom.js";
-import { tasks } from "./tasks.js";
-import { projects } from "./projects.js";
-import { isToday, isThisWeek } from "date-fns";
-import { storage } from "./storage.js";
+import { dom } from './dom.js';
+import { tasks } from './tasks.js';
+import { projects } from './projects.js';
+import { isToday, isThisWeek } from 'date-fns';
+import { storage } from './storage.js';
 
 let project = (function () {
   // holds 'All' 'default' 'Today' 'Week' ...then user created stuff: 'Coding' 'Cooking'
-  let currentlySelectedProject = "default";
+  let currentlySelectedProject = 'default';
 
   function getCurrentlySelectedProject() {
     return currentlySelectedProject;
@@ -20,20 +20,20 @@ let project = (function () {
   function showTasksOnlyFrom(projectNameToShow) {
     // currentlySelectedProject = projectNameToShow;
     setCurrentlySelectedProject(projectNameToShow);
-    console.log("showTasksOnlyFrom is working");
+    console.log('showTasksOnlyFrom is working');
 
     // Change title above tasks
     dom.changeTitle(projectNameToShow);
 
     // delete all shown tasks on screen
-    let allTasksOnScreen = document.querySelectorAll(".task");
+    let allTasksOnScreen = document.querySelectorAll('.task');
     allTasksOnScreen.forEach((taskOnScreen) => {
       dom.deleteATaskFromScreen(taskOnScreen);
     });
 
     // write only tasks that have the project -projectToShow to the screen
     tasks.forEach((task) => {
-      if (projectNameToShow == "All") {
+      if (projectNameToShow == 'All') {
         let taskToShow = task;
 
         dom.createNewTask(
@@ -43,8 +43,8 @@ let project = (function () {
           taskToShow.getPriority(),
           taskToShow.getProject()
         );
-      } else if (projectNameToShow == "Today") {
-        console.log("a task is today");
+      } else if (projectNameToShow == 'Today') {
+        console.log('a task is today');
 
         let taskDueDate = task.getDueDate();
         if (isToday(taskDueDate)) {
@@ -58,7 +58,7 @@ let project = (function () {
             taskToShow.getProject()
           );
         }
-      } else if (projectNameToShow == "Week") {
+      } else if (projectNameToShow == 'Week') {
         let taskDueDate = task.getDueDate();
         let itIsThisWeek = isThisWeek(taskDueDate, { weekStartsOn: 1 });
         if (itIsThisWeek) {
@@ -91,15 +91,15 @@ let project = (function () {
     projects.allProjects.push(typedProjectName);
     dom.createAndAddAProject(typedProjectName);
     storage.setLocalStorage();
-    console.log("added new project");
+    console.log('added new project');
   }
 
   function deleteProject(projectName) {
     //don't delete 'All', 'Today', or 'Week'
-    if (projectName == ("All" || "Today" || "Week")) {
+    if (projectName == ('All' || 'Today' || 'Week')) {
       //do nothing
     } else {
-      let projectIndex = "";
+      let projectIndex = '';
       for (let i = 0; i < projects.allProjects.length; i++) {
         if (projects.allProjects[i] == projectName) {
           projectIndex = i;
@@ -109,9 +109,9 @@ let project = (function () {
       }
       dom.redrawProjects();
       storage.setLocalStorage();
-      project.showTasksOnlyFrom("All");
+      project.showTasksOnlyFrom('All');
 
-      console.log(projectName + "project deleted");
+      console.log(projectName + 'project deleted');
     }
   }
 

@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-import { dom } from "./dom.js";
-import { task } from "./task.js";
-import { tasks } from "./tasks.js";
+import { dom } from './dom.js';
+import { task } from './task.js';
+import { tasks } from './tasks.js';
 
 let changeTaskStatus = function (checkbox) {
   // e.target  equals  <input type='checkbox' name='task=box'>

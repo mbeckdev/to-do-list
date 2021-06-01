@@ -1,12 +1,12 @@
-<h1 align="center">
+<h1 align='center'>
 # to-do-list
   </h1>
 
-<p align="center">
+<p align='center'>
 A to-do list made with webpack
 </p>
 
-<p align="center">
+<p align='center'>
   <strong>to-do-list</strong> allows you to create, read, update, and delete tasks using localHost so it saves to your computer. It allows you to make projects and mark off tasks.
   <br>
   Everyone makes a to-do list at some point in their web development career, and I'm part of everyone so here's mine. (haha)
@@ -29,7 +29,7 @@ A to-do list made with webpack
 - I wonder If I could somehow setup an easier way to keep track of all the addEventListeners and functions that go with each.
 - I made the trashcan icon out of a container div and two inside divs. When you click it, you're clicking any one of the three. I wonder if there a way to disable the inner ones so I only need to check one e.target
 - I just learned about the SOLID principles so I was trying to follow them. Like, make everything have only one responsibility.
-- I made each task item private and you can only get to them by using getters and setters. It would keep the items private but it was a pain when I tried to JSON.stringify all the tasks, because you can't stringify functions, or you can't parse them back. Anyway so I had to pull them all out in order to use them in a JSON string for the localStorage. 
+- I made each task item private and you can only get to them by using getters and setters. It would keep the items private but it was a pain when I tried to JSON.stringify all the tasks, because you can't stringify functions, or you can't parse them back. Anyway so I had to pull them all out in order to use them in a JSON string for the localStorage.
 
 ## Things I Learned
 
