@@ -43,3 +43,4 @@ A to-do list made with webpack
 - Sort projects alphabetically.
 - research try and catch and use them when restoring from localStorage to handle certain error states when empty -@S0AndS0 on twitter
 - research using the 'title' attribute of items - they may contain description text, essentiallly free on-hover events via HTML -@S0AndS0 on twitter
+- fix bug - checked status isn't saved!
