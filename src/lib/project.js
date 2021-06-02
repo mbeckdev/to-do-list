@@ -111,7 +111,7 @@ let project = (function () {
       storage.setLocalStorage();
       project.showTasksOnlyFrom('All');
 
-      console.log(projectName + 'project deleted');
+      console.log(`${projectName} project deleted`);
     }
   }
 
