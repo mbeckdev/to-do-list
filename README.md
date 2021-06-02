@@ -18,6 +18,7 @@ A to-do list made with webpack
 
 - Check it out [here](https://mbeckdev.github.io/to-do-list/)
 - Made with Webpack, HTML, CSS, & JavaScript
+- Vague guidelines from the Odin Project on how to make your own [here](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/todo-list)
 
 <hr>
 
@@ -40,3 +41,6 @@ A to-do list made with webpack
 
 - Style the checkboxes.
 - Sort projects alphabetically.
+- research try and catch and use them when restoring from localStorage to handle certain error states when empty -@S0AndS0 on twitter
+- research using the 'title' attribute of items - they may contain description text, essentiallly free on-hover events via HTML -@S0AndS0 on twitter
+- fix bug - checked status isn't saved!
