@@ -7,13 +7,14 @@ let task = function (
   varDescription,
   varDueDate,
   varPriority,
-  varProject
+  varProject,
+  varComplete
 ) {
   let title = varTitle;
   let description = varDescription;
   let dueDate = varDueDate;
   let priority = varPriority;
-  let complete = false;
+  let complete = varComplete;
   let project = varProject || 'default';
 
   function setTitle(setToThis) {

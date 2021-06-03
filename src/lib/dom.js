@@ -398,6 +398,29 @@ let dom = (function () {
     theElements.cancelBtn.textContent = 'x';
   }
 
+  function _writeInitialCheckboxToScreen(title) {
+    //find the index we want
+    let thisIndex = -1;
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].getTitle() == title) {
+        thisIndex = i;
+      }
+    }
+    let isChecked = tasks[thisIndex].getComplete();
+    if (isChecked) {
+      // task is complete
+      dom.setTaskComplete(theElements.taskBoxInput);
+      tasks[thisIndex].setComplete(true);
+      theElements.taskBoxInput.checked = true;
+    } else {
+      // task is no longer complete
+      dom.setTaskNotComplete(theElements.taskBoxInput);
+      tasks[thisIndex].setComplete(false);
+    }
+    storage.setLocalStorage();
+    // changeTaskStatus(theElements.taskBoxInput);
+  }
+
   function createNewTask(title, description, dueDate, priority, project) {
     createAndAdd('div', theElements.taskContainer, title, ['class', 'task']);
     createAndAdd('div', theElements[title], 'taskFirstRowMain', [
@@ -427,6 +450,9 @@ let dom = (function () {
       'task-title-main',
     ]);
     theElements.taskBoxLabel.textContent = title;
+
+    // writeInitialCheckboxCrossout
+    _writeInitialCheckboxToScreen(title);
 
     createAndAdd('div', theElements.taskFirstRowMain, 'taskLastSection', [
       'class',

@@ -51,8 +51,16 @@ let storage = (function () {
       let dueDate = new Date(theTasks[i].dueDate);
       let priority = theTasks[i].priority;
       let project = theTasks[i].project;
+      let complete = theTasks[i].complete;
 
-      let newTask = task(title, description, dueDate, priority, project);
+      let newTask = task(
+        title,
+        description,
+        dueDate,
+        priority,
+        project,
+        complete
+      );
       tasks.push(newTask);
       dom.createNewTask(
         newTask.getTitle(),
@@ -61,6 +69,10 @@ let storage = (function () {
         newTask.getPriority(),
         newTask.getProject()
       );
+      // if (theTasks[i].complete) {
+      //   // make it look like it's crossed out
+      //   dom.setTaskComplete()
+      // }
     }
 
     //write projects

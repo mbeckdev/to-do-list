@@ -1,6 +1,7 @@
 'use strict';
 
 import { dom } from './dom.js';
+import { storage } from './storage.js';
 import { task } from './task.js';
 import { tasks } from './tasks.js';
 
@@ -28,6 +29,7 @@ let changeTaskStatus = function (checkbox) {
     dom.setTaskNotComplete(checkbox);
     tasks[thisIndex].setComplete(false);
   }
+  storage.setLocalStorage();
 };
 
 export { changeTaskStatus };
